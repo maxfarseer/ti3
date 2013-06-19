@@ -9,4 +9,68 @@ body {
 	border-right: 1px solid #000;
 	min-height: 800px;
 	padding: 10px;
+	position: relative;
+	z-index: 1;
+}
+.all input, .all select, .all button {
+	border-radius: 0;
+}
+[class*="span"] {
+	margin: 10px 20px 10px 20px;
+}
+[class*="span"] p {
+	margin: 10px;
+}
+[class^="draft__"] {
+	color: #999;
+	font-style: italic;
+	clear: both;
+}
+/* login and registration */
+.none {
+	display: none;
+}
+.overlay {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-shadow: 0 0 5px #CCCCCC;
+    font-size: 13px;
+    left: 50%;
+    margin: -109px 0 0 -185px;
+    min-height: 150px;
+    min-width: 300px;
+    padding: 14px 20px 20px;
+    position: fixed;
+    width: 328px;
+    top: 50%;
+    z-index: 101;
+}
+.icon-off {
+	cursor: pointer;
+}
+
+/* section POLL */
+.poll, .score {
+	border: 1px solid #D9D9D9;
+    box-shadow: 0 0 5px #CCCCCC;
+}
+.poll__header, .score__header {
+	text-align: center;
+}
+.score__lbl {
+	float: left;
+	clear: left;
+	margin: 0 0 5px 5px;
+}
+.score__top {
+	margin: 0 0 0 5px;
+	border: 1px solid #CCC;
+	background: #0088CC;
+	-webkit-transition: all .5s ease 0s;
+	transition: all .5s ease 0s;
+}
+#score__refresh {
+	clear: both;
+	float: left;
+	margin: 10px;
 }

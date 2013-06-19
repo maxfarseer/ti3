@@ -11,23 +11,112 @@
 
 </head>
 <body>
-<div class="all">
+<div class="all row">
 
 	<header>
 		<h1 class="intro">Choose your TOP 3 on TI 3 !</h1>
 	</header>
 
 
-    
-    <button class="btn btn__login">Логин</button>
-    <button class="btn btn__registration">Регистрация</button>
+    <section class="account span10">
+	    <button class="btn btn__login">Логин</button>
+	    <button class="btn btn__registration">Регистрация</button>
+	</section>
 
 
+    <section class="poll span8">
+    	<header class="poll__header"><h2>Голосовать</h2></header>
+			
+			<p> думаю в селекты тоже будет автозаполнение из базы?</p>
+		    <form class="form-horizontal form__poll">
+			
+			<label class="control-label" for="select__top1">Top 1:</label>
+
+			<div class="control-group">
+				<select class="select__team select__team-top1">
+					<option value="navi">Na'Vi</option>
+					<option value="virtuspro">Virtus.pro</option>
+					<option value="eg">EG</option>
+					<option value="alliance">Alliance</option>
+					<option value="quantic">Quantic</option>
+				</select>
+				<input class="points__count" type="text" placeholder="Количество очков">
+			</div>
+
+			<label class="control-label" for="select__top1">Top 2:</label>
+
+			<div class="control-group">
+				<select class="select__team select__team-top2">
+					<option value="navi">Na'Vi</option>
+					<option value="virtuspro">Virtus.pro</option>
+					<option value="eg">EG</option>
+					<option value="alliance">Alliance</option>
+					<option value="quantic">Quantic</option>
+				</select>
+				<input class="points__count" type="text" placeholder="Количество очков">
+			</div>
+
+			<label class="control-label" for="select__top1">Top 3:</label>
+
+			<div class="control-group">
+				<select class="select__team select__team-top3">
+					<option value="navi">Na'Vi</option>
+					<option value="virtuspro">Virtus.pro</option>
+					<option value="eg">EG</option>
+					<option value="alliance">Alliance</option>
+					<option value="quantic">Quantic</option>
+				</select>
+				<input class="points__count" type="text" placeholder="Количество очков">
+			</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox">
+							<input type="checkbox"> Согласен с правилами
+						</label>
+						<button type="submit" class="btn">Голосовать</button>
+					</div>
+				</div>
+
+    		</form>
+
+    </section> <!-- poll -->
+
+    <section class="score span8">
+    	<header class="score__header"><h2>Результаты</h2></header>
+    		<div class="score__lbl">TOP 1:</div>
+    		<div class="score__top score__top1 span7">0</div>
+    		<div class="score__lbl">TOP 2:</div>
+    		<div class="score__top score__top2 span7">0</div>
+    		<div class="score__lbl">TOP 3:</div>
+    		<div class="score__top score__top3 span7">0</div>
+
+			<button id="score__refresh" class="btn">Обновить</button>
+
+			<div class="draft__scoreJSON"></div>
+
+    </section>
+   
+</div> <!-- all -->
+
+
+<!-- форма логина -->
+<div class="overlay overlay__login none">
+	<div class="overlay__close"><i class="icon-off"></i></div>
+		
+		<p>Вставить код кнопок и формы логина. Нужен будет ajax</p>
+	    
 </div>
-
+<!--  -->
 
 <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
-<script src="../js/jquery-2.0.0.min.js"></script>
+<script src="js/jquery-2.0.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+<script src="js/team.js"></script>
+<script src="js/my.js"></script>
+
+
+
 </body>
 </html>
