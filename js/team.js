@@ -3,7 +3,6 @@
 function Team(official_name, simple_name) {
 	this.name = official_name;
 	this.simple = simple_name;
-	this.score = 0;
 }
 
 var navi = new Team("Na'Vi", "navi");

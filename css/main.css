@@ -16,7 +16,7 @@ body {
 	border-radius: 0;
 }
 [class*="span"] {
-	margin: 10px 20px 10px 20px;
+	margin-bottom: 20px;
 }
 [class*="span"] p {
 	margin: 10px;
@@ -50,7 +50,7 @@ body {
 }
 
 /* section POLL */
-.poll, .score {
+.poll, .score, .user {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
 }
@@ -72,5 +72,9 @@ body {
 #score__refresh {
 	clear: both;
 	float: left;
+	margin: 10px;
+}
+/* section USER */
+.btn__quit {
 	margin: 10px;
 }
