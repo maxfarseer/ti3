@@ -1,0 +1,12 @@
+body {
+	background: #CCC;
+}
+.all {
+	background: #FFF;
+	width: 1250px;
+	margin: 0 auto;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	min-height: 800px;
+	padding: 10px;
+}
