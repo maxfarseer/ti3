@@ -59,7 +59,6 @@ $(function() {
 			var whoMax = points.slice(); //копирнули массив
 			var top3team = whoMax.sort(maxInArray).slice(0,3);
 			whoMax = whoMax.sort(maxInArray)[0];
-			console.log(top3team);
 
 			pollsDiagramm(whoMax,top3team[0],top3team[1],top3team[2]);
 
