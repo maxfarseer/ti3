@@ -25,6 +25,7 @@ body {
 	color: #999;
 	font-style: italic;
 	clear: both;
+	margin: 10px;
 }
 /* login and registration */
 .none {
@@ -69,9 +70,12 @@ body {
 	-webkit-transition: all .5s ease 0s;
 	transition: all .5s ease 0s;
 }
-#score__refresh {
+.score__refresh {
 	clear: both;
 	float: left;
+	margin: 10px;
+}
+.score__date {
 	margin: 10px;
 }
 /* section USER */
