@@ -1,16 +1,49 @@
 body {
 	background: #CCC;
 }
+.btn {
+	border-radius: 0;
+}
 .all {
 	background: #FFF;
-	width: 1250px;
-	margin: 0 auto;
-	border-left: 1px solid #000;
-	border-right: 1px solid #000;
+	width: 1228px;
+	margin: 20px auto;
+	border: 1px solid #000;
 	min-height: 800px;
-	padding: 10px;
 	position: relative;
 	z-index: 1;
+	position: relative;
+}
+.veil {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+.full-veil {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: #FFF;
+	opacity: .85;
+	z-index: 10;
+}
+#veilpop .full-veil {
+	z-index: 100;
+}
+.none {
+	display: none;
+}
+.clear {
+	clear: both;
 }
 .all input, .all select, .all button {
 	border-radius: 0;
@@ -27,9 +60,31 @@ body {
 	clear: both;
 	margin: 10px;
 }
+
+.intro {
+	clear: both;
+	margin: 20px auto 30px;
+	width: 1250px;
+}
+.intro__txt {
+	font-family: 'Marcellus SC', serif;
+	font-size: 51px;
+	text-align: center;
+	text-shadow: 1px 2px 3px rgba(232,96,28,1);
+}
+
+
 /* login and registration */
-.none {
-	display: none;
+.account {
+	position: absolute;
+	width: 200px;
+	top: 20px;
+	left: 20px;
+}
+.furion {
+	position: absolute;
+	top: 20px;
+	right: 20px;
 }
 .overlay {
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -49,14 +104,71 @@ body {
 .icon-off {
 	cursor: pointer;
 }
+.overlay__login__wrapper {
+	float: left;
+}
+.overlay__login__item {
+	margin: 10px 0 10px 0;
+	height: 33px;
+	width: 193px;
+}
+.overlay__login__img {
+	width: 59px;
+	height: 33px;
+	float: left;
+	border: 1px solid #D9D9D9;
+	margin: 0 10px 5px 0;
+}
+.overlay__login__via {
+	position: relative;
+	top: 2px;
+	width: 110px;
+	text-align: center;
+}
+.overlay__login__info {
+	float: left;
+	width: 130px;
+	height: 92px;
+	margin: 10px 0 0;
+	text-align: center;
+	padding: 25px 0 0 0;
+}
+.overlay__login__info__count {
+	color: #FF0000;
+}
 
+/* section tutorial */
+.tutorial {
+	margin: 20px;
+}
+.after-login {
+	display: none;
+}
 /* section POLL */
-.poll, .score, .user {
+.poll, .score, .user, .stats, .team {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
 }
+.poll .form-horizontal .control-label {
+	width: 50px;
+}
+.select__team {
+	width: 120px;
+	margin: 0 10px;
+}
+.points__count {
+	width: 50px;
+}
 .poll__header, .score__header {
 	text-align: center;
+}
+.form-horizontal .poll__controls {
+	margin-left: 68px;
+}
+
+/* section SCORE */
+.score {
+	min-height: 322px;
 }
 .score__lbl {
 	float: left;
@@ -81,4 +193,42 @@ body {
 /* section USER */
 .btn__quit {
 	margin: 10px;
+}
+.user {
+	min-height: 322px;
+	position: relative;
+}
+.user__ava {
+	margin: 10px;
+	float: left;
+	width: 100px;
+}
+.user__greetings {
+	float: left;
+	width: 150px;
+	margin: 10px 0 0 0;
+	height: 66px;
+	text-align: center;
+}
+.user__greetings__name {
+	color: #FF0000;
+}
+
+/* STATS */
+.stats {
+	width: 1184px;
+	min-height: 300px;
+	margin: 0 auto;
+}
+.stats__item {
+	margin: 20px 0 0 20px;
+}
+
+
+/* TEAM */
+.team {
+	float: left;
+	width: 500px;
+	min-height: 500px;
+	margin: 20px;
 }

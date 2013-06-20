@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
     <title>ti3</title>
     <meta charset="utf-8">
     <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
     
     <link href="css/main.css" rel="stylesheet" media="screen">
 
@@ -13,110 +13,231 @@
 <body>
 <div class="all row">
 
-	<header>
-		<h1 class="intro">Choose your TOP 3 on TI 3 !</h1>
+	<div class="veil none" id="veilpop" >
+		<div class="full-veil"></div>
+	</div>
+
+	<header class="intro">
+		<h1 class="intro__txt">Choose your TOP 3 on TI 3 !</h1>
 	</header>
 
 
-    <section class="account span10">
-	    <button class="btn btn-login"><i class="icon-user"></i> Логин</button>
-	    <button class="btn btn-registration"><i class="icon-time"></i> Регистрация</button>
+    <section class="account">
+	    <button class="btn btn-mini btn-login"><i class="icon-user"></i> Логин</button>
+	    <button class="btn btn-mini btn-registration"><i class="icon-time"></i> Регистрация</button>
 	</section>
 
+	<section class="furion">
+	    <a class="btn btn-mini btn-warning btn-furion"><i class="icon-leaf"></i> Помоги Фуриону</a>
+	</section>
 
-    <section class="poll span8">
-    	<header class="poll__header"><h2>Голосовать</h2></header>
-			
-			<p> думаю в селекты тоже будет автозаполнение из базы?</p>
-		    <form class="form-horizontal form__poll">
-			
-			<label class="control-label" for="select__top1">Top 1:</label>
+	<div class="clear"></div>
 
-			<div class="control-group">
-				<select class="select__team select__team-top1">
-					<option value="navi">Na'Vi</option>
-					<option value="virtuspro">Virtus.pro</option>
-					<option value="eg">EG</option>
-					<option value="alliance">Alliance</option>
-					<option value="quantic">Quantic</option>
-				</select>
-				<input class="points__count" type="text" placeholder="Количество очков">
+	<section class="tutorial">
+		<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
+		<p> Заходи завтра, и получи еще +10 pts! Ставь снова. </p>
+		<p> Призы делятся на три типа:</p>
+		<ul class="tutorial__list">
+			<li>Рандом из угадавших топ3.</li>
+			<li>Рандом из всех, кто ставил.</li>
+			<li>Рандом из первой сотни поставивших максимальное количество очков и спец-приз от Квопы, тому, кто ставил больше всех!</li>
+		</ul>
+		<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
+		<p> Не забудь помочь Фуриону, бро! </p>
+		<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
+	</section>
+
+    <div class="after-login">
+    	
+    	<section class="span4 user">
+    		<header class="poll__header"><h2>Мои данные</h2></header>
+    			<div class="user__ava">
+    				<img src="img/queenofpain_hphover.png">
+    			</div>
+    			<div class="user__greetings">
+    				You were weak, <span class="user__greetings__name"> %Username, surname%</span>!
+    			</div>
+    	
+    				<p class="user__info">Points: user__points</p>
+    				<p class="user__info">Points: user__points</p>
+    				<p class="user__info">Points: user__points</p>
+    	
+    				<button class="btn btn__quit"><i class="icon-off"></i> Выход</button>
+    	</section> <!-- user -->
+    	
+    	
+    	<section class="poll span4">
+    		<header class="poll__header"><h2>Голосовать</h2></header>
+    				
+    			    <form class="form-horizontal form__poll">
+    				
+    				<label class="control-label" for="select__top1">Top 1:</label>
+    	
+    				<div class="control-group">
+    					<select class="select__team select__team-top1" name="select__top1">
+    						<option value="navi">Na'Vi</option>
+    						<option value="virtuspro">Virtus.pro</option>
+    						<option value="eg">EG</option>
+    						<option value="alliance">Alliance</option>
+    						<option value="quantic">Quantic</option>
+    					</select>
+    					<input class="points__count" type="text" placeholder="Pts">
+    				</div>
+    	
+    				<label class="control-label" for="select__top1">Top 2:</label>
+    	
+    				<div class="control-group">
+    					<select class="select__team select__team-top2" name="select__top2">
+    						<option value="navi">Na'Vi</option>
+    						<option value="virtuspro">Virtus.pro</option>
+    						<option value="eg">EG</option>
+    						<option value="alliance">Alliance</option>
+    						<option value="quantic">Quantic</option>
+    					</select>
+    					<input class="points__count" type="text" placeholder="Pts">
+    				</div>
+    	
+    				<label class="control-label" for="select__top1">Top 3:</label>
+    	
+    				<div class="control-group">
+    					<select class="select__team select__team-top3" name="select__top3">
+    						<option value="navi">Na'Vi</option>
+    						<option value="virtuspro">Virtus.pro</option>
+    						<option value="eg">EG</option>
+    						<option value="alliance">Alliance</option>
+    						<option value="quantic">Quantic</option>
+    					</select>
+    					<input class="points__count" type="text" placeholder="Pts">
+    				</div>
+    	
+    					<div class="control-group">
+    						<div class="controls poll__controls">
+    							<label class="checkbox">
+    								<input type="checkbox"> Согласен с правилами
+    							</label>
+    							<button class="btn btn-poll" type="submit" disabled><i class="icon-ok"></i> Голосовать</button>
+    						</div>
+    					</div>
+    	
+    			</form>
+    				
+    				<button class="btn btn-poll btn-mini"><i class="icon-ok"></i> Отправить JSON</button>
+    	
+    				<div class="draft__scoreJSON"></div>
+    	</section> <!-- poll -->
+    	
+    	
+    	
+    	<section class="score span7">
+    		<header class="score__header"><h2>Результаты</h2></header>
+    			<div class="score__lbl">TOP 1:</div>
+    			<div class="score__top score__top1 span6">0</div>
+    			<div class="score__lbl">TOP 2:</div>
+    			<div class="score__top score__top2 span6">0</div>
+    			<div class="score__lbl">TOP 3:</div>
+    			<div class="score__top score__top3 span6">0</div>
+    	
+    				<button class="btn score__refresh">Обновить</button>
+    	
+    				<div class="draft__score__points"></div>
+    				<div class="score__date"></div>
+    	
+    	</section>
+
+    	<div class="clear"></div>
+
+    	<section class="team team__find">
+    		<header class="poll__header"><h2>Ищу тиму:</h2></header>
+    		<div class="team__user__wrapper">
+    			<div class="team__photo team__photo-find"></div>
+    			<div class="team__info">
+    				<ul class="team__list">
+    					<li class="team__list__item">Параметр01</li>
+    					<li class="team__list__item">Параметр02</li>
+    					<li class="team__list__item">Параметр03</li>
+    					<li class="team__list__item">Параметр04</li>
+    					<li class="team__list__item">Параметр05</li>
+    				</ul>
+    			</div>
+    		</div>
+    		
+    	</section>
+
+    	<section class="team team__want">
+    		<header class="poll__header"><h2>Возьмем в тиму:</h2></header>
+    		<div class="team__user__wrapper">
+    			<div class="team__photo team__photo-want"></div>
+    			<div class="team__info">
+    				<ul class="team__list">
+    					<li class="team__list__item">Параметр01</li>
+    					<li class="team__list__item">Параметр02</li>
+    					<li class="team__list__item">Параметр03</li>
+    					<li class="team__list__item">Параметр04</li>
+    					<li class="team__list__item">Параметр05</li>
+    				</ul>
+    			</div>
+    		</div>
+    		
+    	</section>
+
+    	<div class="clear"></div>
+
+    	<section class="stats">
+    		<header class="poll__header"><h2>Статистика (пока заморожено)</h2></header>
+			
+			<div class="stats__item">
+				<span class="stats__item__lbl">Всего игроков:</span>
+				<span class="stats__item__count">1234567890</span>
 			</div>
 
-			<label class="control-label" for="select__top1">Top 2:</label>
-
-			<div class="control-group">
-				<select class="select__team select__team-top2">
-					<option value="navi">Na'Vi</option>
-					<option value="virtuspro">Virtus.pro</option>
-					<option value="eg">EG</option>
-					<option value="alliance">Alliance</option>
-					<option value="quantic">Quantic</option>
-				</select>
-				<input class="points__count" type="text" placeholder="Количество очков">
+			<div class="stats__item">
+				<span class="stats__item__lbl">Возраст:</span>
+				<span class="stats__item__count">1234567890</span>
 			</div>
 
-			<label class="control-label" for="select__top1">Top 3:</label>
-
-			<div class="control-group">
-				<select class="select__team select__team-top3">
-					<option value="navi">Na'Vi</option>
-					<option value="virtuspro">Virtus.pro</option>
-					<option value="eg">EG</option>
-					<option value="alliance">Alliance</option>
-					<option value="quantic">Quantic</option>
-				</select>
-				<input class="points__count" type="text" placeholder="Количество очков">
+			<div class="stats__item">
+				<span class="stats__item__lbl">Пол:</span>
+				<span class="stats__item__count">1234567890</span>
 			</div>
 
-				<div class="control-group">
-					<div class="controls">
-						<label class="checkbox">
-							<input type="checkbox"> Согласен с правилами
-						</label>
-						<button class="btn btn-poll" type="submit" disabled><i class="icon-ok"></i> Голосовать</button>
-					</div>
-				</div>
+			<div class="stats__item">
+				<span class="stats__item__lbl">и т.д:</span>
+				<span class="stats__item__count">1234567890</span>
+			</div>
 
-    		</form>
-			
-			<button class="btn btn-poll btn-mini"><i class="icon-ok"></i> Отправить JSON</button>
+    	</section>
 
-			<div class="draft__scoreJSON"></div>
-    </section> <!-- poll -->
-
-    <section class="span4 user">
-    	<header class="poll__header"><h2>Мои данные</h2></header>
-			<p class="user__name">Name: user__name</p>
-			<p class="user__photo">Photo: user__photo</p>
-			<p class="user__points">Points: user__points</p>
-			<button class="btn btn__quit"><i class="icon-off"></i> Выход</button>
-    </section> <!-- user -->
-
-    <section class="score span8">
-    	<header class="score__header"><h2>Результаты</h2></header>
-    		<div class="score__lbl">TOP 1:</div>
-    		<div class="score__top score__top1 span7">0</div>
-    		<div class="score__lbl">TOP 2:</div>
-    		<div class="score__top score__top2 span7">0</div>
-    		<div class="score__lbl">TOP 3:</div>
-    		<div class="score__top score__top3 span7">0</div>
-
-			<button class="btn score__refresh">Обновить</button>
-
-			<div class="draft__score__points"></div>
-			<div class="score__date"></div>
-
-    </section>
+    </div> <!-- after-login -->
    
 </div> <!-- all -->
 
 
 <!-- форма логина -->
-<div class="overlay overlay__login none">
+<div class="overlay none">
 	<div class="overlay__close"><i class="icon-off"></i></div>
 		
-		<p>Вставить код кнопок и формы логина. Нужен будет ajax</p>
+		<div class="overlay__login__wrapper">
+			<div class="overlay__login__item">
+			<img src="img/drow_ranger_sb.png" class="overlay__login__img">
+				<button class="btn overlay__login__via overlay__login__via-vk">Вконтакте</button>
+			</div>
+			
+			<div class="overlay__login__item">
+			<img src="img/mirana_sb.png" class="overlay__login__img">
+				<button class="btn overlay__login__via overlay__login__via-fb">Facebook</button>
+			</div>
+			
+			<div class="overlay__login__item">
+			<img src="img/warlock_sb.png" class="overlay__login__img">
+				<button class="btn overlay__login__via overlay__login__via-google">Google</button>
+			</div>
+		</div>
+
+		<div class="overlay__login__info">
+			<p> Уже залогинились:<br>
+				<span class="overlay__login__info__count">87123</span><br>
+				человек.
+		</div>
 	    
 </div>
 <!--  -->

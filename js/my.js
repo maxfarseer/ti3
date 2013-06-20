@@ -1,12 +1,18 @@
 $(function() {
 
-	$('.btn__login').click(function() {
-		$('.overlay__login').removeClass('none');
+	$('.btn-login').click(function() {
+		$('.veil').removeClass('none');
+		$('.overlay').removeClass('none');
 	});
 
 	$('.icon-off').click(function() {
 		$(this).closest('.overlay').addClass('none');
+		$('.veil').addClass('none');
+		$('.tutorial').fadeOut(400, function() {
+			$('.after-login').fadeIn(400);
+		});
 	});
+
 
 	$('.btn-poll').click(function() {
 

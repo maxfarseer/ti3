@@ -19,7 +19,7 @@ function maxInArray(a,b) {
 
 
 function pollsDiagramm(maxPoll) { /* любое кол-во аргументов */
-	var pollWidth = 545;
+	var pollWidth = 462;
 	var unit = pollWidth / maxPoll;
 	
 	for (var i = 1; i <= arguments.length; i++) {
