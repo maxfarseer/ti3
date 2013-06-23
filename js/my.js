@@ -1,5 +1,7 @@
 $(function() {
 
+	// overlay
+
 	$('.btn-login').click(function() {
 		$('.veil').removeClass('none');
 		$('.overlay').removeClass('none');
@@ -20,8 +22,6 @@ $(function() {
 		var $team = $('.select__team');
 		var points = [],
 			team = [],
-			whoMax = [],
-			whoMax2 = [],
 			obj = {},
 			scoreJSON = "";
 		
@@ -31,17 +31,23 @@ $(function() {
 			points.push(+$points[index].value);
 		});
 
-		/*whoMax = points.slice(); //копирнули массив
-		whoMax = whoMax.sort(maxInArray)[0];
-
-		pollsDiagramm(whoMax,points[0],points[1],points[2]); */
-
 		scoreJSON = JSON.stringify(obj);
-		$('.draft__scoreJSON').html('Отправлены данные: ' + scoreJSON);
-	}); //click refresh
 
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: scoreJSON,
+			beforeSend: function() {
+				$('.draft__scoreJSON').html('в userpoll улетело' + scoreJSON);
+			},
+			url: 'userpoll.php',
+			success: function(data) {
+				$('.draft__scoreJSON').html(data);
+			}
+		});
 
-//ajax
+	}); // btn-poll click end
+
 
 	$('.score__refresh').click(function() {
 
@@ -74,8 +80,6 @@ $(function() {
 
 		});
 
-
-		
 		$('.score__date').html('Последнее обновление: ' + new Date().toLocaleString() );
 	});
 
