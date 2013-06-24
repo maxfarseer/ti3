@@ -41,8 +41,8 @@ $(function() {
 				$('.draft__scoreJSON').html('в userpoll улетело' + scoreJSON);
 			},
 			url: 'userpoll.php',
-			success: function(data) {
-				$('.draft__scoreJSON').html(data);
+			success: function(nekitos) {
+				$('.draft__scoreJSON').html('Запрос к PHP вернул:' + nekitos);
 			}
 		});
 
