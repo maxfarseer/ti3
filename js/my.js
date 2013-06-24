@@ -35,14 +35,14 @@ $(function() {
 
 		$.ajax({
 			type: "POST",
-			dataType: "json",
-			data: scoreJSON,
+			// dataType: "json",
+			data: {myData:scoreJSON},
 			beforeSend: function() {
 				$('.draft__scoreJSON').html('в userpoll улетело' + scoreJSON);
 			},
 			url: 'userpoll.php',
-			success: function(data) {
-				$('.draft__scoreJSON').html(data);
+			success: function(dataPHP) {
+				$('.draft__scoreJSON').html('принял данные' + dataPHP);
 			}
 		});
 
