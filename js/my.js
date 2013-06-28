@@ -36,7 +36,7 @@ $(function() {
 		$.ajax({
 			type: "POST",
 			// dataType: "json",
-			data: {myData:scoreJSON},
+			data: {myData:scoreJSON,data:"poll"},
 			beforeSend: function() {
 				$('.draft__scoreJSON').html('в userpoll улетело' + scoreJSON);
 			},
@@ -51,7 +51,7 @@ $(function() {
 
 	$('.score__refresh').click(function() {
 
-		$.getJSON('json/team_score.json', function(data) {
+/*		$.getJSON('json/team_score.json', function(data) {
 			var items = [];
 			var points = [];
 			var teams = [];
@@ -78,6 +78,17 @@ $(function() {
 				$(elem).html('Команда скрыта');
 			});
 
+		});*/
+
+		$.ajax({
+			type: "POST",
+			// dataType: "json",
+			data: {data:"refresh"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+				//$('.draft__scoreJSON').html('принял данные' + dataPHP);
+				console.log(dataPHP);
+			}
 		});
 
 		$('.score__date').html('Последнее обновление: ' + new Date().toLocaleString() );

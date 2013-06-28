@@ -145,7 +145,7 @@ body {
 	
 }
 /* section POLL */
-.poll, .score, .user, .stats, .team, .versus {
+.poll, .score, .user, .stats, .versus {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
 }
@@ -228,9 +228,31 @@ body {
 /* TEAM */
 .team {
 	float: left;
-	width: 500px;
-	min-height: 500px;
-	margin: 20px;
+	width: 1228px;
+	min-height: 100px;
+	margin: 10px 0;
+	border-top: 1px solid #D9D9D9;
+	border-bottom: 1px solid #D9D9D9;
+	padding: 10px;
+}
+.team__user__ava {
+	width: 130px;
+	height: 130px;
+	overflow: hidden;
+}
+.team__user__wrapper {
+	width: 130px;
+	border: 1px solid #D9D9D9;
+	box-shadow: 0 0 5px #CCCCCC;
+	display: table-cell;
+	height: 225px;
+	vertical-align: middle;
+	float: left;
+	margin: 0 0 0 10px;
+	
+}
+.team__user__msg {
+	text-overflow: ellipsis;
 }
 
 

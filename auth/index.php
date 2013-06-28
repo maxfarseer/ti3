@@ -9,12 +9,12 @@ $adapterConfigs = array(
         'client_secret' => 'hNuKZ5QOwD8l6gSc2pmb',
         'redirect_uri'  => 'http://ti3.mozgi43.ru/auth/?provider=vk'
     ),
-    'odnoklassniki' => array(
+   /* 'odnoklassniki' => array(
         'client_id'     => '',
         'client_secret' => '',
         'redirect_uri'  => 'http://localhost/auth?provider=odnoklassniki',
         'public_key'    => 'CBADCBMKABABABABA'
-    ),
+    ),*/
     'mailru' => array(
         'client_id'     => '706578',
         'client_secret' => 'ce2acdf36b515ce64e71f30d1d2b6d52',
@@ -53,6 +53,8 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
         );
 
         $record = mysql_fetch_array($result);
+		$user = new stdClass();
+		
         if (!$record) {
             $values = array(
                 $auther->getProvider(),
@@ -68,6 +70,8 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
             $query = "INSERT INTO `users` (`provider`, `social_id`, `name`, `email`, `social_page`, `sex`, `birthday`, `avatar`) VALUES ('";
             $query .= implode("', '", $values) . "')";
             $result = mysql_query($query);
+			
+			$user->ID     			= mysql_insert_id();
         } else {
             $userFromDb = new stdClass();
             $userFromDb->provider   = $record['provider'];
@@ -78,9 +82,12 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
             $userFromDb->sex        = $record['sex'];
             $userFromDb->birthday   = date('m.d.Y', strtotime($record['birthday']));
             $userFromDb->avatar     = $record['avatar'];
+			$userFromDb->ID     	= $record['id'];
+			
+			$user->ID     			= $record['id'];
         }
 
-        $user = new stdClass();
+       
         $user->provider   = $auther->getProvider();
         $user->socialId   = $auther->getSocialId();
         $user->name       = $auther->getName();
@@ -89,6 +96,7 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
         $user->sex        = $auther->getSex();
         $user->birthday   = $auther->getBirthday();
         $user->avatar     = $auther->getAvatar();
+		
 
         if (isset($userFromDb) && $userFromDb != $user) {
             $idToUpdate = $record['id'];
@@ -106,7 +114,7 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
         $_SESSION['user'] = $user;
     }
 
-    header("location:/index2.html");
+    header("location:/index.html");
 }
 ?>
 

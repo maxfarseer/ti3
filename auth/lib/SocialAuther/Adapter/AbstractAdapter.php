@@ -37,6 +37,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @var string null
      */
     protected $provider = null;
+	 protected $id = null;
 
     /**
      * Social Fields Map for universal keys
@@ -198,6 +199,10 @@ abstract class AbstractAdapter implements AdapterInterface
         return $this->provider;
     }
 
+	    public function getid()
+    {
+        return $this->id;
+    }
     /**
      * Get authentication url
      *

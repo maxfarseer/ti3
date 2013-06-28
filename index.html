@@ -1,4 +1,5 @@
-﻿<html>
+﻿<? include_once ("auth/index.php");?>
+<html>
 <head>
     <title>ti3</title>
     <meta charset="utf-8">
@@ -50,19 +51,26 @@
     <div class="after-login">
     	
     	<section class="span4 user">
-    		<header class="poll__header"><h2>Мои данные</h2></header>
+    		<? if (isset($_SESSION['user'])):$user = $_SESSION['user'];?>
+			<header class="poll__header"><h2>Мои данные</h2></header>
     			<div class="user__ava">
-    				<img src="img/queenofpain_hphover.png">
+    				<? if (!is_null($user->avatar)) echo '<img src="'.$user->avatar.'"/>'?> <!--<img src="img/queenofpain_hphover.png"> -->
     			</div>
     			<div class="user__greetings">
-    				You were weak, <span class="user__greetings__name"> %Username, surname%</span>!
+    				You were weak, <span class="user__greetings__name"><? if (!is_null($user->name))  echo $user->name;?></span>!
     			</div>
     	
-    				<p class="user__info">Points: user__points</p>
-    				<p class="user__info">Points: user__points</p>
-    				<p class="user__info">Points: user__points</p>
+    				<p class="user__info"><? if (!is_null($user->birthday))  echo $user->birthday;?></p>
     	
-    				<button class="btn btn__quit"><i class="icon-off"></i> Выход</button>
+    				<button class="btn btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
+			<? else: ?>
+			<header class="poll__header"><h2>Войти через</h2></header>
+    		<?if (!isset($_GET['code'])) {
+			foreach ($adapters as $title => $adapter) {
+			echo '<p><a href="' . $adapter->getAuthUrl() . '">' . ucfirst($title) . '</a></p>';
+			}}
+			endif;?>
+			
     	</section> <!-- user -->
     	
     	
@@ -75,11 +83,22 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top1" name="select__top1">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
+    						<option value="1">Alliance</option>
+							<option value="2">Quantic</option>
+							<option value="3">Invictus Gaming</option>
+							<option value="4">Orange.Neolution</option>
+							<option value="5">Fnatic</option>
+							<option value="6">Team Liquid</option>
+							<option value="7">Natus Vincere</option>
+							<option value="8">Team Zenith</option>
+							<option value="9">Team Dignitas</option>
+							<option value="10">DK</option>
+							<option value="11">Virtus.Pro</option>
+							<option value="12">LGD Gaming.Int</option>
+							<option value="13">Invasion MUFC</option>
+							<option value="14">TongFu</option>
+							<option value="15">LGD Gaming</option>
+							<option value="16">mousesports</option>
     					</select>
     					<input class="points__count" type="text" placeholder="Pts">
     				</div>
@@ -88,11 +107,22 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top2" name="select__top2">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
+    						    						<option value="1">Alliance</option>
+							<option value="2">Quantic</option>
+							<option value="3">Invictus Gaming</option>
+							<option value="4">Orange.Neolution</option>
+							<option value="5">Fnatic</option>
+							<option value="6">Team Liquid</option>
+							<option value="7">Natus Vincere</option>
+							<option value="8">Team Zenith</option>
+							<option value="9">Team Dignitas</option>
+							<option value="10">DK</option>
+							<option value="11">Virtus.Pro</option>
+							<option value="12">LGD Gaming.Int</option>
+							<option value="13">Invasion MUFC</option>
+							<option value="14">TongFu</option>
+							<option value="15">LGD Gaming</option>
+							<option value="16">mousesports</option>
     					</select>
     					<input class="points__count" type="text" placeholder="Pts">
     				</div>
@@ -101,11 +131,22 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top3" name="select__top3">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
+    						    						<option value="1">Alliance</option>
+							<option value="2">Quantic</option>
+							<option value="3">Invictus Gaming</option>
+							<option value="4">Orange.Neolution</option>
+							<option value="5">Fnatic</option>
+							<option value="6">Team Liquid</option>
+							<option value="7">Natus Vincere</option>
+							<option value="8">Team Zenith</option>
+							<option value="9">Team Dignitas</option>
+							<option value="10">DK</option>
+							<option value="11">Virtus.Pro</option>
+							<option value="12">LGD Gaming.Int</option>
+							<option value="13">Invasion MUFC</option>
+							<option value="14">TongFu</option>
+							<option value="15">LGD Gaming</option>
+							<option value="16">mousesports</option>
     					</select>
     					<input class="points__count" type="text" placeholder="Pts">
     				</div>
@@ -148,19 +189,50 @@
 
     	<section class="team team__find">
     		<header class="poll__header"><h2>Ищу тиму:</h2></header>
+
     		<div class="team__user__wrapper">
-    			<div class="team__photo team__photo-find"></div>
-    			<div class="team__info">
-    				<ul class="team__list">
-    					<li class="team__list__item">Параметр01</li>
-    					<li class="team__list__item">Параметр02</li>
-    					<li class="team__list__item">Параметр03</li>
-    					<li class="team__list__item">Параметр04</li>
-    					<li class="team__list__item">Параметр05</li>
-    				</ul>
-    			</div>
+    			<div class="team__user__ava">
+                    <img src="http://cs10119.vk.me/u10393237/a_a95f47e1.jpg" alt="Pro">
+                </div>
+                <div class="team__user__info">
+                    <p class="team__user__skill">Среднячок</p>
+                    <p class="team__user__spec">Сапорт</p>
+                    <p class="team__user__online">
+                        <span class="team__user__online__wd">Будни: 19-22</span>
+                        <span class="team__user__online__vd">Выхи*: 10-22</span>
+                    </p>
+                    <p class="team__user__call">Связаться</p>
+                </div>
     		</div>
-    		
+
+            <div class="team__user__wrapper">
+                <div class="team__user__ava">
+                    <img src="http://cs421119.vk.me/v421119857/4a9b/7WB33MJldbo.jpg" alt="Pro">
+                </div>
+                <div class="team__user__info">
+                    <p class="team__user__msg"> QQ, парни! Гоу на сфах. Name 123123, пароль 12312</p>
+                </div>
+            </div>
+
+            <div class="team__user__wrapper">
+                <div class="team__user__ava">
+                    <img src="http://cs9822.vk.me/u16134000/a_bca01423.jpg" alt="Pro">
+                </div>
+                <div class="team__user__info">
+                    <p class="team__user__msg"> QQ, парни! Гоу на сфах. Name 123123, пароль 12312</p>
+                </div>
+            </div>
+
+            <div class="team__user__wrapper">
+                <div class="team__user__ava">
+                    <img src="http://cs419618.vk.me/v419618430/46ac/de-TxVLlMoc.jpg" alt="Pro">
+                </div>
+                <div class="team__user__info">
+                    <p class="team__user__msg"> QQ, парни! Гоу на сфах. Name 123123, пароль 12312</p>
+                </div>
+            </div>
+
+
     	</section>
 
     	<section class="team team__want">
