@@ -226,14 +226,18 @@ body {
 
 
 /* TEAM */
-.team {
-	float: left;
-	width: 1228px;
-	min-height: 100px;
-	margin: 10px 0;
+.user__section {
 	border-top: 1px solid #D9D9D9;
 	border-bottom: 1px solid #D9D9D9;
 	padding: 10px;
+	width: 1208px;
+	float: left;
+}
+
+.team {
+	float: left;
+	width: 1208px;
+	margin: 10px 0;
 }
 .team__user__ava {
 	width: 130px;
@@ -241,21 +245,41 @@ body {
 	overflow: hidden;
 }
 .team__user__wrapper {
+	background: url(../img/preloader.gif) no-repeat center center;
 	width: 130px;
 	border: 1px solid #D9D9D9;
 	box-shadow: 0 0 5px #CCCCCC;
-	display: table-cell;
 	height: 225px;
-	vertical-align: middle;
 	float: left;
-	margin: 0 0 0 10px;
-	
+	margin: 0 0 0 17px;
 }
 .team__user__msg {
 	text-overflow: ellipsis;
 }
-
-
+.team__user {
+	padding: 5px;
+	font-size: 12px;
+	line-height: 17px;
+	vertical-align: top;
+	position: relative;
+	height: 85px;
+}
+.t__user-wd, .t__user__vd {
+	padding: 0 0 0 2px;
+}
+.team__user__wrapper [class^="icon-"] {
+	padding: 0 5px 0 0;
+}
+.team__want .team__user__wrapper {
+	height: 240px;
+}
+.team__want .team__user {
+	height: 100px;
+}
+.team__user__item-bottom {
+	position: absolute;
+	bottom: 5px;
+}
 /* VERSUS */
 .versus {
 	position: relative;
