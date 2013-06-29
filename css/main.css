@@ -370,7 +370,7 @@ body {
 	width: 138px;
 }
 .control-group-float .user__more__select {
-	/* width: 75px; */
+	float: left;
 }
 .user__more__choise-want {
 	display: none;
