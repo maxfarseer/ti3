@@ -62,6 +62,7 @@
     	
     				<p class="user__info"><? if (!is_null($user->birthday))  echo $user->birthday;?></p>
     	
+                    <button class="btn btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
     				<button class="btn btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
 			<? else: ?>
 			<header class="poll__header"><h2>Войти через</h2></header>
@@ -410,171 +411,6 @@
 
     	<div class="clear"></div>
 
-        <div class="user__more">
-
-            <form class="form-horizontal form__user__more">
-                    
-                <label class="control-label">Ваше любимое дело:</label>
-    
-                <div class="control-group">
-                    <select class="CLASS">
-                        <option value="mid">Мид</option>
-                        <option value="carry">Кэри</option>
-                        <option value="support">Сапорт</option>
-                        <option value="forest">Лес</option>
-                    </select>
-                </div>
-    
-                <label class="control-label">Скилл:</label>
-    
-                <div class="control-group">
-                    <select class="CLASS">
-                        <option value="lvl1">Нуб</option>
-                        <option value="lvl2">Не туплю</option>
-                        <option value="lvl3">Соображаю</option>
-                        <option value="lvl4">Тащу!</option>
-                        <option value="lvl5">Про</option>
-                    </select>
-                </div>
-    
-                <label class="control-label" for="onlineHours_wd">Онлайн будни c:</label>
-                <div class="control-group">
-                    <select class="CLASS">
-                        <option value="00hh">00:00</option>
-                        <option value="01hh">01:00</option>
-                        <option value="02hh">02:00</option>
-                        <option value="03hh">03:00</option>
-                        <option value="04hh">04:00</option>
-                        <option value="05hh">05:00</option>
-                        <option value="06hh">06:00</option>
-                        <option value="07hh">07:00</option>
-                        <option value="08hh">08:00</option>
-                        <option value="09hh">09:00</option>
-                        <option value="10hh">10:00</option>
-                        <option value="11hh">11:00</option>
-                        <option value="12hh">12:00</option>
-                        <option value="13hh">13:00</option>
-                        <option value="14hh">14:00</option>
-                        <option value="15hh">15:00</option>
-                        <option value="16hh">16:00</option>
-                        <option value="17hh">17:00</option>
-                        <option value="18hh">18:00</option>
-                        <option value="19hh">19:00</option>
-                        <option value="20hh">20:00</option>
-                        <option value="21hh">21:00</option>
-                        <option value="22hh">22:00</option>
-                        <option value="23hh">23:00</option>
-                        <option value="24hh">24:00</option>
-                    </select>
-                </div>
-                
-                <label class="control-label" for="onlineHours_wd">Онлайн будни по:</label>
-                <div class="control-group">
-                    <select class="CLASS">
-                        <option value="00hh">00:00</option>
-                        <option value="01hh">01:00</option>
-                        <option value="02hh">02:00</option>
-                        <option value="03hh">03:00</option>
-                        <option value="04hh">04:00</option>
-                        <option value="05hh">05:00</option>
-                        <option value="06hh">06:00</option>
-                        <option value="07hh">07:00</option>
-                        <option value="08hh">08:00</option>
-                        <option value="09hh">09:00</option>
-                        <option value="10hh">10:00</option>
-                        <option value="11hh">11:00</option>
-                        <option value="12hh">12:00</option>
-                        <option value="13hh">13:00</option>
-                        <option value="14hh">14:00</option>
-                        <option value="15hh">15:00</option>
-                        <option value="16hh">16:00</option>
-                        <option value="17hh">17:00</option>
-                        <option value="18hh">18:00</option>
-                        <option value="19hh">19:00</option>
-                        <option value="20hh">20:00</option>
-                        <option value="21hh">21:00</option>
-                        <option value="22hh">22:00</option>
-                        <option value="23hh">23:00</option>
-                        <option value="24hh">24:00</option>
-                    </select>
-                </div>
-
-                <label class="control-label" for="onlineHours_vd">Онлайн выхи c:</label>
-                <div class="control-group">
-                    <select class="CLASS">
-                        <option value="00hh">00:00</option>
-                        <option value="01hh">01:00</option>
-                        <option value="02hh">02:00</option>
-                        <option value="03hh">03:00</option>
-                        <option value="04hh">04:00</option>
-                        <option value="05hh">05:00</option>
-                        <option value="06hh">06:00</option>
-                        <option value="07hh">07:00</option>
-                        <option value="08hh">08:00</option>
-                        <option value="09hh">09:00</option>
-                        <option value="10hh">10:00</option>
-                        <option value="11hh">11:00</option>
-                        <option value="12hh">12:00</option>
-                        <option value="13hh">13:00</option>
-                        <option value="14hh">14:00</option>
-                        <option value="15hh">15:00</option>
-                        <option value="16hh">16:00</option>
-                        <option value="17hh">17:00</option>
-                        <option value="18hh">18:00</option>
-                        <option value="19hh">19:00</option>
-                        <option value="20hh">20:00</option>
-                        <option value="21hh">21:00</option>
-                        <option value="22hh">22:00</option>
-                        <option value="23hh">23:00</option>
-                        <option value="24hh">24:00</option>
-                    </select>
-                </div>
-
-
-                <label class="control-label" for="onlineHours_vd">Онлайн выхи по:</label>
-                <div class="control-group">
-                    <select class="CLASS">
-                        <option value="00hh">00:00</option>
-                        <option value="01hh">01:00</option>
-                        <option value="02hh">02:00</option>
-                        <option value="03hh">03:00</option>
-                        <option value="04hh">04:00</option>
-                        <option value="05hh">05:00</option>
-                        <option value="06hh">06:00</option>
-                        <option value="07hh">07:00</option>
-                        <option value="08hh">08:00</option>
-                        <option value="09hh">09:00</option>
-                        <option value="10hh">10:00</option>
-                        <option value="11hh">11:00</option>
-                        <option value="12hh">12:00</option>
-                        <option value="13hh">13:00</option>
-                        <option value="14hh">14:00</option>
-                        <option value="15hh">15:00</option>
-                        <option value="16hh">16:00</option>
-                        <option value="17hh">17:00</option>
-                        <option value="18hh">18:00</option>
-                        <option value="19hh">19:00</option>
-                        <option value="20hh">20:00</option>
-                        <option value="21hh">21:00</option>
-                        <option value="22hh">22:00</option>
-                        <option value="23hh">23:00</option>
-                        <option value="24hh">24:00</option>
-                    </select>
-                </div>
-    
-                    <div class="control-group">
-                        <div class="controls poll__controls">
-                            <label class="checkbox">
-                                <input type="checkbox"> Согласен с правилами
-                            </label>
-                            <button class="btn user-more" type="submit"><i class="icon-ok"></i> Голосовать</button>
-                        </div>
-                    </div>
-
-                </form>
-            
-        </div> <!-- user__more -->
-
     	<section class="stats">
     		<header class="poll__header"><h2>Статистика (пока заморожено)</h2></header>
 			
@@ -634,6 +470,202 @@
 	    
 </div>
 <!--  -->
+
+<!-- добавить данные -->
+<div class="user__more none">
+    <div class="overlay__close"><i class="icon-off icon-off-user-more"></i></div>
+
+    <form class="form-horizontal user__more__form">
+    
+        <label class="radio radio-user-more">
+            <input type="radio" name="user__more__choise" id="user__more__choise1" value="option1" checked>
+            Я ворвусь в команду
+        </label>
+        <label class="radio radio-user-more">
+            <input type="radio" name="user__more__choise" id="user__more__choise2" value="option2">
+            Я возьму в команду
+        </label>                
+
+        <div class="clear"></div>
+
+        <div class="control-group" style="margin-top: 13px;">
+        <label class="control-label">Скилл:</label>
+            <select class="user__more__select">
+                <option value="lvl1">Нуб</option>
+                <option value="lvl2">Не туплю</option>
+                <option value="lvl3">Соображаю</option>
+                <option value="lvl4">Тащу!</option>
+                <option value="lvl5">Про</option>
+            </select>
+        </div>
+
+        <div class="user__more__choise-find">
+            <div class="control-group">
+            <label class="control-label">Любимое дело:</label>
+                <select class="user__more__select">
+                    <option value="mid">Мид</option>
+                    <option value="carry">Кэри</option>
+                    <option value="support">Сапорт</option>
+                    <option value="forest">Лес</option>
+                </select>
+            </div>
+        </div> <!-- end find -->
+
+        <div class="user__more__choise-want">
+            <div class="control-group control-group-float">
+            <label class="control-label">Ищу (1го или 2ух)</label>
+                <select class="user__more__select">
+                    <option value="mid">Мид</option>
+                    <option value="carry">Кэри</option>
+                    <option value="support">Сапорт</option>
+                    <option value="forest">Лес</option>
+                </select>
+            </div>
+            <div class="control-group control-group-float">
+            <label class="control-label control-label-col2">и</label>
+                <select class="user__more__select">
+                    <option value="mid">Мид</option>
+                    <option value="carry">Кэри</option>
+                    <option value="support">Сапорт</option>
+                    <option value="forest">Лес</option>
+                </select>
+            </div>
+        </div> <!-- end want -->
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_wd">Онлайн будни c:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+        
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_vd">Онлайн выхи c:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+
+
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+
+        <div class="clear"></div>
+
+        <button class="btn btn-user-more" type="submit"><i class="icon-ok"></i> Отправить</button>
+
+    </form>
+    
+</div> <!-- user__more -->
 
 <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
 <script src="js/jquery-2.0.0.min.js"></script>
