@@ -52,7 +52,7 @@
     	
     	<section class="span4 user">
     		<? if (isset($_SESSION['user'])):$user = $_SESSION['user'];?>
-			<header class="poll__header"><h2>Мои данные</h2></header>
+			<header class="poll__header"><h2>Мои данные </h2></header>
     			<div class="user__ava">
     				<? if (!is_null($user->avatar)) echo '<img src="'.$user->avatar.'"/>'?> <!--<img src="img/queenofpain_hphover.png"> -->
     			</div>
@@ -77,9 +77,7 @@
     	
     	<section class="poll span4">
     		<header class="poll__header"><h2>Голосовать</h2></header>
-    				
-    			    <form class="form-horizontal form__poll">
-    				
+    			    <form class="form-horizontal form__poll"> 				
     				<label class="control-label" for="select__top1">Top 1:</label>
     	
     				<div class="control-group">
@@ -491,11 +489,8 @@
         <div class="control-group" style="margin-top: 13px;">
         <label class="control-label">Скилл:</label>
             <select class="user__more__select">
-                <option value="lvl1">Нуб</option>
-                <option value="lvl2">Не туплю</option>
-                <option value="lvl3">Соображаю</option>
-                <option value="lvl4">Тащу!</option>
-                <option value="lvl5">Про</option>
+            <? foreach($_SESSION['lists']->skills as $key=>$value)
+				echo '<option value="'.$key.'">'.$value.'</option>';?>
             </select>
         </div>
 
@@ -503,10 +498,8 @@
             <div class="control-group">
             <label class="control-label">Любимое дело:</label>
                 <select class="user__more__select">
-                    <option value="mid">Мид</option>
-                    <option value="carry">Кэри</option>
-                    <option value="support">Сапорт</option>
-                    <option value="forest">Лес</option>
+				<? foreach($_SESSION['lists']->roles as $key=>$value)
+				echo '<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end find -->
@@ -515,19 +508,15 @@
             <div class="control-group control-group-float">
             <label class="control-label">Ищу (1го или 2ух)</label>
                 <select class="user__more__select">
-                    <option value="mid">Мид</option>
-                    <option value="carry">Кэри</option>
-                    <option value="support">Сапорт</option>
-                    <option value="forest">Лес</option>
+				<? foreach($_SESSION['lists']->roles as $key=>$value)
+				echo '<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
             <div class="control-group control-group-float">
             <label class="control-label control-label-col2">и</label>
                 <select class="user__more__select">
-                    <option value="mid">Мид</option>
-                    <option value="carry">Кэри</option>
-                    <option value="support">Сапорт</option>
-                    <option value="forest">Лес</option>
+				<? foreach($_SESSION['lists']->roles as $key=>$value)
+				echo '<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end want -->
