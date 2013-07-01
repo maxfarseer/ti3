@@ -112,6 +112,28 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
         }
 
         $_SESSION['user'] = $user;
+		
+		$lists = new stdClass();
+		
+		if(!isset($_SESSION['lists'])){
+			$result = mysql_query("SELECT * from roles");
+
+			while($row = mysql_fetch_assoc($result)) {
+				$rol[$row['id_role']]=$row['role'];
+			}		
+			$lists->roles = $rol;
+			}
+			
+		if(!isset($_SESSION['lists'])){
+			$result = mysql_query("SELECT * from skills");
+
+			while($row = mysql_fetch_assoc($result)) {
+				$rol[$row['id_skill']]=$row['skill'];
+			}		
+			$lists->skills = $rol;
+			}
+			
+		$_SESSION['lists'] = $lists;
     }
 
     header("location:/index.html");
