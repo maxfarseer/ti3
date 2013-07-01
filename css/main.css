@@ -145,7 +145,7 @@ body {
 	
 }
 /* section POLL */
-.poll, .score, .user, .stats, .team, .versus {
+.poll, .score, .user, .stats, .versus, .user__more {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
 }
@@ -226,11 +226,58 @@ body {
 
 
 /* TEAM */
+.user__section {
+	border-top: 1px solid #D9D9D9;
+	border-bottom: 1px solid #D9D9D9;
+	padding: 10px;
+	width: 1208px;
+	float: left;
+}
 .team {
 	float: left;
-	width: 500px;
-	min-height: 500px;
-	margin: 20px;
+	width: 1208px;
+	margin: 10px 0;
+}
+.team__user__ava {
+	width: 130px;
+	height: 130px;
+	overflow: hidden;
+}
+.team__user__wrapper {
+	background: url(../img/preloader.gif) no-repeat center center;
+	width: 130px;
+	border: 1px solid #D9D9D9;
+	box-shadow: 0 0 5px #CCCCCC;
+	height: 225px;
+	float: left;
+	margin: 0 0 0 17px;
+}
+.team__user__msg {
+	text-overflow: ellipsis;
+}
+.team__user {
+	padding: 5px;
+	font-size: 12px;
+	line-height: 17px;
+	vertical-align: top;
+	position: relative;
+	height: 85px;
+}
+.t__user-wd, .t__user__vd {
+	padding: 0 0 0 2px;
+}
+.team__user__wrapper [class^="icon-"] {
+	padding: 0 5px 0 0;
+}
+.team__want .team__user__wrapper {
+	height: 240px;
+}
+.team__want .team__user {
+	height: 100px;
+}
+.team__user__item-bottom {
+	position: absolute;
+	bottom: 5px;
 }
 
 
@@ -290,4 +337,51 @@ body {
 	top: 90px;
 	left: 50%;
 	margin: 0 0 0 2px;
+}
+
+/* user__more */
+.user__more {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-shadow: 0 0 5px #CCCCCC;
+    font-size: 13px;
+    left: 50%;
+    margin: -152px 0 0 -225px;
+    padding: 10px;
+    position: fixed;
+    width: 450px;
+	height: 305px;
+    top: 50%;
+    z-index: 101;
+}
+.control-group-float {
+	float: left;
+}
+.user__more__form .control-label {
+	width: 130px;
+}
+.user__more__select {
+	margin: 0 0 0 5px;
+}
+.user__more .control-label-col2 {
+	width: 30px;
+}
+.user__more__select {
+	width: 138px;
+}
+.control-group-float .user__more__select {
+	float: left;
+}
+.user__more__choise-want {
+	display: none;
+}
+.radio-user-more {
+	margin: 0 0 5px 115px;
+}
+.btn-user-more {
+	margin: 0 0 0 135px;
+	width: 138px;
+}
+.user__more select {
+	border-radius: 0;
 }

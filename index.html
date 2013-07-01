@@ -1,4 +1,5 @@
-﻿<html>
+﻿<? include_once ("auth/index.php");?>
+<html>
 <head>
     <title>ti3</title>
     <meta charset="utf-8">
@@ -50,19 +51,27 @@
     <div class="after-login">
     	
     	<section class="span4 user">
-    		<header class="poll__header"><h2>Мои данные</h2></header>
+    		<? if (isset($_SESSION['user'])):$user = $_SESSION['user'];?>
+			<header class="poll__header"><h2>Мои данные</h2></header>
     			<div class="user__ava">
-    				<img src="img/queenofpain_hphover.png">
+    				<? if (!is_null($user->avatar)) echo '<img src="'.$user->avatar.'"/>'?> <!--<img src="img/queenofpain_hphover.png"> -->
     			</div>
     			<div class="user__greetings">
-    				You were weak, <span class="user__greetings__name"> %Username, surname%</span>!
+    				You were weak, <span class="user__greetings__name"><? if (!is_null($user->name))  echo $user->name;?></span>!
     			</div>
     	
-    				<p class="user__info">Points: user__points</p>
-    				<p class="user__info">Points: user__points</p>
-    				<p class="user__info">Points: user__points</p>
+    				<p class="user__info"><? if (!is_null($user->birthday))  echo $user->birthday;?></p>
     	
-    				<button class="btn btn__quit"><i class="icon-off"></i> Выход</button>
+                    <button class="btn btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
+    				<button class="btn btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
+			<? else: ?>
+			<header class="poll__header"><h2>Войти через</h2></header>
+    		<?if (!isset($_GET['code'])) {
+			foreach ($adapters as $title => $adapter) {
+			echo '<p><a href="' . $adapter->getAuthUrl() . '">' . ucfirst($title) . '</a></p>';
+			}}
+			endif;?>
+			
     	</section> <!-- user -->
     	
     	
@@ -75,11 +84,22 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top1" name="select__top1">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
+    						<option value="1">Alliance</option>
+							<option value="2">Quantic</option>
+							<option value="3">Invictus Gaming</option>
+							<option value="4">Orange.Neolution</option>
+							<option value="5">Fnatic</option>
+							<option value="6">Team Liquid</option>
+							<option value="7">Natus Vincere</option>
+							<option value="8">Team Zenith</option>
+							<option value="9">Team Dignitas</option>
+							<option value="10">DK</option>
+							<option value="11">Virtus.Pro</option>
+							<option value="12">LGD Gaming.Int</option>
+							<option value="13">Invasion MUFC</option>
+							<option value="14">TongFu</option>
+							<option value="15">LGD Gaming</option>
+							<option value="16">mousesports</option>
     					</select>
     					<input class="points__count" type="text" placeholder="Pts">
     				</div>
@@ -88,11 +108,22 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top2" name="select__top2">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
+    						    						<option value="1">Alliance</option>
+							<option value="2">Quantic</option>
+							<option value="3">Invictus Gaming</option>
+							<option value="4">Orange.Neolution</option>
+							<option value="5">Fnatic</option>
+							<option value="6">Team Liquid</option>
+							<option value="7">Natus Vincere</option>
+							<option value="8">Team Zenith</option>
+							<option value="9">Team Dignitas</option>
+							<option value="10">DK</option>
+							<option value="11">Virtus.Pro</option>
+							<option value="12">LGD Gaming.Int</option>
+							<option value="13">Invasion MUFC</option>
+							<option value="14">TongFu</option>
+							<option value="15">LGD Gaming</option>
+							<option value="16">mousesports</option>
     					</select>
     					<input class="points__count" type="text" placeholder="Pts">
     				</div>
@@ -101,11 +132,22 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top3" name="select__top3">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
+    						    						<option value="1">Alliance</option>
+							<option value="2">Quantic</option>
+							<option value="3">Invictus Gaming</option>
+							<option value="4">Orange.Neolution</option>
+							<option value="5">Fnatic</option>
+							<option value="6">Team Liquid</option>
+							<option value="7">Natus Vincere</option>
+							<option value="8">Team Zenith</option>
+							<option value="9">Team Dignitas</option>
+							<option value="10">DK</option>
+							<option value="11">Virtus.Pro</option>
+							<option value="12">LGD Gaming.Int</option>
+							<option value="13">Invasion MUFC</option>
+							<option value="14">TongFu</option>
+							<option value="15">LGD Gaming</option>
+							<option value="16">mousesports</option>
     					</select>
     					<input class="points__count" type="text" placeholder="Pts">
     				</div>
@@ -148,37 +190,224 @@
 
     	<section class="team team__find">
     		<header class="poll__header"><h2>Ищу тиму:</h2></header>
-    		<div class="team__user__wrapper">
-    			<div class="team__photo team__photo-find"></div>
-    			<div class="team__info">
-    				<ul class="team__list">
-    					<li class="team__list__item">Параметр01</li>
-    					<li class="team__list__item">Параметр02</li>
-    					<li class="team__list__item">Параметр03</li>
-    					<li class="team__list__item">Параметр04</li>
-    					<li class="team__list__item">Параметр05</li>
-    				</ul>
-    			</div>
-    		</div>
-    		
-    	</section>
+
+    		<div class="user__section">
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs10119.vk.me/u10393237/a_a95f47e1.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+                
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs320229.vk.me/v320229222/b76/lAllq0VolNU.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs412528.vk.me/v412528763/17ad/PcyaM2jLXng.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs421119.vk.me/v421119857/4a9b/7WB33MJldbo.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <!-- пустой: пример прелоадера -->
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs9822.vk.me/u16134000/a_bca01423.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs419618.vk.me/v419618430/46ac/de-TxVLlMoc.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs9455.vk.me/v9455573/3e8/06-E1Eshmzk.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+            </div>
+
+    	</section> <!-- team__find -->
 
     	<section class="team team__want">
-    		<header class="poll__header"><h2>Возьмем в тиму:</h2></header>
-    		<div class="team__user__wrapper">
-    			<div class="team__photo team__photo-want"></div>
-    			<div class="team__info">
-    				<ul class="team__list">
-    					<li class="team__list__item">Параметр01</li>
-    					<li class="team__list__item">Параметр02</li>
-    					<li class="team__list__item">Параметр03</li>
-    					<li class="team__list__item">Параметр04</li>
-    					<li class="team__list__item">Параметр05</li>
-    				</ul>
-    			</div>
-    		</div>
-    		
-    	</section>
+            <header class="poll__header"><h2>Возьму в тиму:</h2></header>
+
+            <div class="user__section">
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs10119.vk.me/u10393237/a_a95f47e1.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Мид</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+                
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs320229.vk.me/v320229222/b76/lAllq0VolNU.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Мид</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs412528.vk.me/v412528763/17ad/PcyaM2jLXng.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Кэрри</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs413323.vk.me/v413323335/185b/Zszyo5IyTVE.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs9822.vk.me/u16134000/a_bca01423.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs419618.vk.me/v419618430/46ac/de-TxVLlMoc.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Мид</span></div>
+                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Лес</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+    
+                <div class="team__user__wrapper">
+                    <div class="team__user__ava">
+                        <img src="http://cs9455.vk.me/v9455573/3e8/06-E1Eshmzk.jpg" alt="Pro">
+                    </div>
+                    <div class="team__user">
+                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
+                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
+                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
+                        </div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
+                    </div>
+                </div>
+            </div>
+
+        </section> <!-- team__want -->
 
     	<div class="clear"></div>
 
@@ -241,6 +470,202 @@
 	    
 </div>
 <!--  -->
+
+<!-- добавить данные -->
+<div class="user__more none">
+    <div class="overlay__close"><i class="icon-off icon-off-user-more"></i></div>
+
+    <form class="form-horizontal user__more__form">
+    
+        <label class="radio radio-user-more">
+            <input type="radio" name="user__more__choise" id="user__more__choise1" value="option1" checked>
+            Я ворвусь в команду
+        </label>
+        <label class="radio radio-user-more">
+            <input type="radio" name="user__more__choise" id="user__more__choise2" value="option2">
+            Я возьму в команду
+        </label>                
+
+        <div class="clear"></div>
+
+        <div class="control-group" style="margin-top: 13px;">
+        <label class="control-label">Скилл:</label>
+            <select class="user__more__select">
+                <option value="lvl1">Нуб</option>
+                <option value="lvl2">Не туплю</option>
+                <option value="lvl3">Соображаю</option>
+                <option value="lvl4">Тащу!</option>
+                <option value="lvl5">Про</option>
+            </select>
+        </div>
+
+        <div class="user__more__choise-find">
+            <div class="control-group">
+            <label class="control-label">Любимое дело:</label>
+                <select class="user__more__select">
+                    <option value="mid">Мид</option>
+                    <option value="carry">Кэри</option>
+                    <option value="support">Сапорт</option>
+                    <option value="forest">Лес</option>
+                </select>
+            </div>
+        </div> <!-- end find -->
+
+        <div class="user__more__choise-want">
+            <div class="control-group control-group-float">
+            <label class="control-label">Ищу (1го или 2ух)</label>
+                <select class="user__more__select">
+                    <option value="mid">Мид</option>
+                    <option value="carry">Кэри</option>
+                    <option value="support">Сапорт</option>
+                    <option value="forest">Лес</option>
+                </select>
+            </div>
+            <div class="control-group control-group-float">
+            <label class="control-label control-label-col2">и</label>
+                <select class="user__more__select">
+                    <option value="mid">Мид</option>
+                    <option value="carry">Кэри</option>
+                    <option value="support">Сапорт</option>
+                    <option value="forest">Лес</option>
+                </select>
+            </div>
+        </div> <!-- end want -->
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_wd">Онлайн будни c:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+        
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_vd">Онлайн выхи c:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+
+
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
+            <select class="user__more__select">
+                <option value="00hh">00:00</option>
+                <option value="01hh">01:00</option>
+                <option value="02hh">02:00</option>
+                <option value="03hh">03:00</option>
+                <option value="04hh">04:00</option>
+                <option value="05hh">05:00</option>
+                <option value="06hh">06:00</option>
+                <option value="07hh">07:00</option>
+                <option value="08hh">08:00</option>
+                <option value="09hh">09:00</option>
+                <option value="10hh">10:00</option>
+                <option value="11hh">11:00</option>
+                <option value="12hh">12:00</option>
+                <option value="13hh">13:00</option>
+                <option value="14hh">14:00</option>
+                <option value="15hh">15:00</option>
+                <option value="16hh">16:00</option>
+                <option value="17hh">17:00</option>
+                <option value="18hh">18:00</option>
+                <option value="19hh">19:00</option>
+                <option value="20hh">20:00</option>
+                <option value="21hh">21:00</option>
+                <option value="22hh">22:00</option>
+                <option value="23hh">23:00</option>
+                <option value="24hh">24:00</option>
+            </select>
+        </div>
+
+        <div class="clear"></div>
+
+        <button class="btn btn-user-more" type="submit"><i class="icon-ok"></i> Отправить</button>
+
+    </form>
+    
+</div> <!-- user__more -->
 
 <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
 <script src="js/jquery-2.0.0.min.js"></script>

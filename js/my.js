@@ -15,6 +15,16 @@ $(function() {
 		});
 	});
 
+	// user-more
+	$('.btn-add-user-more').click(function() {
+		$('.veil').removeClass('none');
+		$('.user__more').removeClass('none');
+	});
+	$('.icon-off-user-more').click(function() {
+		$(this).closest('.user__more').addClass('none');
+		$('.veil').addClass('none');
+	});
+
 
 	$('.btn-poll').click(function() {
 
@@ -35,14 +45,14 @@ $(function() {
 
 		$.ajax({
 			type: "POST",
-			dataType: "json",
-			data: scoreJSON,
+			// dataType: "json",
+			data: {myData:scoreJSON,data:"poll"},
 			beforeSend: function() {
 				$('.draft__scoreJSON').html('в userpoll улетело' + scoreJSON);
 			},
 			url: 'userpoll.php',
-			success: function(nekitos) {
-				$('.draft__scoreJSON').html('Запрос к PHP вернул:' + nekitos);
+			success: function(dataPHP) {
+				$('.draft__scoreJSON').html('принял данные' + dataPHP);
 			}
 		});
 
@@ -51,37 +61,44 @@ $(function() {
 
 	$('.score__refresh').click(function() {
 
-		$.getJSON('json/team_score.json', function(data) {
-			var items = [];
-			var points = [];
-			var teams = [];
-			
-			$.each(data, function(key, val) {
-				items.push('<li>' + key + ':' + '<span class="score__points">'+ val + '</span>' + '</li>');
-				points.push(val);
-			});
-
-			$('<ul/>', {
-			'class': 'jq__getJSON',
-			html: items.join('')
-			}).appendTo('.draft__score__points');
-
-			//ползунки
-
-			var whoMax = points.slice(); //копирнули массив
-			var top3team = whoMax.sort(maxInArray).slice(0,3);
-			whoMax = whoMax.sort(maxInArray)[0];
-
-			pollsDiagramm(whoMax,top3team[0],top3team[1],top3team[2]);
-
-			$('.score__top').each(function(index,elem) {
-				$(elem).html('Команда скрыта');
-			});
-
+		$.ajax({
+			type: "POST",
+			// dataType: "json",
+			data: {data:"refresh"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+				//$('.draft__scoreJSON').html('принял данные' + dataPHP);
+				console.log(dataPHP);
+			}
 		});
 
 		$('.score__date').html('Последнее обновление: ' + new Date().toLocaleString() );
 	});
+
+	
+	// возьму / ищу в команду
+	if ($('#user__more__choise2').is(':checked')) {
+		$('.user__more__choise-find').hide();
+		$('.user__more__choise-want').fadeIn(200);
+	}
+	else {
+		$('.user__more__choise-want').hide();
+		$('.user__more__choise-find').fadeIn(200);	
+	}
+
+
+	$('.radio-user-more').on('click', function() {
+		if ($('#user__more__choise2').is(':checked')) {
+			$('.user__more__choise-find').hide();
+			$('.user__more__choise-want').fadeIn(200);
+		}
+		else {
+			$('.user__more__choise-want').hide();
+			$('.user__more__choise-find').fadeIn(200);	
+		}
+	});
+	//возьму / ищу в команду конец
+
 
 
 });
