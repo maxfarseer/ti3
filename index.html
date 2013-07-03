@@ -22,31 +22,54 @@
 		<h1 class="intro__txt">Choose your TOP 3 on TI 3 !</h1>
 	</header>
 
-
-    <section class="account">
-	    <button class="btn btn-mini btn-login"><i class="icon-user"></i> Логин</button>
-	    <button class="btn btn-mini btn-registration"><i class="icon-time"></i> Регистрация</button>
-	</section>
-
 	<section class="furion">
 	    <a class="btn btn-mini btn-warning btn-furion"><i class="icon-leaf"></i> Помоги Фуриону</a>
 	</section>
 
 	<div class="clear"></div>
 
-	<section class="tutorial none">
+	<section class="tutorial">
 		<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
-		<p> Заходи завтра, и получи еще +10 pts! Ставь снова. </p>
 		<p> Призы делятся на три типа:</p>
 		<ul class="tutorial__list">
 			<li>Рандом из угадавших топ3.</li>
 			<li>Рандом из всех, кто ставил.</li>
-			<li>Рандом из первой сотни поставивших максимальное количество очков и спец-приз от Квопы, тому, кто ставил больше всех!</li>
 		</ul>
 		<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
 		<p> Не забудь помочь Фуриону, бро! </p>
 		<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
 	</section>
+
+    <div class="clear"></div>
+
+    <button class="btn btn-login"><i class="icon-user"></i> Залогиниться и выбрать ТОП 3</button>
+
+    <div class="before-login">
+
+        <section class="user span4">
+            <header class="poll__header"><h2>Мои данные</h2></header>
+            <div class="before__notice">Необходимо залогиниться</div>
+        </section> <!-- user -->
+        
+        
+        <section class="poll span4">
+            <header class="poll__header"><h2>Голосовать</h2></header>
+            <div class="before__notice">Необходимо залогиниться</div>
+            
+        </section> <!-- poll -->
+
+        <section class="score span7">
+            <header class="score__header"><h2>Результаты</h2></header>
+            <div class="before__notice before__notice-silencer">
+                Не гневай сало!<br>
+                Залогинься! [2 клика]<br>
+                Проголосуй! [10 кликов]<br>
+                Узнай результаты!<br>
+                Ворвись в игру и тащи!
+            </div>
+        </section>
+
+    </div> <!-- before-login -->
 
     <div class="after-login">
     	
@@ -57,13 +80,14 @@
     				<? if (!is_null($user->avatar)) echo '<img src="'.$user->avatar.'"/>'?> <!--<img src="img/queenofpain_hphover.png"> -->
     			</div>
     			<div class="user__greetings">
-    				You were weak, <span class="user__greetings__name"><? if (!is_null($user->name))  echo $user->name;?></span>!
+    				You were weak,<br>
+                    <span class="user__greetings__name"><? if (!is_null($user->name))  echo $user->name;?></span>!
     			</div>
     	
     				<p class="user__info"><? if (!is_null($user->birthday))  echo $user->birthday;?></p>
     	
-                    <button class="btn btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
-    				<button class="btn btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
+                    <button class="btn btn-mini btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
+    				<button class="btn btn-mini btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
 			<? else: ?>
 			<header class="poll__header"><h2>Войти через</h2></header>
     		<?if (!isset($_GET['code'])) {
@@ -106,7 +130,7 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top2" name="select__top2">
-    						    						<option value="1">Alliance</option>
+    						<option value="1">Alliance</option>
 							<option value="2">Quantic</option>
 							<option value="3">Invictus Gaming</option>
 							<option value="4">Orange.Neolution</option>
@@ -130,7 +154,7 @@
     	
     				<div class="control-group">
     					<select class="select__team select__team-top3" name="select__top3">
-    						    						<option value="1">Alliance</option>
+    						<option value="1">Alliance</option>
 							<option value="2">Quantic</option>
 							<option value="3">Invictus Gaming</option>
 							<option value="4">Orange.Neolution</option>
@@ -150,18 +174,10 @@
     					<input class="points__count" type="text" placeholder="Pts">
     				</div>
     	
-    					<div class="control-group">
-    						<div class="controls poll__controls">
-    							<label class="checkbox">
-    								<input type="checkbox"> Согласен с правилами
-    							</label>
-    							<button class="btn btn-poll" type="submit" disabled><i class="icon-ok"></i> Голосовать</button>
-    						</div>
-    					</div>
-    	
     			</form>
-    				
-    				<button class="btn btn-poll btn-mini"><i class="icon-ok"></i> Отправить JSON</button>
+    				<button class="btn btn-poll"><i class="icon-ok"></i> Голосовать</button>
+                    <div class="error error-poll none">Сумма очков не равна 100!</div>
+                    <div class="success success-poll none">Ваш голос принят!</div>
     	
     				<div class="draft__scoreJSON"></div>
     	</section> <!-- poll -->
@@ -171,16 +187,14 @@
     	<section class="score span7">
     		<header class="score__header"><h2>Результаты</h2></header>
     			<div class="score__lbl">TOP 1:</div>
-    			<div class="score__top score__top1 span6">0</div>
+    			<div class="score__top score__top1 span6"></div>
     			<div class="score__lbl">TOP 2:</div>
-    			<div class="score__top score__top2 span6">0</div>
+    			<div class="score__top score__top2 span6"></div>
     			<div class="score__lbl">TOP 3:</div>
-    			<div class="score__top score__top3 span6">0</div>
+    			<div class="score__top score__top3 span6"></div>
     	
-    				<button class="btn score__refresh">Обновить</button>
-    	
-    				<div class="draft__score__points"></div>
-    				<div class="score__date"></div>
+    			<div class="draft__score__points"></div>
+    			<div class="score__date"></div>
     	
     	</section>
 
