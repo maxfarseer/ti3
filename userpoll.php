@@ -2,7 +2,7 @@
 require_once 'auth/config.inc.php';
 
 function getPoll(){
-			$otvet="SELECT name,SUM(val)as 'summa' FROM polls JOIN comands USING(id_com)group by(id_com)";
+			$otvet="SELECT name,SUM(val)as 'summa' FROM polls JOIN comands USING(id_com) group by(id_com) order by(summa) DESC";
 			$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
 			while($row = mysql_fetch_assoc($otvet)) {
 			$arr[$row['name']]=$row['summa'];

@@ -490,7 +490,7 @@
         <label class="control-label">Скилл:</label>
             <select class="user__more__select">
             <? foreach($_SESSION['lists']->skills as $key=>$value)
-				echo '<option value="'.$key.'">'.$value.'</option>';?>
+				echo ($key==$user->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
             </select>
         </div>
 
@@ -499,32 +499,33 @@
             <label class="control-label">Любимое дело:</label>
                 <select class="user__more__select">
 				<? foreach($_SESSION['lists']->roles as $key=>$value)
-				echo '<option value="'.$key.'">'.$value.'</option>';?>
+				echo ($key==$user->role)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end find -->
 
         <div class="user__more__choise-want">
             <div class="control-group control-group-float">
-            <label class="control-label">Ищу (1го или 2ух)</label>
+            <label class="control-label">Ищу (1го или 2ух)<? echo $_SESSION['user']->skill;?></label>
                 <select class="user__more__select">
 				<? foreach($_SESSION['lists']->roles as $key=>$value)
-				echo '<option value="'.$key.'">'.$value.'</option>';?>
+				echo ($key==$user->search_1)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
             <div class="control-group control-group-float">
             <label class="control-label control-label-col2">и</label>
                 <select class="user__more__select">
 				<? foreach($_SESSION['lists']->roles as $key=>$value)
-				echo '<option value="'.$key.'">'.$value.'</option>';?>
+				echo ($key==$user->search_2)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end want -->
 
         <div class="control-group control-group-float">
-        <label class="control-label" for="onlineHours_wd">Онлайн будни c:</label>
-            <select class="user__more__select">
-                <option value="00hh">00:00</option>
+        <label class="control-label" for="onlineHours_wd">Онлайн будни c :</label>
+			<select class="user__more__select">
+            <? // echo substr($user->time_beg,0,5);?>    
+				<option value="00hh">00:00</option>
                 <option value="01hh">01:00</option>
                 <option value="02hh">02:00</option>
                 <option value="03hh">03:00</option>
@@ -555,7 +556,8 @@
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
             <select class="user__more__select">
-                <option value="00hh">00:00</option>
+			<? // echo substr($user->time_end,0,5);?>
+			 <option value="00hh">00:00</option>
                 <option value="01hh">01:00</option>
                 <option value="02hh">02:00</option>
                 <option value="03hh">03:00</option>
@@ -586,8 +588,9 @@
         <div class="clear"></div>
 
         <div class="control-group control-group-float">
-        <label class="control-label" for="onlineHours_vd">Онлайн выхи c:</label>
-            <select class="user__more__select">
+        <label class="control-label" for="onlineHours_vd">Онлайн выхи c: </label>
+            <? // echo substr($user->vtime_beg,0,5);?>
+			<select class="user__more__select">
                 <option value="00hh">00:00</option>
                 <option value="01hh">01:00</option>
                 <option value="02hh">02:00</option>
@@ -620,6 +623,7 @@
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
             <select class="user__more__select">
+			<? // echo substr($user->vtime_end,0,5);?>
                 <option value="00hh">00:00</option>
                 <option value="01hh">01:00</option>
                 <option value="02hh">02:00</option>
