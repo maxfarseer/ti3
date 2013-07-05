@@ -10,9 +10,24 @@ $(function() {
 	$('.icon-off').click(function() {
 		$(this).closest('.overlay').addClass('none');
 		$('.veil').addClass('none');
+		$('.btn-login').hide();
 		$('.tutorial').fadeOut(400, function() {
-			$('.after-login').fadeIn(400);
+			$('.after-login').fadeIn(400,ajaxRefreshScore());
 		});
+
+		function ajaxRefreshScore() {
+			$.ajax({
+			type: "POST",
+			data: {data:"refresh"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+				console.log(JSON.parse(dataPHP));
+				pollsDiagramm(JSON.parse(dataPHP));
+			}
+			});
+			$('.score__date').html('Последнее обновление: ' + new Date().toLocaleString() );	
+		};
+
 	});
 
 	// user-more
@@ -33,48 +48,38 @@ $(function() {
 		var points = [],
 			team = [],
 			obj = {},
-			scoreJSON = "";
+			scoreJSON = "",
+			pointsSum = 0;
 		
 		$points.each(function(index,element) {
 			var tempTeam = $team[index].value;
 			obj[tempTeam] = +$points[index].value;
 			points.push(+$points[index].value);
+			pointsSum += points[index];
 		});
 
 		scoreJSON = JSON.stringify(obj);
-
+		
 		$.ajax({
 			type: "POST",
 			// dataType: "json",
 			data: {myData:scoreJSON,data:"poll"},
 			beforeSend: function() {
-				$('.draft__scoreJSON').html('в userpoll улетело' + scoreJSON);
+				if (pointsSum != 100) {
+					$('.success-poll').addClass('none');
+					$('.error-poll').removeClass('none');
+					return false;
+				}
 			},
 			url: 'userpoll.php',
 			success: function(dataPHP) {
-				$('.draft__scoreJSON').html('принял данные' + dataPHP);
+				$('.btn-poll').prop('disabled', true);
+				$('.error-poll').addClass('none');
+				$('.success-poll').removeClass('none');
 			}
 		});
 
 	}); // btn-poll click end
-
-
-	$('.score__refresh').click(function() {
-
-		$.ajax({
-			type: "POST",
-			// dataType: "json",
-			data: {data:"refresh"},
-			url: 'userpoll.php',
-			success: function(dataPHP) {
-				//$('.draft__scoreJSON').html('принял данные' + dataPHP);
-				console.log(dataPHP);
-			}
-		});
-
-		$('.score__date').html('Последнее обновление: ' + new Date().toLocaleString() );
-	});
-
 	
 	// возьму / ищу в команду
 	if ($('#user__more__choise2').is(':checked')) {

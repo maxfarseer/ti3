@@ -1,16 +1,5 @@
 "use strict";
 
-function Team(official_name, simple_name) {
-	this.name = official_name;
-	this.simple = simple_name;
-}
-
-var navi = new Team("Na'Vi", "navi");
-var virtuspro = new Team("Virtus.Pro", "virtuspro");
-var eg = new Team("EG","eg");
-var alliance = new Team("Alliance", "alliance");
-var quantic = new Team("Quantic", "quantic");
-
 function maxInArray(a,b) {
 	if (a > b) return -1;
 	if (a < b) return 1;
@@ -18,14 +7,22 @@ function maxInArray(a,b) {
 
 
 
-function pollsDiagramm(maxPoll) { /* любое кол-во аргументов */
-	var pollWidth = 462;
-	var unit = pollWidth / maxPoll;
-	
-	for (var i = 1; i <= arguments.length; i++) {
+function pollsDiagramm(obj) { /* любое кол-во аргументов */
+	var team = [],
+		points = [],
+		pollWidth = 460; //ширина полоски
 
-		var points = arguments[i];
-		var $pile = $('.score__top'+i);
-		$pile.width(points * unit);
-	};
+	for (var key in obj) {
+		team.push(key);
+		points.push(obj[key]);
+	}
+	
+	var unit = pollWidth / points[0];
+	
+	for (var i = 0; i < 3; i++) {
+		var $pile = $('.score__top'+(i+1));
+		$pile.width(points[i] * unit);
+		$pile.html(team[i] + ': ' + points[i]);
+	}
+
 }

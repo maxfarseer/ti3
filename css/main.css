@@ -1,6 +1,9 @@
 body {
 	background: #CCC;
 }
+h2 {
+	margin: 5px 0;
+}
 .btn {
 	border-radius: 0;
 }
@@ -13,6 +16,15 @@ body {
 	position: relative;
 	z-index: 1;
 	position: relative;
+}
+.all input {
+	height: 30px;
+}
+.error {
+	color: #FF0000;
+}
+.success {
+	color: #009933;
 }
 .veil {
 	position: fixed;
@@ -75,12 +87,6 @@ body {
 
 
 /* login and registration */
-.account {
-	position: absolute;
-	width: 200px;
-	top: 20px;
-	left: 20px;
-}
 .furion {
 	position: absolute;
 	top: 20px;
@@ -136,18 +142,58 @@ body {
 .overlay__login__info__count {
 	color: #FF0000;
 }
-
+.btn-login {
+	margin: 0 auto 20px;
+	display: block;
+}
 /* section tutorial */
 .tutorial {
 	margin: 20px;
 }
-.after-login {
-	
+
+/* before и afert login */
+.before-login .user, .before-login .poll, .before-login .score {
+	background: url(../img/mini_sven.jpg) no-repeat center center;
+	opacity: .6;
+	-webkit-ransition: opacity .5s linear 0s;
+	transition: opacity .5s linear 0s;
 }
+.before-login .score {
+	background: url(../img/silencer.jpg) no-repeat 40px center;
+}
+.before-login .user:hover, .before-login .poll:hover, .before-login .score:hover {
+	opacity: 1;
+}
+.after-login .user, .after-login .poll {
+	background: #FFF;
+}
+.before__notice {
+	color: #000;
+	font-size: 14px;
+	text-align: center;
+	margin: 125px 0 0 0;
+}
+.before__notice-silencer {
+	margin: 23px 0 0 160px;
+}
+
+
 /* section POLL */
 .poll, .score, .user, .stats, .versus, .user__more {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
+    height: 203px;
+}
+.poll .control-group {
+	margin-bottom: 5px;
+}
+.form__poll {
+	margin: 0;
+}
+.btn-poll {
+	margin: 4px 0 0 59px;
+	width: 122px;
+	float: left;
 }
 .poll .form-horizontal .control-label {
 	width: 50px;
@@ -165,11 +211,17 @@ body {
 .form-horizontal .poll__controls {
 	margin-left: 68px;
 }
+.error-poll, .success-poll {
+    float: left;
+    font-size: 13px;
+    line-height: 14px;
+    margin: 5px;
+    text-align: center;
+    width: 90px;
+}
 
 /* section SCORE */
-.score {
-	min-height: 322px;
-}
+
 .score__lbl {
 	float: left;
 	clear: left;
@@ -181,8 +233,15 @@ body {
 	background: #0088CC;
 	-webkit-transition: all .5s ease 0s;
 	transition: all .5s ease 0s;
+	text-align: center;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #FFF;
+    height: 20px;
+    width: 0px;
 }
-.score__refresh {
+.btn-refresh-score {
 	clear: both;
 	float: left;
 	margin: 10px;
@@ -192,23 +251,25 @@ body {
 }
 /* section USER */
 .btn__quit {
-	margin: 10px;
+	margin: 5px 0;
 }
 .user {
-	min-height: 322px;
+	height: 203px;
 	position: relative;
 }
 .user__ava {
-	margin: 10px;
+	margin: 17px 25px;
 	float: left;
 	width: 100px;
 }
 .user__greetings {
 	float: left;
-	width: 150px;
-	margin: 10px 0 0 0;
-	height: 66px;
-	text-align: center;
+	width: 130px;
+	margin: 15px 0 0 0;
+	height: 50px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .user__greetings__name {
 	color: #FF0000;
@@ -353,6 +414,9 @@ body {
 	height: 305px;
     top: 50%;
     z-index: 101;
+}
+.btn-add-user-more {
+	margin: 15px 0 0 0;
 }
 .control-group-float {
 	float: left;
