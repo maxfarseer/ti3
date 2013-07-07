@@ -85,6 +85,14 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
 			$userFromDb->ID     	= $record['id'];
 			
 			$user->ID     			= $record['id'];
+			$user->time_beg     	= $record['time_beg'];
+			$user->time_end     	= $record['time_end'];
+			$user->vtime_beg     	= $record['vtime_beg'];
+			$user->vtime_end     	= $record['vtime_end'];
+			$user->skill     		= $record['skill'];
+			$user->search_1    		= $record['search_1'];
+			$user->search_2    		= $record['search_2'];
+			$user->role    			= $record['role'];
         }
 
        
