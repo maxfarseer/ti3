@@ -13,6 +13,7 @@ function getPoll(){
 function getComandIn(){
 			$otvet="SELECT * FROM users JOIN skills ON users.skill=skills.id_skill ORDER BY RAND() LIMIT 5";
 			$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+			
 			while($row = mysql_fetch_assoc($otvet)) {
 			//$arr[$row['name']]=$row['summa']; !!!!!!
 			echo $row['summa'];
@@ -57,5 +58,14 @@ switch ($_POST['data']){
 		}
 		else
 			die("</br>ERROR: ".mysql_error());
+			
+			
+			$otvet="SELECT * FROM users JOIN skills ON users.skill=skills.id_skill where comand_in = 1 ORDER BY RAND() LIMIT 5";
+			$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+			
+			while($row = mysql_fetch_assoc($otvet)) {
+			//$arr[$row['name']]=$row['summa']; !!!!!!
+			echo $row['name']." ";
+			}
 	break;
 }

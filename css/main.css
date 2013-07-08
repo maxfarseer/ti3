@@ -443,9 +443,15 @@ h2 {
 	margin: 0 0 5px 115px;
 }
 .btn-user-more {
-	margin: 0 0 0 135px;
+	margin: 0 35px 0 135px;
 	width: 138px;
+	float: left;
 }
 .user__more select {
 	border-radius: 0;
+}
+.success-user-more {
+	float: left;
+	width: 140px;
+	padding: 5px 0 0 0;
 }

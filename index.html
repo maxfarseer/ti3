@@ -502,7 +502,7 @@
 
         <div class="control-group" style="margin-top: 13px;">
         <label class="control-label">Скилл:</label>
-            <select class="user__more__select">
+            <select id="um_skill" class="user__more__select">
             <? foreach($_SESSION['lists']->skills as $key=>$value)
 				echo ($key==$_SESSION['user']->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
             </select>
@@ -511,7 +511,7 @@
         <div class="user__more__choise-find">
             <div class="control-group">
             <label class="control-label">Любимое дело:</label>
-                <select class="user__more__select">
+                <select id="um_role" class="user__more__select">
 				<? foreach($_SESSION['lists']->roles as $key=>$value)
 				echo ($key==$_SESSION['user']->role)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
@@ -521,14 +521,14 @@
         <div class="user__more__choise-want">
             <div class="control-group control-group-float">
             <label class="control-label">Ищу (1го или 2ух)<? echo $_SESSION['user']->skill;?></label>
-                <select class="user__more__select">
+                <select id="um_search1" class="user__more__select">
 				<? foreach($_SESSION['lists']->roles as $key=>$value)
 				echo ($key==$_SESSION['user']->search_1)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
             <div class="control-group control-group-float">
             <label class="control-label control-label-col2">и</label>
-                <select class="user__more__select">
+                <select id="um_search2" class="user__more__select">
 				<? foreach($_SESSION['lists']->roles as $key=>$value)
 				echo ($key==$_SESSION['user']->search_2)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
@@ -537,7 +537,7 @@
 
         <div class="control-group control-group-float">
         <label class="control-label" for="onlineHours_wd">Онлайн будни c :</label>
-			<select class="user__more__select">
+			<select id="um_time_beg" class="user__more__select">
             <? // substr($_SESSION['user']->time_beg,0,5);?>    
 				<option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
@@ -568,7 +568,7 @@
         
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
-            <select class="user__more__select">
+            <select id="um_time_end" class="user__more__select">
 			<? // substr($_SESSION['user']->time_end,0,5);?>
 				<option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
@@ -602,7 +602,7 @@
         <div class="control-group control-group-float">
         <label class="control-label" for="onlineHours_vd">Онлайн выхи c: </label>
             <? // substr($_SESSION['user']->vtime_beg,0,5);?>
-			<select class="user__more__select">
+			<select id="um_vtime_end" class="user__more__select">
 				<option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
@@ -633,7 +633,7 @@
 
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
-            <select class="user__more__select">
+            <select id="um_vtime_end" class="user__more__select">
 			<? // substr($_SESSION['user']->vtime_end,0,5);?>
 				<option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
@@ -661,12 +661,11 @@
                 <option value="23:00:00">23:00</option>
             </select>
         </div>
-
-        <div class="clear"></div>
-
-        <button class="btn btn-user-more" type="submit"><i class="icon-ok"></i> Отправить</button>
-
     </form>
+    
+    <button class="btn btn-user-more"><i class="icon-ok"></i> Отправить</button>
+    <div class="success success-user-more none">Ваша заявка принята!</div>
+    
     
 </div> <!-- user__more -->
 
