@@ -42,34 +42,57 @@
 
     <div class="clear"></div>
 
-    <button class="btn btn-login"><i class="icon-user"></i> Залогиниться и выбрать ТОП 3</button>
-
     <div class="before-login">
 
         <section class="user span4">
-            <header class="poll__header"><h2>Мои данные</h2></header>
-            <div class="before__notice">Необходимо залогиниться</div>
+            <header class="poll__header"><h2>Войти через:</h2></header>
+            <div class="overlay__login__wrapper">
+                <div class="overlay__login__item">
+                <img src="img/drow_ranger_sb.png" class="overlay__login__img">
+                    <button class="btn overlay__login__via overlay__login__via-vk">Вконтакте</button>
+                </div>
+                
+                <div class="overlay__login__item">
+                <img src="img/mirana_sb.png" class="overlay__login__img">
+                    <button class="btn overlay__login__via overlay__login__via-fb">Facebook</button>
+                </div>
+                
+                <div class="overlay__login__item">
+                <img src="img/warlock_sb.png" class="overlay__login__img">
+                    <button class="btn overlay__login__via overlay__login__via-google">Google</button>
+                </div>
+            </div>
         </section> <!-- user -->
         
         
         <section class="poll span4">
             <header class="poll__header"><h2>Голосовать</h2></header>
-            <div class="before__notice">Необходимо залогиниться</div>
+            <div class="poll__rules">
+                <ul class="poll__rules__list">
+                    <li class="poll__rules__item">Залогинься и получи 100 очков!</li>
+                    <li class="poll__rules__item">Поставь их на тех, кто по твоему выиграет TI 3, например, так:<br>&ndash;топ1 команда - 50 очков;<br>&ndash;топ2 команда - 30 очков;<br>&ndash;топ3 команда - 20 очков.</li>
+                    <li class="poll__rules__item">Жди результатов - получай призы! </li>
+                </ul>
+            </div>
             
         </section> <!-- poll -->
 
         <section class="score span7">
             <header class="score__header"><h2>Результаты</h2></header>
-            <div class="before__notice before__notice-silencer">
-                Не гневай сало!<br>
-                Залогинься! [2 клика]<br>
-                Проголосуй! [10 кликов]<br>
-                Узнай результаты!<br>
-                Ворвись в игру и тащи!
-            </div>
+            <div class="score__lbl">TOP 1:</div>
+            <div class="score__top score__top1 span6"></div>
+            <div class="score__lbl">TOP 2:</div>
+            <div class="score__top score__top2 span6"></div>
+            <div class="score__lbl">TOP 3:</div>
+            <div class="score__top score__top3 span6"></div>
+    
+            <div class="draft__score__points"></div>
+            <div class="score__date"></div>
         </section>
 
     </div> <!-- before-login -->
+
+    <div class="clear"></div>
 
     <div class="after-login">
     	
@@ -123,7 +146,7 @@
 							<option value="15">LGD Gaming</option>
 							<option value="16">mousesports</option>
     					</select>
-    					<input class="points__count" type="text" placeholder="Pts">
+    					<input class="points__count" type="text" placeholder="0">
     				</div>
     	
     				<label class="control-label" for="select__top1">Top 2:</label>
@@ -147,7 +170,7 @@
 							<option value="15">LGD Gaming</option>
 							<option value="16">mousesports</option>
     					</select>
-    					<input class="points__count" type="text" placeholder="Pts">
+    					<input class="points__count" type="text" placeholder="0">
     				</div>
     	
     				<label class="control-label" for="select__top1">Top 3:</label>
@@ -171,12 +194,12 @@
 							<option value="15">LGD Gaming</option>
 							<option value="16">mousesports</option>
     					</select>
-    					<input class="points__count" type="text" placeholder="Pts">
+    					<input class="points__count" type="text" placeholder="0">
     				</div>
     	
     			</form>
     				<button class="btn btn-poll"><i class="icon-ok"></i> Голосовать</button>
-                    <div class="error error-poll none">Сумма очков не равна 100!</div>
+                    <div class="error error-poll none"></div>
                     <div class="success success-poll none">Ваш голос принят!</div>
     	
     				<div class="draft__scoreJSON"></div>
@@ -453,36 +476,6 @@
 </div> <!-- all -->
 
 
-<!-- форма логина -->
-<div class="overlay none">
-	<div class="overlay__close"><i class="icon-off"></i></div>
-		
-		<div class="overlay__login__wrapper">
-			<div class="overlay__login__item">
-			<img src="img/drow_ranger_sb.png" class="overlay__login__img">
-				<button class="btn overlay__login__via overlay__login__via-vk">Вконтакте</button>
-			</div>
-			
-			<div class="overlay__login__item">
-			<img src="img/mirana_sb.png" class="overlay__login__img">
-				<button class="btn overlay__login__via overlay__login__via-fb">Facebook</button>
-			</div>
-			
-			<div class="overlay__login__item">
-			<img src="img/warlock_sb.png" class="overlay__login__img">
-				<button class="btn overlay__login__via overlay__login__via-google">Google</button>
-			</div>
-		</div>
-
-		<div class="overlay__login__info">
-			<p> Уже залогинились:<br>
-				<span class="overlay__login__info__count">87123</span><br>
-				человек.
-		</div>
-	    
-</div>
-<!--  -->
-
 <!-- добавить данные -->
 <div class="user__more none">
     <div class="overlay__close"><i class="icon-off icon-off-user-more"></i></div>
@@ -502,18 +495,18 @@
 
         <div class="control-group" style="margin-top: 13px;">
         <label class="control-label">Скилл:</label>
-            <select class="user__more__select">
+            <select id="um_skill" class="user__more__select">
             <? foreach($_SESSION['lists']->skills as $key=>$value)
-				echo ($key==$_SESSION['user']->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+                echo ($key==$_SESSION['user']->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
             </select>
         </div>
 
         <div class="user__more__choise-find">
             <div class="control-group">
             <label class="control-label">Любимое дело:</label>
-                <select class="user__more__select">
-				<? foreach($_SESSION['lists']->roles as $key=>$value)
-				echo ($key==$_SESSION['user']->role)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+                <select id="um_role" class="user__more__select">
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->role)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end find -->
@@ -521,25 +514,25 @@
         <div class="user__more__choise-want">
             <div class="control-group control-group-float">
             <label class="control-label">Ищу (1го или 2ух)<? echo $_SESSION['user']->skill;?></label>
-                <select class="user__more__select">
-				<? foreach($_SESSION['lists']->roles as $key=>$value)
-				echo ($key==$_SESSION['user']->search_1)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+                <select id="um_search1" class="user__more__select">
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->search_1)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
             <div class="control-group control-group-float">
             <label class="control-label control-label-col2">и</label>
-                <select class="user__more__select">
-				<? foreach($_SESSION['lists']->roles as $key=>$value)
-				echo ($key==$_SESSION['user']->search_2)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+                <select id="um_search2" class="user__more__select">
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->search_2)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end want -->
 
         <div class="control-group control-group-float">
         <label class="control-label" for="onlineHours_wd">Онлайн будни c :</label>
-			<select class="user__more__select">
+            <select id="um_time_beg" class="user__more__select">
             <? // substr($_SESSION['user']->time_beg,0,5);?>    
-				<option value="00:00:00">00:00</option>
+                <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
                 <option value="03:00:00">03:00</option>
@@ -568,9 +561,9 @@
         
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
-            <select class="user__more__select">
-			<? // substr($_SESSION['user']->time_end,0,5);?>
-				<option value="00:00:00">00:00</option>
+            <select id="um_time_end" class="user__more__select">
+            <? // substr($_SESSION['user']->time_end,0,5);?>
+                <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
                 <option value="03:00:00">03:00</option>
@@ -602,8 +595,8 @@
         <div class="control-group control-group-float">
         <label class="control-label" for="onlineHours_vd">Онлайн выхи c: </label>
             <? // substr($_SESSION['user']->vtime_beg,0,5);?>
-			<select class="user__more__select">
-				<option value="00:00:00">00:00</option>
+            <select id="um_vtime_end" class="user__more__select">
+                <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
                 <option value="03:00:00">03:00</option>
@@ -633,9 +626,9 @@
 
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
-            <select class="user__more__select">
-			<? // substr($_SESSION['user']->vtime_end,0,5);?>
-				<option value="00:00:00">00:00</option>
+            <select id="um_vtime_end" class="user__more__select">
+            <? // substr($_SESSION['user']->vtime_end,0,5);?>
+                <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
                 <option value="03:00:00">03:00</option>
@@ -661,12 +654,10 @@
                 <option value="23:00:00">23:00</option>
             </select>
         </div>
-
-        <div class="clear"></div>
-
-        <button class="btn btn-user-more" type="submit"><i class="icon-ok"></i> Отправить</button>
-
     </form>
+    
+    <button class="btn btn-user-more"><i class="icon-ok"></i> Отправить</button>
+    <div class="success success-user-more none">Ваша заявка принята!</div>
     
 </div> <!-- user__more -->
 
