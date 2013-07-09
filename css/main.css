@@ -112,6 +112,7 @@ h2 {
 }
 .overlay__login__wrapper {
 	float: left;
+	margin: 0 0 0 55px;
 }
 .overlay__login__item {
 	margin: 10px 0 10px 0;
@@ -142,28 +143,13 @@ h2 {
 .overlay__login__info__count {
 	color: #FF0000;
 }
-.btn-login {
-	margin: 0 auto 20px;
-	display: block;
-}
 /* section tutorial */
 .tutorial {
 	margin: 20px;
 }
 
 /* before и afert login */
-.before-login .user, .before-login .poll, .before-login .score {
-	background: url(../img/mini_sven.jpg) no-repeat center center;
-	opacity: .6;
-	-webkit-ransition: opacity .5s linear 0s;
-	transition: opacity .5s linear 0s;
-}
-.before-login .score {
-	background: url(../img/silencer.jpg) no-repeat 40px center;
-}
-.before-login .user:hover, .before-login .poll:hover, .before-login .score:hover {
-	opacity: 1;
-}
+
 .after-login .user, .after-login .poll {
 	background: #FFF;
 }
@@ -219,6 +205,12 @@ h2 {
     text-align: center;
     width: 90px;
 }
+.poll__rules__item {
+	list-style: square outside none;
+}
+.poll__rules__list {
+	margin: 0 0 0 40px;
+}
 
 /* section SCORE */
 
@@ -261,6 +253,7 @@ h2 {
 	margin: 17px 25px;
 	float: left;
 	width: 100px;
+	overflow: hidden;
 }
 .user__greetings {
 	float: left;
@@ -443,9 +436,15 @@ h2 {
 	margin: 0 0 5px 115px;
 }
 .btn-user-more {
-	margin: 0 0 0 135px;
+	margin: 0 35px 0 135px;
 	width: 138px;
+	float: left;
 }
 .user__more select {
 	border-radius: 0;
+}
+.success-user-more {
+	float: left;
+	width: 140px;
+	padding: 5px 0 0 0;
 }
