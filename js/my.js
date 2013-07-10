@@ -152,7 +152,8 @@ $(function() {
 			data: {prof:usermoreJSON, data:"user_prof"},
 			url: 'userpoll.php',
 			success: function(dataPHP) {
-
+				console.log(dataPHP);
+				console.log(JSON.parse(dataPHP));
 			},
 			complete: function() {
 				$('.success-user-more').removeClass('none');
