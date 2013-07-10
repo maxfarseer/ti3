@@ -48,6 +48,16 @@ switch ($_POST['data']){
 		}
 		else
 			die("</br>ERROR: ".mysql_error());
+			
+			$otvet="SELECT * FROM users JOIN skills ON users.skill=skills.id_skill where comand_in = 1 ORDER BY RAND() LIMIT 5";
+			$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+			
+			while($row = mysql_fetch_assoc($otvet)) {
+			$arr[]=$row;
+			}
+			$arr=json_encode($arr,JSON_FORCE_OBJECT);
+			//$arr=json_encode($arr);
+			print_r($arr);
 	break;
 	
 	case "getComandIn":
