@@ -173,10 +173,22 @@ $(function() {
 			data:{"data":"getComandIn"},
 			url: 'userpoll.php',
 			success: function(dataPHP) {
-				$('#userFromDB').html(dataPHP);
+				$('#userFromDB').hide().html(dataPHP).fadeIn(300);
 			},
 		});
 	});
+
+	// те кто ищет в команду
+	$('#loadUserFromDB-out').on('click',function() {
+		$.ajax({
+			type: "POST",
+			data:{"data":"getComandOut"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+				$('#userFromDB-out').hide().html(dataPHP).fadeIn(300);
+			},
+		});
+	});	
 
 
 });
