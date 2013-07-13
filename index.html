@@ -27,183 +27,149 @@
 	</section>
 
 	<div class="clear"></div>
-
-	<section class="tutorial none">
-		<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
-		<p> Призы делятся на три типа:</p>
-		<ul class="tutorial__list">
-			<li>Рандом из угадавших топ3.</li>
-			<li>Рандом из всех, кто ставил.</li>
-		</ul>
-		<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
-		<p> Не забудь помочь Фуриону, бро! </p>
-		<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
+	
+		<section class="tutorial none">
+	<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
+	<p> Призы делятся на три типа:</p>
+	<ul class="tutorial__list">
+		<li>Рандом из угадавших топ3.</li>
+		<li>Рандом из всех, кто ставил.</li>
+	</ul>
+	<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
+	<p> Не забудь помочь Фуриону, бро! </p>
+	<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
 	</section>
-
-    <div class="clear"></div>
-
-    <div class="before-login">
-
-        <section class="user span4">
-            <header class="poll__header"><h2>Войти через:</h2></header>
-            <div class="overlay__login__wrapper">
-                <div class="overlay__login__item">
-                <img src="img/drow_ranger_sb.png" class="overlay__login__img">
-                    <button class="btn overlay__login__via overlay__login__via-vk">Вконтакте</button>
-                </div>
-                
-                <div class="overlay__login__item">
-                <img src="img/mirana_sb.png" class="overlay__login__img">
-                    <button class="btn overlay__login__via overlay__login__via-fb">Facebook</button>
-                </div>
-                
-                <div class="overlay__login__item">
-                <img src="img/warlock_sb.png" class="overlay__login__img">
-                    <button class="btn overlay__login__via overlay__login__via-google">Google</button>
-                </div>
-            </div>
-        </section> <!-- user -->
-        
-        
-        <section class="poll span4">
-            <header class="poll__header"><h2>Голосовать</h2></header>
-            <div class="poll__rules">
-                <ul class="poll__rules__list">
-                    <li class="poll__rules__item">Залогинься и получи 100 очков!</li>
-                    <li class="poll__rules__item">Поставь их на тех, кто по твоему выиграет TI 3, например, так:<br>&ndash;топ1 команда - 50 очков;<br>&ndash;топ2 команда - 30 очков;<br>&ndash;топ3 команда - 20 очков.</li>
-                    <li class="poll__rules__item">Жди результатов - получай призы! </li>
-                </ul>
-            </div>
-            
-        </section> <!-- poll -->
-
-        <section class="score span7">
-            <header class="score__header"><h2>Результаты</h2></header>
-            <div class="score__lbl">TOP 1:</div>
-            <div class="score__top score__top1 span6"></div>
-            <div class="score__lbl">TOP 2:</div>
-            <div class="score__top score__top2 span6"></div>
-            <div class="score__lbl">TOP 3:</div>
-            <div class="score__top score__top3 span6"></div>
-    
-            <div class="draft__score__points"></div>
-            <div class="score__date"></div>
-        </section>
-
-    </div> <!-- before-login -->
-
+	
     <div class="clear"></div>
 
     <div class="after-login">
     	
     	<section class="span4 user">
     		<? if (isset($_SESSION['user'])):?>
-			<header class="poll__header"><h2>Мои данные </h2></header>
-    			<div class="user__ava">
-    				<? if (!is_null($_SESSION['user']->avatar)) echo '<img src="'.$_SESSION['user']->avatar.'"/>'?> <!--<img src="img/queenofpain_hphover.png"> -->
-    			</div>
-    			<div class="user__greetings">
-    				You were weak,<br>
-                    <span class="user__greetings__name"><? if (!is_null($_SESSION['user']->name))  echo $_SESSION['user']->name;?></span>
-    			</div>
-    	
-    				<p class="user__info"><? if (!is_null($_SESSION['user']->birthday))  echo $_SESSION['user']->birthday;?></p>
-    	
-                    <button class="btn btn-mini btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
-    				<button class="btn btn-mini btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
-			<? else: ?>
-			<header class="poll__header"><h2>Войти через</h2></header>
-    		<?if (!isset($_GET['code'])) {
-			foreach ($adapters as $title => $adapter) {
-			echo '<p><a href="' . $adapter->getAuthUrl() . '">' . ucfirst($title) . '</a></p>';
-			}}
-			endif;?>
+				<header class="poll__header"><h2>Мои данные </h2></header>
+					<div class="user__ava">
+						<? if (!is_null($_SESSION['user']->avatar)) echo '<img src="'.$_SESSION['user']->avatar.'"/>'?> <!--<img src="img/queenofpain_hphover.png"> -->
+					</div>
+					<div class="user__greetings">
+						You were weak,<br>
+						<span class="user__greetings__name"><? if (!is_null($_SESSION['user']->name))  echo $_SESSION['user']->name;?></span>
+					</div>
 			
-    	</section> <!-- user -->
-    	
-    	
-    	<section class="poll span4">
-    		<header class="poll__header"><h2>Голосовать</h2></header>
-    			    <form class="form-horizontal form__poll"> 				
-    				<label class="control-label" for="select__top1">Top 1:</label>
-    	
-    				<div class="control-group">
-    					<select class="select__team select__team-top1" name="select__top1">
-    						<option value="1">Alliance</option>
-							<option value="2">Quantic</option>
-							<option value="3">Invictus Gaming</option>
-							<option value="4">Orange.Neolution</option>
-							<option value="5">Fnatic</option>
-							<option value="6">Team Liquid</option>
-							<option value="7">Natus Vincere</option>
-							<option value="8">Team Zenith</option>
-							<option value="9">Team Dignitas</option>
-							<option value="10">DK</option>
-							<option value="11">Virtus.Pro</option>
-							<option value="12">LGD Gaming.Int</option>
-							<option value="13">Invasion MUFC</option>
-							<option value="14">TongFu</option>
-							<option value="15">LGD Gaming</option>
-							<option value="16">mousesports</option>
-    					</select>
-    					<input class="points__count" type="text" placeholder="0">
-    				</div>
-    	
-    				<label class="control-label" for="select__top1">Top 2:</label>
-    	
-    				<div class="control-group">
-    					<select class="select__team select__team-top2" name="select__top2">
-    						<option value="1">Alliance</option>
-							<option value="2">Quantic</option>
-							<option value="3">Invictus Gaming</option>
-							<option value="4">Orange.Neolution</option>
-							<option value="5">Fnatic</option>
-							<option value="6">Team Liquid</option>
-							<option value="7">Natus Vincere</option>
-							<option value="8">Team Zenith</option>
-							<option value="9">Team Dignitas</option>
-							<option value="10">DK</option>
-							<option value="11">Virtus.Pro</option>
-							<option value="12">LGD Gaming.Int</option>
-							<option value="13">Invasion MUFC</option>
-							<option value="14">TongFu</option>
-							<option value="15">LGD Gaming</option>
-							<option value="16">mousesports</option>
-    					</select>
-    					<input class="points__count" type="text" placeholder="0">
-    				</div>
-    	
-    				<label class="control-label" for="select__top1">Top 3:</label>
-    	
-    				<div class="control-group">
-    					<select class="select__team select__team-top3" name="select__top3">
-    						<option value="1">Alliance</option>
-							<option value="2">Quantic</option>
-							<option value="3">Invictus Gaming</option>
-							<option value="4">Orange.Neolution</option>
-							<option value="5">Fnatic</option>
-							<option value="6">Team Liquid</option>
-							<option value="7">Natus Vincere</option>
-							<option value="8">Team Zenith</option>
-							<option value="9">Team Dignitas</option>
-							<option value="10">DK</option>
-							<option value="11">Virtus.Pro</option>
-							<option value="12">LGD Gaming.Int</option>
-							<option value="13">Invasion MUFC</option>
-							<option value="14">TongFu</option>
-							<option value="15">LGD Gaming</option>
-							<option value="16">mousesports</option>
-    					</select>
-    					<input class="points__count" type="text" placeholder="0">
-    				</div>
-    	
-    			</form>
-    				<button class="btn btn-poll"><i class="icon-ok"></i> Голосовать</button>
-                    <div class="error error-poll none"></div>
-                    <div class="success success-poll none">Ваш голос принят!</div>
-    	
-    				<div class="draft__scoreJSON"></div>
-    	</section> <!-- poll -->
+						<p class="user__info"><? if (!is_null($_SESSION['user']->birthday))  echo $_SESSION['user']->birthday;?></p>
+			
+						<button class="btn btn-mini btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
+						<button class="btn btn-mini btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
+				</section>
+				
+				<section class="poll span4">
+				<header class="poll__header"><h2>Голосовать</h2></header>
+						<form class="form-horizontal form__poll"> 				
+						<label class="control-label" for="select__top1">Top 1:</label>
+			
+						<div class="control-group">
+							<select class="select__team select__team-top1" name="select__top1">
+								<option value="1">Alliance</option>
+								<option value="2">Quantic</option>
+								<option value="3">Invictus Gaming</option>
+								<option value="4">Orange.Neolution</option>
+								<option value="5">Fnatic</option>
+								<option value="6">Team Liquid</option>
+								<option value="7">Natus Vincere</option>
+								<option value="8">Team Zenith</option>
+								<option value="9">Team Dignitas</option>
+								<option value="10">DK</option>
+								<option value="11">Virtus.Pro</option>
+								<option value="12">LGD Gaming.Int</option>
+								<option value="13">Invasion MUFC</option>
+								<option value="14">TongFu</option>
+								<option value="15">LGD Gaming</option>
+								<option value="16">mousesports</option>
+							</select>
+							<input class="points__count" type="text" placeholder="0">
+						</div>
+			
+						<label class="control-label" for="select__top1">Top 2:</label>
+			
+						<div class="control-group">
+							<select class="select__team select__team-top2" name="select__top2">
+								<option value="1">Alliance</option>
+								<option value="2">Quantic</option>
+								<option value="3">Invictus Gaming</option>
+								<option value="4">Orange.Neolution</option>
+								<option value="5">Fnatic</option>
+								<option value="6">Team Liquid</option>
+								<option value="7">Natus Vincere</option>
+								<option value="8">Team Zenith</option>
+								<option value="9">Team Dignitas</option>
+								<option value="10">DK</option>
+								<option value="11">Virtus.Pro</option>
+								<option value="12">LGD Gaming.Int</option>
+								<option value="13">Invasion MUFC</option>
+								<option value="14">TongFu</option>
+								<option value="15">LGD Gaming</option>
+								<option value="16">mousesports</option>
+							</select>
+							<input class="points__count" type="text" placeholder="0">
+						</div>
+			
+						<label class="control-label" for="select__top1">Top 3:</label>
+			
+						<div class="control-group">
+							<select class="select__team select__team-top3" name="select__top3">
+								<option value="1">Alliance</option>
+								<option value="2">Quantic</option>
+								<option value="3">Invictus Gaming</option>
+								<option value="4">Orange.Neolution</option>
+								<option value="5">Fnatic</option>
+								<option value="6">Team Liquid</option>
+								<option value="7">Natus Vincere</option>
+								<option value="8">Team Zenith</option>
+								<option value="9">Team Dignitas</option>
+								<option value="10">DK</option>
+								<option value="11">Virtus.Pro</option>
+								<option value="12">LGD Gaming.Int</option>
+								<option value="13">Invasion MUFC</option>
+								<option value="14">TongFu</option>
+								<option value="15">LGD Gaming</option>
+								<option value="16">mousesports</option>
+							</select>
+							<input class="points__count" type="text" placeholder="0">
+						</div>
+			
+					</form>
+						<button class="btn btn-poll"><i class="icon-ok"></i> Голосовать</button>
+						<div class="error error-poll none"></div>
+						<div class="success success-poll none">Ваш голос принят!</div>
+			
+						<div class="draft__scoreJSON"></div>
+				</section> 
+				<!-- poll -->
+			<? else: ?>
+				<header class="poll__header"><h2>Войти через:</h2></header>
+				<div class="overlay__login__wrapper">
+                <div class="overlay__login__item">
+                <? if (!isset($_GET['code'])) {
+				foreach ($adapters as $title => $adapter) {
+				echo '<a href='.$adapter->getAuthUrl().'><button class="btn overlay__login__via overlay__login__via-vk">' . ucfirst($title) . '</button></a>';
+				}}?>
+            </div></div>
+        </section> <!-- user -->
+				
+				<section class="poll span4">
+					<header class="poll__header"><h2>Голосовать</h2></header>
+					<div class="poll__rules">
+						<ul class="poll__rules__list">
+							<li class="poll__rules__item">Залогинься и получи 100 очков!</li>
+							<li class="poll__rules__item">Поставь их на тех, кто по твоему выиграет TI 3, например, так:<br>&ndash;топ1 команда - 50 очков;<br>&ndash;топ2 команда - 30 очков;<br>&ndash;топ3 команда - 20 очков.</li>
+							<li class="poll__rules__item">Жди результатов - получай призы! </li>
+						</ul>
+					</div>
+				</section> 
+				<!-- poll -->
+
+			<?endif;?>
+			
+    	 <!-- user -->
     	
     	
     	
@@ -224,9 +190,11 @@
     	<div class="clear"></div>
 
     	<section class="team team__find">
-    		<header class="poll__header"><h2>Ищу тиму:</h2></header>
+    		<header class="poll__header"><h2>Ищу тиму:</h2>
+                <button class="btn" id="loadUserFromDB">Загрузить игроков</button>
+            </header>
 
-    		<div class="user__section">
+    		<div class="user__section" id="userFromDB">
                 <div class="team__user__wrapper">
                     <div class="team__user__ava">
                         <img src="http://cs10119.vk.me/u10393237/a_a95f47e1.jpg" alt="Pro">
@@ -667,8 +635,20 @@
 
 <script src="js/team.js"></script>
 <script src="js/my.js"></script>
-
-
+<? if (isset($_SESSION['user'])):?>
+<script>
+    $('.btn-add-user-more').on('click', function() {
+        $('#um_skill').val("<? echo $_SESSION['user']->skill; ?>");
+        $('#um_role').val("<? echo $_SESSION['user']->role; ?>"); 
+        $('#um_search1').val("<? echo $_SESSION['user']->search_1; ?>"); 
+        $('#um_search2').val("<? echo $_SESSION['user']->search_2; ?>"); 
+        $('#um_time_beg').val("<? echo $_SESSION['user']->time_beg; ?>"); 
+        $('#um_time_end').val("<? echo $_SESSION['user']->time_end; ?>"); 
+        $('#um_vtime_beg').val("<? echo $_SESSION['user']->vtime_beg; ?>"); 
+        $('#um_vtime_end').val("<? echo $_SESSION['user']->vtime_end; ?>");
+    });
+</script>
+<?endif;?> 
 
 </body>
 </html>
