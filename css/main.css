@@ -112,12 +112,11 @@ h2 {
 }
 .overlay__login__wrapper {
 	float: left;
-	margin: 0 0 0 55px;
 }
-.overlay__login__item {
-	margin: 10px 0 10px 0;
-	height: 33px;
-	width: 193px;
+.overlay__login__btns {
+	margin: 5px 0;
+	width: 113px;
+	float: left;
 }
 .overlay__login__img {
 	width: 59px;
@@ -126,11 +125,18 @@ h2 {
 	border: 1px solid #D9D9D9;
 	margin: 0 10px 5px 0;
 }
+.overlay__login__img {
+	float: left;
+	position: relative;
+	margin: 1px 13px 0 20px;
+	width: 135px;
+	height: 135px;
+}
 .overlay__login__via {
 	position: relative;
-	top: 2px;
 	width: 110px;
 	text-align: center;
+	margin: 0 0 5px;
 }
 .overlay__login__info {
 	float: left;
@@ -286,6 +292,7 @@ h2 {
 	padding: 10px;
 	width: 1208px;
 	float: left;
+	display: none;
 }
 .team {
 	float: left;
@@ -298,7 +305,7 @@ h2 {
 	overflow: hidden;
 }
 .team__user__wrapper {
-	background: url(../img/preloader.gif) no-repeat center center;
+	/* background: url(../img/preloader.gif) no-repeat center center; */
 	width: 130px;
 	border: 1px solid #D9D9D9;
 	box-shadow: 0 0 5px #CCCCCC;
@@ -332,6 +339,18 @@ h2 {
 .team__user__item-bottom {
 	position: absolute;
 	bottom: 5px;
+}
+.teamfind-header, .teamwant-header {
+	height: 50px;
+	float: left;
+	margin: 0 20px 0 405px;
+}
+.teamwant-header {
+	margin: 0 20px 0 328px;	
+}
+#loadUserFromDB, #loadUserFromDB-out {
+	float: left;
+	margin: 10px 0 0 0;
 }
 
 

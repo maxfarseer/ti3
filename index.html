@@ -29,16 +29,16 @@
 	<div class="clear"></div>
 	
 		<section class="tutorial none">
-	<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
-	<p> Призы делятся на три типа:</p>
-	<ul class="tutorial__list">
-		<li>Рандом из угадавших топ3.</li>
-		<li>Рандом из всех, кто ставил.</li>
-	</ul>
-	<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
-	<p> Не забудь помочь Фуриону, бро! </p>
-	<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
-	</section>
+        	<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
+        	<p> Призы делятся на три типа:</p>
+        	<ul class="tutorial__list">
+        		<li>Рандом из угадавших топ3.</li>
+        		<li>Рандом из всех, кто ставил.</li>
+        	</ul>
+        	<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
+        	<p> Не забудь помочь Фуриону, бро! </p>
+        	<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
+        </section>
 	
     <div class="clear"></div>
 
@@ -147,12 +147,14 @@
 			<? else: ?>
 				<header class="poll__header"><h2>Войти через:</h2></header>
 				<div class="overlay__login__wrapper">
-                <div class="overlay__login__item">
-                <? if (!isset($_GET['code'])) {
-				foreach ($adapters as $title => $adapter) {
-				echo '<a href='.$adapter->getAuthUrl().'><button class="btn overlay__login__via overlay__login__via-vk">' . ucfirst($title) . '</button></a>';
-				}}?>
-            </div></div>
+                    <div class="overlay__login__img"><img src="/img/hz.jpg"></div>
+                    <div class="overlay__login__btns">
+                    <? if (!isset($_GET['code'])) {
+    				foreach ($adapters as $title => $adapter) {
+    				echo '<a href='.$adapter->getAuthUrl().'><button class="btn btn-mini overlay__login__via">' . ucfirst($title) . '</button></a>';
+    				}}?>
+                    </div>
+                </div>
         </section> <!-- user -->
 				
 				<section class="poll span4">
@@ -190,224 +192,21 @@
     	<div class="clear"></div>
 
     	<section class="team team__find">
-    		<header class="poll__header"><h2>Ищу тиму:</h2>
-                <button class="btn" id="loadUserFromDB">Загрузить игроков</button>
-            </header>
+    		<header class="poll__header teamfind-header"><h2>Ищут команду:</h2></header>
+            <button class="btn" id="loadUserFromDB">Обновить список игроков</button>
 
     		<div class="user__section" id="userFromDB">
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs10119.vk.me/u10393237/a_a95f47e1.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-                
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs320229.vk.me/v320229222/b76/lAllq0VolNU.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs412528.vk.me/v412528763/17ad/PcyaM2jLXng.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs421119.vk.me/v421119857/4a9b/7WB33MJldbo.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <!-- пустой: пример прелоадера -->
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs9822.vk.me/u16134000/a_bca01423.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs419618.vk.me/v419618430/46ac/de-TxVLlMoc.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs9455.vk.me/v9455573/3e8/06-E1Eshmzk.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
+                <!-- игроки из базы -->
             </div>
 
     	</section> <!-- team__find -->
 
     	<section class="team team__want">
-            <header class="poll__header"><h2>Возьму в тиму:</h2></header>
+            <header class="poll__header teamwant-header"><h2>Возьмут в команду:</h2></header>
+            <button class="btn" id="loadUserFromDB-out">Обновить список игроков</button>
 
-            <div class="user__section">
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs10119.vk.me/u10393237/a_a95f47e1.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Мид</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-                
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs320229.vk.me/v320229222/b76/lAllq0VolNU.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Мид</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs412528.vk.me/v412528763/17ad/PcyaM2jLXng.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Кэрри</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs413323.vk.me/v413323335/185b/Zszyo5IyTVE.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs9822.vk.me/u16134000/a_bca01423.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs419618.vk.me/v419618430/46ac/de-TxVLlMoc.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Мид</span></div>
-                        <div class="team__user__item"><i class="icon-plus-sign"></i><span class="t__user t__user-spec">Лес</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
-    
-                <div class="team__user__wrapper">
-                    <div class="team__user__ava">
-                        <img src="http://cs9455.vk.me/v9455573/3e8/06-E1Eshmzk.jpg" alt="Pro">
-                    </div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">Среднячок</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">Сапорт</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">19-22</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">10-22</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="LINK" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>
+            <div class="user__section" id="userFromDB-out">
+                <!-- игроки из базы -->
             </div>
 
         </section> <!-- team__want -->
@@ -647,8 +446,28 @@
         $('#um_vtime_beg').val("<? echo $_SESSION['user']->vtime_beg; ?>"); 
         $('#um_vtime_end').val("<? echo $_SESSION['user']->vtime_end; ?>");
     });
+
 </script>
 <?endif;?> 
+
+<script>
+    $.ajax({
+        type: "POST",
+        data:{"data":"getComandIn"},
+        url: 'userpoll.php',
+        success: function(dataPHP) {
+            $('#userFromDB').html(dataPHP).fadeIn(300);
+        },
+    });
+    $.ajax({
+        type: "POST",
+        data:{"data":"getComandOut"},
+        url: 'userpoll.php',
+        success: function(dataPHP) {
+            $('#userFromDB-out').html(dataPHP).fadeIn(300);
+        },
+    });
+</script>
 
 </body>
 </html>
