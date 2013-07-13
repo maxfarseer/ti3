@@ -16,9 +16,13 @@ $(function() {
 	};
 
 	ajaxRefreshScore();
-
 	// user-more (вывести попап-форму "попасть в ленту")
 	$('.btn-add-user-more').click(function() {
+		// Здесь в $element.val("value") надо поставить твои переменные в правильной записи
+		// например, вот так мгновенно выберется строка "саппорт" - $('#um_role').val("3")
+		// почитал что может не быть или нет воовсе доступа к $_Session внутри JS...
+		// скорее всего это надо сразу на странице подгружать, когда залогинился
+
 		$('.veil').removeClass('none');
 		$('.user__more').removeClass('none');
 	});
@@ -153,7 +157,6 @@ $(function() {
 			url: 'userpoll.php',
 			success: function(dataPHP) {
 				console.log(dataPHP);
-				console.log(JSON.parse(dataPHP));
 			},
 			complete: function() {
 				$('.success-user-more').removeClass('none');
@@ -161,6 +164,19 @@ $(function() {
 		});
 
 	}
+
+
+	// загружаем ищущих
+	$('#loadUserFromDB').on('click',function() {
+		$.ajax({
+			type: "POST",
+			data:{"data":"getComandIn"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+				$('#userFromDB').html(dataPHP);
+			},
+		});
+	});
 
 
 });
