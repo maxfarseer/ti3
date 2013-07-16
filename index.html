@@ -48,14 +48,12 @@
     		<? if (isset($_SESSION['user'])):?>
 				<header class="poll__header"><h2>Мои данные </h2></header>
 					<div class="user__ava">
-						<? if (!is_null($_SESSION['user']->avatar)) echo '<img src="'.$_SESSION['user']->avatar.'"/>'?> <!--<img src="img/queenofpain_hphover.png"> -->
+						<? if (!is_null($_SESSION['user']->avatar)) echo '<img src="'.$_SESSION['user']->avatar.'"/>'?>
 					</div>
 					<div class="user__greetings">
 						You were weak,<br>
 						<span class="user__greetings__name"><? if (!is_null($_SESSION['user']->name))  echo $_SESSION['user']->name;?></span>
 					</div>
-			
-						<p class="user__info"><? if (!is_null($_SESSION['user']->birthday))  echo $_SESSION['user']->birthday;?></p>
 			
 						<button class="btn btn-mini btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
 						<button class="btn btn-mini btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
@@ -362,7 +360,7 @@
         <div class="control-group control-group-float">
         <label class="control-label" for="onlineHours_vd">Онлайн выхи c: </label>
             <? // substr($_SESSION['user']->vtime_beg,0,5);?>
-            <select id="um_vtime_end" class="user__more__select">
+            <select id="um_vtime_beg" class="user__more__select">
                 <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
@@ -434,21 +432,6 @@
 
 <script src="js/team.js"></script>
 <script src="js/my.js"></script>
-<? if (isset($_SESSION['user'])):?>
-<script>
-    $('.btn-add-user-more').on('click', function() {
-        $('#um_skill').val("<? echo $_SESSION['user']->skill; ?>");
-        $('#um_role').val("<? echo $_SESSION['user']->role; ?>"); 
-        $('#um_search1').val("<? echo $_SESSION['user']->search_1; ?>"); 
-        $('#um_search2').val("<? echo $_SESSION['user']->search_2; ?>"); 
-        $('#um_time_beg').val("<? echo $_SESSION['user']->time_beg; ?>"); 
-        $('#um_time_end').val("<? echo $_SESSION['user']->time_end; ?>"); 
-        $('#um_vtime_beg').val("<? echo $_SESSION['user']->vtime_beg; ?>"); 
-        $('#um_vtime_end').val("<? echo $_SESSION['user']->vtime_end; ?>");
-    });
-
-</script>
-<?endif;?> 
 
 <script>
     $.ajax({

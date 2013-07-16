@@ -259,6 +259,7 @@ h2 {
 	margin: 17px 25px;
 	float: left;
 	width: 100px;
+	min-height: 100px;
 	overflow: hidden;
 }
 .user__greetings {
@@ -292,7 +293,7 @@ h2 {
 	padding: 10px;
 	width: 1208px;
 	float: left;
-	display: none;
+	height: 264px;
 }
 .team {
 	float: left;
