@@ -16,7 +16,7 @@ function getComand($inout){
 		join (select users.search_1 as "id_role_search_1", roles.role as "search_1_role", users.id from users, roles where users.search_1=roles.id_role)search_1 on role.id=search_1.id
 		join (select users.search_2 as "id_role_search_2", roles.role as "search_2_role", users.id from users, roles where users.search_2=roles.id_role)search_2 on role.id=search_2.id
 		join (select users.skill as "id_skill", skills.skill, users.id from users, skills where users.skill=skills.id_skill)skill on role.id=skill.id
-		where '.$inout.' ORDER BY RAND() LIMIT 5';
+		where '.$inout.' ORDER BY RAND() LIMIT 8';
 	$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
 	return $otvet;
 }
@@ -52,31 +52,27 @@ switch ($_POST['data']){
 			$_SESSION['user']->vtime_beg     	= $obj['vtime_beg'];
 			$_SESSION['user']->vtime_end     	= $obj['vtime_end'];
 			$_SESSION['user']->skill     		= $obj['skill'];
-			$_SESSION['user']->search_1    		= $obj['search_1'];
-			$_SESSION['user']->search_2    		= $obj['search_2'];
+			$_SESSION['user']->search_1    		= $obj['search1'];
+			$_SESSION['user']->search_2    		= $obj['search2'];
 			$_SESSION['user']->role    			= $obj['role'];
 		}
 		else
 			die("</br>ERROR: ".mysql_error());
-			
-			$otvet= getComand(1);
-			
-			while($row = mysql_fetch_assoc($otvet)) {
-			$arr.='	<div class="team__user__wrapper">
-                    <div class="team__user__ava"><img src="'.$row['avatar'].'" alt="Pro"></div>
-                    <div class="team__user">
-                        <div class="team__user__item"><i class="icon-star"></i><span class="t__user t__user-skill">'.$row['skill'].'</span></div>
-                        <div class="team__user__item"><i class="icon-tag"></i><span class="t__user t__user-spec">'.$row['user_role'].'</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">'.substr($row['time_beg'],0,5).'-'.substr($row['time_end'],0,5).'</span></div>
-                        <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">'.substr($row['vtime_beg'],0,5).'-'.substr($row['vtime_end'],0,5).'</span>
-                        </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="'.$row['social_page'].'" class="t__user t__user-link">Связаться</a></div>
-                    </div>
-                </div>';
-			}
-			print_r($arr);
 	break;
-
+	
+	case "get_prof":
+		$arr=Array();
+		$arr['time_beg'] = $_SESSION['user']->time_beg;
+		$arr['time_end'] = $_SESSION['user']->time_end;
+		$arr['vtime_beg'] = $_SESSION['user']->vtime_beg;
+		$arr['vtime_end'] = $_SESSION['user']->vtime_end;
+		$arr['skill'] = $_SESSION['user']->skill;
+		$arr['search_1'] = $_SESSION['user']->search_1;
+		$arr['search_2'] = $_SESSION['user']->search_2;
+		$arr['role'] = $_SESSION['user']->role;
+		$json=json_encode($arr,true);
+		print_r($json);
+	break;
 				
 	case "getComandIn":
 		$otvet= getComand(1);

@@ -18,17 +18,49 @@ $(function() {
 	ajaxRefreshScore();
 	// user-more (вывести попап-форму "попасть в ленту")
 	$('.btn-add-user-more').click(function() {
-		// Здесь в $element.val("value") надо поставить твои переменные в правильной записи
-		// например, вот так мгновенно выберется строка "саппорт" - $('#um_role').val("3")
-		// почитал что может не быть или нет воовсе доступа к $_Session внутри JS...
-		// скорее всего это надо сразу на странице подгружать, когда залогинился
 
-		$('.veil').removeClass('none');
-		$('.user__more').removeClass('none');
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {data:"get_prof"},
+			beforeSend: function() {
+				$('.btn-add-user-more').html('<i class="icon-time"></i> загрузка...');
+			},
+			url: 'userpoll.php',
+			success: function(data) {
+				console.log(data);
+				$('#um_skill').val(data.skill);
+		        if (+data.role != 0 ) {
+		        	console.log('find');
+					$('.user__more__choise-want').hide();
+		        	$('.user__more__choise-find').show();
+		        	$('#um_role').val(data.role);
+		        }
+		        if (+data.search_1 != 0) {
+		        	console.log('want');
+		        	$('#user__more__choise2').click();
+					$('.user__more__choise-find').hide();
+		        	$('.user__more__choise-want').show();
+		        	$('#um_search1').val(data.search1);
+
+		        	if (+data.seahch_2 != 0) $('#um_search2').val(data.search2);
+		        }
+		        
+		        $('#um_time_beg').val(data.time_beg); 
+		        $('#um_time_end').val(data.time_end); 
+		        $('#um_vtime_beg').val(data.vtime_beg); 
+		        $('#um_vtime_end').val(data.vtime_end);
+
+				$('.veil').removeClass('none');
+				$('.user__more').removeClass('none');
+			}
+		});
+
 	});
 	$('.icon-off-user-more').click(function() {
 		$(this).closest('.user__more').addClass('none');
 		$('.veil').addClass('none');
+		$('.btn-add-user-more').html('<i class="icon-plus"></i> Попасть в ленту');
 	});
 
 
