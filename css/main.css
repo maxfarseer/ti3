@@ -211,17 +211,21 @@ h2 {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
     height: 203px;
+    position: relative;
 }
 .poll .control-group {
 	margin-bottom: 5px;
 }
 .form__poll {
 	margin: 0;
+	width: 190px;
+	float: left;
 }
 .btn-poll {
 	margin: 4px 0 0 59px;
 	width: 122px;
 	float: left;
+	clear: both;
 }
 .poll .form-horizontal .control-label {
 	width: 50px;
@@ -245,9 +249,11 @@ h2 {
     float: left;
     font-size: 13px;
     line-height: 14px;
-    margin: 5px;
-    text-align: center;
+    margin: 20px 0 0 5px;
     width: 90px;
+}
+.success-poll {
+	margin: 35px 0 0 5px;
 }
 .poll__rules__item {
 	list-style: square outside none;
