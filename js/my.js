@@ -2,17 +2,61 @@ $(function() {
 
 	// overlay
 
-	$('.btn-login').click(function() {
-		$('.veil').removeClass('none');
-		$('.overlay').removeClass('none');
-	});
-
-	$('.icon-off').click(function() {
-		$(this).closest('.overlay').addClass('none');
-		$('.veil').addClass('none');
-		$('.tutorial').fadeOut(400, function() {
-			$('.after-login').fadeIn(400);
+	function ajaxRefreshScore() {
+		$.ajax({
+		type: "POST",
+		data: {data:"refresh"},
+		url: 'userpoll.php',
+		success: function(dataPHP) {
+			pollsDiagramm(JSON.parse(dataPHP));
+		}
 		});
+		$('.score__date').html('Последнее обновление: ' + new Date().toLocaleString() );	
+	};
+
+	ajaxRefreshScore();
+	// user-more (вывести попап-форму "попасть в ленту")
+	$('.btn-add-user-more').click(function() {
+
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {data:"get_prof"},
+			beforeSend: function() {
+				$('.btn-add-user-more').html('<i class="icon-time"></i> загрузка...');
+			},
+			url: 'userpoll.php',
+			success: function(data) {
+				$('#um_skill').val(data.skill);
+		        if (+data.role != 0 ) {
+					$('.user__more__choise-want').hide();
+		        	$('.user__more__choise-find').show();
+		        	$('#um_role').val(data.role);
+		        }
+		        if (+data.search_1 != 0) {
+		        	$('#user__more__choise2').click();
+					$('.user__more__choise-find').hide();
+		        	$('.user__more__choise-want').show();
+		        	$('#um_search1').val(data.search_1);
+
+		        	if (+data.seahch_2 != 0) $('#um_search2').val(data.search_2);
+		        }
+		        
+		        $('#um_time_beg').val(data.time_beg); 
+		        $('#um_time_end').val(data.time_end); 
+		        $('#um_vtime_beg').val(data.vtime_beg); 
+		        $('#um_vtime_end').val(data.vtime_end);
+
+				$('.veil').removeClass('none');
+				$('.user__more').removeClass('none');
+			}
+		});
+
+	});
+	$('.icon-off-user-more').click(function() {
+		$(this).closest('.user__more').addClass('none');
+		$('.veil').addClass('none');
+		$('.btn-add-user-more').html('<i class="icon-plus"></i> Попасть в ленту');
 	});
 
 
@@ -23,65 +67,172 @@ $(function() {
 		var points = [],
 			team = [],
 			obj = {},
-			scoreJSON = "";
+			scoreJSON = "",
+			pointsSum = 0;
 		
 		$points.each(function(index,element) {
 			var tempTeam = $team[index].value;
 			obj[tempTeam] = +$points[index].value;
 			points.push(+$points[index].value);
+			pointsSum += points[index];
 		});
 
-		scoreJSON = JSON.stringify(obj);
 
+
+		scoreJSON = JSON.stringify(obj);
+		
 		$.ajax({
 			type: "POST",
 			dataType: "json",
-			data: scoreJSON,
+			data: {myData:scoreJSON,data:"poll"},
 			beforeSend: function() {
-				$('.draft__scoreJSON').html('в userpoll улетело' + scoreJSON);
+				for (var i = 0; i<points.length; i++) {
+					if ((points[i] < 0) || (points[i] > 100)) {
+						$('.error-poll').html('Число голосов некорректно');
+						$('.error-poll').removeClass('none');
+						return false;
+					}
+					if (pointsSum != 100) {
+						$('.error-poll').html('Сумма очков не равна 100!');
+						$('.error-poll').removeClass('none');
+						return false;
+					}
+				}
 			},
 			url: 'userpoll.php',
-			success: function(data) {
-				$('.draft__scoreJSON').html(data);
+			success: function(dataPHP) {
+				$('.btn-poll').prop('disabled', true);
+				$('.error-poll').addClass('none');
+				$('.success-poll').removeClass('none');
 			}
 		});
 
 	}); // btn-poll click end
+	
+	// возьму / ищу в команду
+	if ($('#user__more__choise2').is(':checked')) {
+		$('.user__more__choise-find').hide();
+		$('.user__more__choise-want').fadeIn(200);
+	}
+	else {
+		$('.user__more__choise-want').hide();
+		$('.user__more__choise-find').fadeIn(200);	
+	}
 
 
-	$('.score__refresh').click(function() {
+	$('.radio-user-more').on('click', function() {
+		if ($('#user__more__choise2').is(':checked')) {
+			$('.user__more__choise-find').hide();
+			$('.user__more__choise-want').fadeIn(200);
+		}
+		else {
+			$('.user__more__choise-want').hide();
+			$('.user__more__choise-find').fadeIn(200);	
+		}
+	});
+	//возьму / ищу в команду конец
 
-		$.getJSON('json/team_score.json', function(data) {
-			var items = [];
-			var points = [];
-			var teams = [];
-			
-			$.each(data, function(key, val) {
-				items.push('<li>' + key + ':' + '<span class="score__points">'+ val + '</span>' + '</li>');
-				points.push(val);
-			});
+	// попасть в ленту
+	$('.btn-user-more').on('click',getIntoTape);
 
-			$('<ul/>', {
-			'class': 'jq__getJSON',
-			html: items.join('')
-			}).appendTo('.draft__score__points');
+	function getIntoTape() {
+		var skill = $('#um_skill').val(),
+			role = $('#um_role').val(),
+			search1 = $('#um_search1').val(),
+			search2 = $('#um_search2').val(),
+			um_time_beg = $('#um_time_beg').val(),
+			um_time_end = $('#um_time_end').val(),
+			um_vtime_beg = $('#um_vtime_beg').val(),
+			um_vtime_end = $('#um_vtime_end').val(),
+			comand_in = 0,
+			comand_out = 0;
 
-			//ползунки
+			if ($('#user__more__choise2').is(':checked')) {
+				comand_out = 1;
+			}
+			if ($('#user__more__choise1').is(':checked')) {
+				comand_in = 1;
+			}
 
-			var whoMax = points.slice(); //копирнули массив
-			var top3team = whoMax.sort(maxInArray).slice(0,3);
-			whoMax = whoMax.sort(maxInArray)[0];
+		var obj = {
+			skill: skill,
+			role: role,
+			search1: search1,
+			search2: search2,
+			time_beg: um_time_beg,
+			time_end: um_time_end,
+			vtime_beg: um_vtime_beg,
+			vtime_end: um_vtime_end,
+			comand_in: comand_in,
+			comand_out: comand_out
+		}
 
-			pollsDiagramm(whoMax,top3team[0],top3team[1],top3team[2]);
+		if (obj.comand_in == 1) {
+			obj.search1 = 0;
+			obj.search2 = 0;
+		}
+		if (obj.comand_out == 1) {
+			obj.role = 0;
+		}
 
-			$('.score__top').each(function(index,elem) {
-				$(elem).html('Команда скрыта');
-			});
+		var usermoreJSON = JSON.stringify(obj);
 
+
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {prof:usermoreJSON, data:"user_prof"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+			},
+			complete: function() {
+				$('.success-user-more').removeClass('none');
+			}
 		});
 
-		$('.score__date').html('Последнее обновление: ' + new Date().toLocaleString() );
+	}
+
+
+	// загружаем ищущих
+	$('#loadUserFromDB').on('click',function() {
+		$.ajax({
+			type: "POST",
+			data:{"data":"getComandIn"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+				$('#userFromDB').hide().html(dataPHP).fadeIn(300);
+			},
+		});
 	});
+
+	// те кто ищет в команду
+	$('#loadUserFromDB-out').on('click',function() {
+		$.ajax({
+			type: "POST",
+			data:{"data":"getComandOut"},
+			url: 'userpoll.php',
+			success: function(dataPHP) {
+				$('#userFromDB-out').hide().html(dataPHP).fadeIn(300);
+			},
+		});
+	});	
+
+	$.ajax({
+        type: "POST",
+        data:{"data":"getComandIn"},
+        url: 'userpoll.php',
+        success: function(dataPHP) {
+            $('#userFromDB').html(dataPHP).fadeIn(300);
+        },
+    });
+    $.ajax({
+        type: "POST",
+        data:{"data":"getComandOut"},
+        url: 'userpoll.php',
+        success: function(dataPHP) {
+            $('#userFromDB-out').html(dataPHP).fadeIn(300);
+        },
+    });
 
 
 });

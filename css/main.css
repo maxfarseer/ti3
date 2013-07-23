@@ -1,6 +1,9 @@
 body {
 	background: #CCC;
 }
+h2 {
+	margin: 5px 0;
+}
 .btn {
 	border-radius: 0;
 }
@@ -13,6 +16,15 @@ body {
 	position: relative;
 	z-index: 1;
 	position: relative;
+}
+.all input {
+	height: 30px;
+}
+.error {
+	color: #FF0000;
+}
+.success {
+	color: #009933;
 }
 .veil {
 	position: fixed;
@@ -67,24 +79,22 @@ body {
 	width: 1250px;
 }
 .intro__txt {
-	font-family: 'Marcellus SC', serif;
+	font-family: 'Russo One', serif;
 	font-size: 51px;
 	text-align: center;
 	text-shadow: 1px 2px 3px rgba(232,96,28,1);
 }
 
-
 /* login and registration */
-.account {
-	position: absolute;
-	width: 200px;
-	top: 20px;
-	left: 20px;
-}
 .furion {
 	position: absolute;
-	top: 20px;
+	top: 28px;
 	right: 20px;
+}
+.share {
+	position: absolute;
+	top: 28px;
+	left: 20px;
 }
 .overlay {
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -107,10 +117,10 @@ body {
 .overlay__login__wrapper {
 	float: left;
 }
-.overlay__login__item {
-	margin: 10px 0 10px 0;
-	height: 33px;
-	width: 193px;
+.overlay__login__btns {
+	margin: 5px 0;
+	width: 113px;
+	float: left;
 }
 .overlay__login__img {
 	width: 59px;
@@ -119,11 +129,18 @@ body {
 	border: 1px solid #D9D9D9;
 	margin: 0 10px 5px 0;
 }
+.overlay__login__img {
+	float: left;
+	position: relative;
+	margin: 1px 13px 0 20px;
+	width: 135px;
+	height: 135px;
+}
 .overlay__login__via {
 	position: relative;
-	top: 2px;
 	width: 110px;
 	text-align: center;
+	margin: 0 0 5px;
 }
 .overlay__login__info {
 	float: left;
@@ -136,18 +153,75 @@ body {
 .overlay__login__info__count {
 	color: #FF0000;
 }
-
 /* section tutorial */
 .tutorial {
 	margin: 20px;
 }
-.after-login {
-	
+
+/* before и afert login */
+
+.after-login .user, .after-login .poll {
+	background: #FFF;
 }
+.before__notice {
+	color: #000;
+	font-size: 14px;
+	text-align: center;
+	margin: 125px 0 0 0;
+}
+.before__notice-silencer {
+	margin: 23px 0 0 160px;
+}
+/* для VK share стили */
+.btn-share {
+	position: relative;
+	width: 133px;
+	height: 22px;
+	z-index: 1;
+}
+.btn-share i {
+	display: block;
+	float: left;
+	top: 5px;
+	left: 5px;
+	position: absolute;
+}
+.btn-share a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
+	z-index: 2;
+	width: 133px;
+	height: 22px;
+	color: #000;
+	padding: 4px 0 0 13px;
+}
+.btn-share span {
+	color: #FFF !important;
+}
+.btn-share span:hover, btn-share a:hover {
+	text-decoration: none !important;
+}
+
+
+
 /* section POLL */
-.poll, .score, .user, .stats, .team, .versus {
+.poll, .score, .user, .stats, .versus, .user__more {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
+    height: 203px;
+}
+.poll .control-group {
+	margin-bottom: 5px;
+}
+.form__poll {
+	margin: 0;
+}
+.btn-poll {
+	margin: 4px 0 0 59px;
+	width: 122px;
+	float: left;
 }
 .poll .form-horizontal .control-label {
 	width: 50px;
@@ -161,15 +235,32 @@ body {
 }
 .poll__header, .score__header {
 	text-align: center;
+	font-family: 'Russo One', sans-serif;
+	text-shadow: 1px 2px 3px rgba(232,96,28,1);
 }
 .form-horizontal .poll__controls {
 	margin-left: 68px;
 }
+.error-poll, .success-poll {
+    float: left;
+    font-size: 13px;
+    line-height: 14px;
+    margin: 5px;
+    text-align: center;
+    width: 90px;
+}
+.poll__rules__item {
+	list-style: square outside none;
+}
+.poll__rules__list {
+	margin: 0 0 0 40px;
+}
+.poll__thx {
+	text-align: justify;
+}
 
 /* section SCORE */
-.score {
-	min-height: 322px;
-}
+
 .score__lbl {
 	float: left;
 	clear: left;
@@ -181,8 +272,15 @@ body {
 	background: #0088CC;
 	-webkit-transition: all .5s ease 0s;
 	transition: all .5s ease 0s;
+	text-align: center;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #FFF;
+    height: 20px;
+    width: 0px;
 }
-.score__refresh {
+.btn-refresh-score {
 	clear: both;
 	float: left;
 	margin: 10px;
@@ -192,45 +290,106 @@ body {
 }
 /* section USER */
 .btn__quit {
-	margin: 10px;
+	margin: 5px 0;
 }
 .user {
-	min-height: 322px;
+	height: 203px;
 	position: relative;
 }
 .user__ava {
-	margin: 10px;
+	margin: 17px 25px;
 	float: left;
 	width: 100px;
+	min-height: 100px;
+	overflow: hidden;
 }
 .user__greetings {
 	float: left;
-	width: 150px;
-	margin: 10px 0 0 0;
-	height: 66px;
-	text-align: center;
+	width: 130px;
+	margin: 15px 0 0 0;
+	height: 50px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .user__greetings__name {
 	color: #FF0000;
 }
 
-/* STATS */
-.stats {
-	width: 1184px;
-	min-height: 300px;
-	margin: 0 auto;
+/* ABOUT */
+.about {
+	margin: 0 0 20px;
 }
-.stats__item {
-	margin: 20px 0 0 20px;
+.about__p {
+	margin: 0 0 10px 30px;
 }
-
 
 /* TEAM */
+.user__section {
+	border-top: 1px solid #D9D9D9;
+	border-bottom: 1px solid #D9D9D9;
+	padding: 10px;
+	width: 1208px;
+	float: left;
+	height: 264px;
+}
 .team {
 	float: left;
-	width: 500px;
-	min-height: 500px;
-	margin: 20px;
+	width: 1208px;
+	margin: 10px 0;
+}
+.team__user__ava {
+	width: 130px;
+	height: 130px;
+	overflow: hidden;
+}
+.team__user__wrapper {
+	/* background: url(../img/preloader.gif) no-repeat center center; */
+	width: 130px;
+	border: 1px solid #D9D9D9;
+	box-shadow: 0 0 5px #CCCCCC;
+	height: 225px;
+	float: left;
+	margin: 0 0 0 17px;
+}
+.team__user__msg {
+	text-overflow: ellipsis;
+}
+.team__user {
+	padding: 5px;
+	font-size: 12px;
+	line-height: 17px;
+	vertical-align: top;
+	position: relative;
+	height: 85px;
+}
+.t__user-wd, .t__user__vd {
+	padding: 0 0 0 2px;
+}
+.team__user__wrapper [class^="icon-"] {
+	padding: 0 5px 0 0;
+}
+.team__want .team__user__wrapper {
+	height: 240px;
+}
+.team__want .team__user {
+	height: 100px;
+}
+.team__user__item-bottom {
+	position: absolute;
+	bottom: 5px;
+}
+.teamfind-header, .teamwant-header {
+	height: 50px;
+	float: left;
+	margin: 0 20px 0 405px;
+}
+.teamwant-header {
+	margin: 0 20px 0 328px;	
+}
+#loadUserFromDB, #loadUserFromDB-out {
+	float: left;
+	margin: 10px 0 0 0;
 }
 
 
@@ -290,4 +449,75 @@ body {
 	top: 90px;
 	left: 50%;
 	margin: 0 0 0 2px;
+}
+
+/* user__more */
+.user__more {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-shadow: 0 0 5px #CCCCCC;
+    font-size: 13px;
+    left: 50%;
+    margin: -152px 0 0 -225px;
+    padding: 10px;
+    position: fixed;
+    width: 450px;
+	height: 305px;
+    top: 50%;
+    z-index: 101;
+}
+.btn-add-user-more {
+	margin: 15px 0 0 0;
+}
+.control-group-float {
+	float: left;
+}
+.user__more__form .control-label {
+	width: 130px;
+}
+.user__more__select {
+	margin: 0 0 0 5px;
+}
+.user__more .control-label-col2 {
+	width: 30px;
+}
+.user__more__select {
+	width: 138px;
+}
+.control-group-float .user__more__select {
+	float: left;
+}
+.user__more__choise-want {
+	display: none;
+}
+.radio-user-more {
+	margin: 0 0 5px 115px;
+}
+.btn-user-more {
+	margin: 0 35px 0 135px;
+	width: 138px;
+	float: left;
+}
+.user__more select {
+	border-radius: 0;
+}
+.success-user-more {
+	float: left;
+	width: 140px;
+	padding: 5px 0 0 0;
+}
+
+/* FURION */
+.ti3-p {
+	font: 22px 'Russo One',sans-serif;
+	text-align: justify;
+	margin: 0 20px 10px;
+}
+.furionhelp__item {
+	width: 988px;
+	margin: 0 auto;
+}
+.furion__img {
+	width: 1100px;
+	margin: 25px auto;	
 }

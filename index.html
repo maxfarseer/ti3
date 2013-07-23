@@ -1,14 +1,20 @@
-﻿<html>
+﻿<? include_once ("auth/index.php");?>
+<html>
 <head>
-    <title>ti3</title>
+    <title>Выбери топ3 THE INTERNATIONAL III</title>
     <meta charset="utf-8">
     <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
-    
     <link href="css/main.css" rel="stylesheet" media="screen">
-
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    
+    <meta property="og:image" content="http://ti3.mozgi43.ru/img/furion.jpg" />
+    <meta property="og:title" content="Кто выиграет The International III ?" />
+    <meta property="og:description" content="Ты можешь проголосовать, а также поискать команду или найти пару котанов себе в тиму!" />
+	
 </head>
 <body>
 <div class="all row">
@@ -17,193 +23,221 @@
 		<div class="full-veil"></div>
 	</div>
 
+    <section class="share">
+        <div class="btn btn-mini btn-warning btn-share"><i class="icon-globe"></i><? linkss($_SESSION['user']->provider); ?></div>
+		
+		
+    </section>
+
 	<header class="intro">
-		<h1 class="intro__txt">Choose your TOP 3 on TI 3 !</h1>
+		<h1 class="intro__txt">Выбери ТОП 3 команд TI 3</h1>
 	</header>
 
-
-    <section class="account">
-	    <button class="btn btn-mini btn-login"><i class="icon-user"></i> Логин</button>
-	    <button class="btn btn-mini btn-registration"><i class="icon-time"></i> Регистрация</button>
-	</section>
-
 	<section class="furion">
-	    <a class="btn btn-mini btn-warning btn-furion"><i class="icon-leaf"></i> Помоги Фуриону</a>
+	    <a href="/furion.html" class="btn btn-mini btn-warning btn-furion"><i class="icon-leaf"></i> Помоги Фуриону</a>
 	</section>
 
 	<div class="clear"></div>
-
-	<section class="tutorial none">
-		<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
-		<p> Заходи завтра, и получи еще +10 pts! Ставь снова. </p>
-		<p> Призы делятся на три типа:</p>
-		<ul class="tutorial__list">
-			<li>Рандом из угадавших топ3.</li>
-			<li>Рандом из всех, кто ставил.</li>
-			<li>Рандом из первой сотни поставивших максимальное количество очков и спец-приз от Квопы, тому, кто ставил больше всех!</li>
-		</ul>
-		<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
-		<p> Не забудь помочь Фуриону, бро! </p>
-		<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
-	</section>
+	
+		<section class="tutorial none">
+        	<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
+        	<p> Призы делятся на три типа:</p>
+        	<ul class="tutorial__list">
+        		<li>Рандом из угадавших топ3.</li>
+        		<li>Рандом из всех, кто ставил.</li>
+        	</ul>
+        	<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
+        	<p> Не забудь помочь Фуриону, бро! </p>
+        	<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
+        </section>
+	
+    <div class="clear"></div>
 
     <div class="after-login">
     	
     	<section class="span4 user">
-    		<header class="poll__header"><h2>Мои данные</h2></header>
-    			<div class="user__ava">
-    				<img src="img/queenofpain_hphover.png">
-    			</div>
-    			<div class="user__greetings">
-    				You were weak, <span class="user__greetings__name"> %Username, surname%</span>!
-    			</div>
-    	
-    				<p class="user__info">Points: user__points</p>
-    				<p class="user__info">Points: user__points</p>
-    				<p class="user__info">Points: user__points</p>
-    	
-    				<button class="btn btn__quit"><i class="icon-off"></i> Выход</button>
-    	</section> <!-- user -->
-    	
-    	
-    	<section class="poll span4">
-    		<header class="poll__header"><h2>Голосовать</h2></header>
-    				
-    			    <form class="form-horizontal form__poll">
-    				
-    				<label class="control-label" for="select__top1">Top 1:</label>
-    	
-    				<div class="control-group">
-    					<select class="select__team select__team-top1" name="select__top1">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
-    					</select>
-    					<input class="points__count" type="text" placeholder="Pts">
-    				</div>
-    	
-    				<label class="control-label" for="select__top1">Top 2:</label>
-    	
-    				<div class="control-group">
-    					<select class="select__team select__team-top2" name="select__top2">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
-    					</select>
-    					<input class="points__count" type="text" placeholder="Pts">
-    				</div>
-    	
-    				<label class="control-label" for="select__top1">Top 3:</label>
-    	
-    				<div class="control-group">
-    					<select class="select__team select__team-top3" name="select__top3">
-    						<option value="navi">Na'Vi</option>
-    						<option value="virtuspro">Virtus.pro</option>
-    						<option value="eg">EG</option>
-    						<option value="alliance">Alliance</option>
-    						<option value="quantic">Quantic</option>
-    					</select>
-    					<input class="points__count" type="text" placeholder="Pts">
-    				</div>
-    	
-    					<div class="control-group">
-    						<div class="controls poll__controls">
-    							<label class="checkbox">
-    								<input type="checkbox"> Согласен с правилами
-    							</label>
-    							<button class="btn btn-poll" type="submit" disabled><i class="icon-ok"></i> Голосовать</button>
-    						</div>
-    					</div>
-    	
-    			</form>
-    				
-    				<button class="btn btn-poll btn-mini"><i class="icon-ok"></i> Отправить JSON</button>
-    	
-    				<div class="draft__scoreJSON"></div>
-    	</section> <!-- poll -->
+    		<? if (isset($_SESSION['user'])):?>
+				<header class="poll__header"><h2>Мои данные </h2></header>
+					<div class="user__ava">
+						<? if (!is_null($_SESSION['user']->avatar)) echo '<img src="'.$_SESSION['user']->avatar.'"/>'?>
+					</div>
+					<div class="user__greetings">
+						You were weak,<br>
+						<span class="user__greetings__name"><? if (!is_null($_SESSION['user']->name))  echo $_SESSION['user']->name;?></span>
+					</div>
+			
+						<button class="btn btn-mini btn-add-user-more"><i class="icon-plus"></i> Попасть в ленту</button>
+						<button class="btn btn-mini btn__quit" onclick="window.location.href='auth/logout.php'"><i class="icon-off"></i> Выход</button>
+				</section>
+				<? if($_SESSION['user']->poll1):?>
+				<section class="poll span4">
+				<header class="poll__header"><h2>Голосовать</h2></header>
+						<form class="form-horizontal form__poll"> 				
+						<label class="control-label" for="select__top1">Top 1:</label>
+			
+						<div class="control-group">
+							<select class="select__team select__team-top1" name="select__top1">
+								<option value="1">Alliance</option>
+								<option value="2">Quantic</option>
+								<option value="3">Invictus Gaming</option>
+								<option value="4">Orange.Neolution</option>
+								<option value="5">Fnatic</option>
+								<option value="6">Team Liquid</option>
+								<option value="7">Natus Vincere</option>
+								<option value="8">Team Zenith</option>
+								<option value="9">Team Dignitas</option>
+								<option value="10">DK</option>
+								<option value="11">Virtus.Pro</option>
+								<option value="12">LGD Gaming.Int</option>
+								<option value="13">Invasion MUFC</option>
+								<option value="14">TongFu</option>
+								<option value="15">LGD Gaming</option>
+								<option value="16">mousesports</option>
+							</select>
+							<input class="points__count" type="text" placeholder="0">
+						</div>
+			
+						<label class="control-label" for="select__top1">Top 2:</label>
+			
+						<div class="control-group">
+							<select class="select__team select__team-top2" name="select__top2">
+								<option value="1">Alliance</option>
+								<option value="2">Quantic</option>
+								<option value="3">Invictus Gaming</option>
+								<option value="4">Orange.Neolution</option>
+								<option value="5">Fnatic</option>
+								<option value="6">Team Liquid</option>
+								<option value="7">Natus Vincere</option>
+								<option value="8">Team Zenith</option>
+								<option value="9">Team Dignitas</option>
+								<option value="10">DK</option>
+								<option value="11">Virtus.Pro</option>
+								<option value="12">LGD Gaming.Int</option>
+								<option value="13">Invasion MUFC</option>
+								<option value="14">TongFu</option>
+								<option value="15">LGD Gaming</option>
+								<option value="16">mousesports</option>
+							</select>
+							<input class="points__count" type="text" placeholder="0">
+						</div>
+			
+						<label class="control-label" for="select__top1">Top 3:</label>
+			
+						<div class="control-group">
+							<select class="select__team select__team-top3" name="select__top3">
+								<option value="1">Alliance</option>
+								<option value="2">Quantic</option>
+								<option value="3">Invictus Gaming</option>
+								<option value="4">Orange.Neolution</option>
+								<option value="5">Fnatic</option>
+								<option value="6">Team Liquid</option>
+								<option value="7">Natus Vincere</option>
+								<option value="8">Team Zenith</option>
+								<option value="9">Team Dignitas</option>
+								<option value="10">DK</option>
+								<option value="11">Virtus.Pro</option>
+								<option value="12">LGD Gaming.Int</option>
+								<option value="13">Invasion MUFC</option>
+								<option value="14">TongFu</option>
+								<option value="15">LGD Gaming</option>
+								<option value="16">mousesports</option>
+							</select>
+							<input class="points__count" type="text" placeholder="0">
+						</div>
+			
+					</form>
+						<button class="btn btn-poll"><i class="icon-ok"></i> Голосовать</button>
+						<div class="error error-poll none"></div>
+						<div class="success success-poll none">Ваш голос принят!</div>
+			
+						<div class="draft__scoreJSON"></div>
+				</section> 
+				<!-- poll -->
+				<?else:?>
+				<section class="poll span4">
+                <header class="poll__header"><h2>Спасибо!</h2></header>
+                <div class="poll__thx">
+                    <p> Мы рады, что ты сделал свой выбор топ3 команд! Предлагаем сделать еще один выбор (<u>Фура ждет в правом углу</u>)</p>
+                    <p> Если хочешь можешь поискать себе пати в пабчик с помощью кнопки "попасть в ленту" </p>     
+                </div>
+				</section>
+				<?endif;?>
+				
+			<? else: ?>
+				<header class="poll__header"><h2>Войти через:</h2></header>
+				<div class="overlay__login__wrapper">
+                    <div class="overlay__login__img"><img src="/img/hz.jpg"></div>
+                    <div class="overlay__login__btns">
+                    <? if (!isset($_GET['code'])) {
+    				foreach ($adapters as $title => $adapter) {
+    				echo '<a href='.$adapter->getAuthUrl().'><button class="btn btn-mini overlay__login__via">' . ucfirst($title) . '</button></a>';
+    				}}?>
+                    </div>
+                </div>
+        </section> <!-- user -->
+				
+				<section class="poll span4">
+					<header class="poll__header"><h2>Голосовать</h2></header>
+					<div class="poll__rules">
+						<ul class="poll__rules__list">
+							<li class="poll__rules__item">Залогинься и получи 100 очков!</li>
+							<li class="poll__rules__item">Поставь их на тех, кто по твоему выиграет TI 3, например, так:<br>&ndash;топ1 команда - 50 очков;<br>&ndash;топ2 команда - 30 очков;<br>&ndash;топ3 команда - 20 очков.</li>
+							<li class="poll__rules__item">Жди результатов - получай призы! </li>
+						</ul>
+					</div>
+				</section> 
+				<!-- poll -->
+			<?endif;?>
+			
+    	 <!-- user -->
     	
     	
     	
     	<section class="score span7">
     		<header class="score__header"><h2>Результаты</h2></header>
     			<div class="score__lbl">TOP 1:</div>
-    			<div class="score__top score__top1 span6">0</div>
+    			<div class="score__top score__top1 span6"></div>
     			<div class="score__lbl">TOP 2:</div>
-    			<div class="score__top score__top2 span6">0</div>
+    			<div class="score__top score__top2 span6"></div>
     			<div class="score__lbl">TOP 3:</div>
-    			<div class="score__top score__top3 span6">0</div>
+    			<div class="score__top score__top3 span6"></div>
     	
-    				<button class="btn score__refresh">Обновить</button>
-    	
-    				<div class="draft__score__points"></div>
-    				<div class="score__date"></div>
+    			<div class="draft__score__points"></div>
+    			<div class="score__date"></div>
     	
     	</section>
 
     	<div class="clear"></div>
 
     	<section class="team team__find">
-    		<header class="poll__header"><h2>Ищу тиму:</h2></header>
-    		<div class="team__user__wrapper">
-    			<div class="team__photo team__photo-find"></div>
-    			<div class="team__info">
-    				<ul class="team__list">
-    					<li class="team__list__item">Параметр01</li>
-    					<li class="team__list__item">Параметр02</li>
-    					<li class="team__list__item">Параметр03</li>
-    					<li class="team__list__item">Параметр04</li>
-    					<li class="team__list__item">Параметр05</li>
-    				</ul>
-    			</div>
-    		</div>
-    		
-    	</section>
+    		<header class="poll__header teamfind-header"><h2>Ищут команду:</h2></header>
+            <button class="btn" id="loadUserFromDB">Обновить список игроков</button>
+
+    		<div class="user__section" id="userFromDB">
+                <!-- игроки из базы -->
+            </div>
+
+    	</section> <!-- team__find -->
 
     	<section class="team team__want">
-    		<header class="poll__header"><h2>Возьмем в тиму:</h2></header>
-    		<div class="team__user__wrapper">
-    			<div class="team__photo team__photo-want"></div>
-    			<div class="team__info">
-    				<ul class="team__list">
-    					<li class="team__list__item">Параметр01</li>
-    					<li class="team__list__item">Параметр02</li>
-    					<li class="team__list__item">Параметр03</li>
-    					<li class="team__list__item">Параметр04</li>
-    					<li class="team__list__item">Параметр05</li>
-    				</ul>
-    			</div>
-    		</div>
-    		
-    	</section>
+            <header class="poll__header teamwant-header"><h2>Возьмут в команду:</h2></header>
+            <button class="btn" id="loadUserFromDB-out">Обновить список игроков</button>
+
+            <div class="user__section" id="userFromDB-out">
+                <!-- игроки из базы -->
+            </div>
+
+        </section> <!-- team__want -->
 
     	<div class="clear"></div>
 
-    	<section class="stats">
-    		<header class="poll__header"><h2>Статистика (пока заморожено)</h2></header>
+    	<section class="about">
+    		<header class="poll__header"><h2>О проекте:</h2></header>
 			
-			<div class="stats__item">
-				<span class="stats__item__lbl">Всего игроков:</span>
-				<span class="stats__item__count">1234567890</span>
-			</div>
-
-			<div class="stats__item">
-				<span class="stats__item__lbl">Возраст:</span>
-				<span class="stats__item__count">1234567890</span>
-			</div>
-
-			<div class="stats__item">
-				<span class="stats__item__lbl">Пол:</span>
-				<span class="stats__item__count">1234567890</span>
-			</div>
-
-			<div class="stats__item">
-				<span class="stats__item__lbl">и т.д:</span>
-				<span class="stats__item__count">1234567890</span>
-			</div>
+            <p class="about__p">THE INTERNATIONAL 3 - крупнейший турнир по Dota2. Призовой фонд турнира превышает 2 млн баксов. Выражаем огромный респект Valve!</p>
+			<p class="about__p">На сайте вы можете поставить 100 очков на ТОП 3 команды. Например: 50 на команду1, 30 на команду2 и 20 на команду, которая займет третье место.</p>
+            <p class="about__p">Так же вы можете "Попасть в ленту" в роли ищущего команду для игры, или найти себе 1-2х тиммейтов.</p>
+            <p class="about__p">И напоследок, вы можете <a href="/furion.html">помочь Фуриончику</a>. Его пеньки погибают.</p>
 
     	</section>
 
@@ -212,35 +246,190 @@
 </div> <!-- all -->
 
 
-<!-- форма логина -->
-<div class="overlay none">
-	<div class="overlay__close"><i class="icon-off"></i></div>
-		
-		<div class="overlay__login__wrapper">
-			<div class="overlay__login__item">
-			<img src="img/drow_ranger_sb.png" class="overlay__login__img">
-				<button class="btn overlay__login__via overlay__login__via-vk">Вконтакте</button>
-			</div>
-			
-			<div class="overlay__login__item">
-			<img src="img/mirana_sb.png" class="overlay__login__img">
-				<button class="btn overlay__login__via overlay__login__via-fb">Facebook</button>
-			</div>
-			
-			<div class="overlay__login__item">
-			<img src="img/warlock_sb.png" class="overlay__login__img">
-				<button class="btn overlay__login__via overlay__login__via-google">Google</button>
-			</div>
-		</div>
+<!-- добавить данные -->
+<div class="user__more none">
+    <div class="overlay__close"><i class="icon-off icon-off-user-more"></i></div>
 
-		<div class="overlay__login__info">
-			<p> Уже залогинились:<br>
-				<span class="overlay__login__info__count">87123</span><br>
-				человек.
-		</div>
-	    
-</div>
-<!--  -->
+    <form class="form-horizontal user__more__form">
+    
+        <label class="radio radio-user-more">
+            <input type="radio" name="user__more__choise" id="user__more__choise1" value="option1" checked>
+            Я ворвусь в команду
+        </label>
+        <label class="radio radio-user-more">
+            <input type="radio" name="user__more__choise" id="user__more__choise2" value="option2">
+            Я возьму в команду
+        </label>                
+
+        <div class="clear"></div>
+
+        <div class="control-group" style="margin-top: 13px;">
+        <label class="control-label">Скилл:</label>
+            <select id="um_skill" class="user__more__select">
+            <? foreach($_SESSION['lists']->skills as $key=>$value)
+                echo ($key==$_SESSION['user']->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+            </select>
+        </div>
+
+        <div class="user__more__choise-find">
+            <div class="control-group">
+            <label class="control-label">Любимое дело:</label>
+                <select id="um_role" class="user__more__select">
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->role)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+                </select>
+            </div>
+        </div> <!-- end find -->
+
+        <div class="user__more__choise-want">
+            <div class="control-group control-group-float">
+            <label class="control-label">Ищу (1го или 2ух)</label>
+                <select id="um_search1" class="user__more__select">
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->search_1)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+                </select>
+            </div>
+            <div class="control-group control-group-float">
+            <label class="control-label control-label-col2">и</label>
+                <select id="um_search2" class="user__more__select">
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->search_2)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+                </select>
+            </div>
+        </div> <!-- end want -->
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_wd">Онлайн будни c :</label>
+            <select id="um_time_beg" class="user__more__select">
+            <? // substr($_SESSION['user']->time_beg,0,5);?>    
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+        
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
+            <select id="um_time_end" class="user__more__select">
+            <? // substr($_SESSION['user']->time_end,0,5);?>
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_vd">Онлайн выхи c: </label>
+            <? // substr($_SESSION['user']->vtime_beg,0,5);?>
+            <select id="um_vtime_beg" class="user__more__select">
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+
+
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
+            <select id="um_vtime_end" class="user__more__select">
+            <? // substr($_SESSION['user']->vtime_end,0,5);?>
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+    </form>
+    
+    <button class="btn btn-user-more"><i class="icon-ok"></i> Отправить</button>
+    <div class="success success-user-more none">Ваша заявка принята!</div>
+    
+</div> <!-- user__more -->
 
 <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
 <script src="js/jquery-2.0.0.min.js"></script>
@@ -248,8 +437,6 @@
 
 <script src="js/team.js"></script>
 <script src="js/my.js"></script>
-
-
 
 </body>
 </html>
