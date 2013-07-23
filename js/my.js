@@ -39,7 +39,7 @@ $(function() {
 		        	$('.user__more__choise-want').show();
 		        	$('#um_search1').val(data.search_1);
 
-		        	if (+data.seahch_2 != 0) $('#um_search2').val(data.search_2);
+		        	if (+data.search_2 != 0) $('#um_search2').val(data.search_2);
 		        }
 		        
 		        $('#um_time_beg').val(data.time_beg); 
@@ -62,22 +62,34 @@ $(function() {
 
 	$('.btn-poll').click(function() {
 
-		var $points = $('.points__count');
-		var $team = $('.select__team');
-		var points = [],
-			team = [],
-			obj = {},
-			scoreJSON = "",
-			pointsSum = 0;
+		var $team1 = $('.select__team-top1');
+		var $team2 = $('.select__team-top2');
+		var $team3 = $('.select__team-top3');
 		
-		$points.each(function(index,element) {
-			var tempTeam = $team[index].value;
-			obj[tempTeam] = +$points[index].value;
-			points.push(+$points[index].value);
-			pointsSum += points[index];
+		var obj = {},
+			scoreJSON = "",
+			multiplier = 1;
+
+		if ($team1.val() === $team2.val() || $team1.val() === $team3.val() || $team2.val() === $team3.val()) {
+				$('.error-poll').removeClass('none');
+				return false;
+		};
+
+		$('.select__team').each(function(index, element) {
+
+			if ($(element).hasClass('select__team-top1')) {
+				multiplier = 10;
+			};
+			if ($(element).hasClass('select__team-top2')) {
+				multiplier = 5;
+			};
+			if ($(element).hasClass('select__team-top3')) {
+				multiplier = 1;
+			};
+
+			obj[$(element).val()] = multiplier;
+
 		});
-
-
 
 		scoreJSON = JSON.stringify(obj);
 		
@@ -86,18 +98,7 @@ $(function() {
 			dataType: "json",
 			data: {myData:scoreJSON,data:"poll"},
 			beforeSend: function() {
-				for (var i = 0; i<points.length; i++) {
-					if ((points[i] < 0) || (points[i] > 100)) {
-						$('.error-poll').html('Число голосов некорректно');
-						$('.error-poll').removeClass('none');
-						return false;
-					}
-					if (pointsSum != 100) {
-						$('.error-poll').html('Сумма очков не равна 100!');
-						$('.error-poll').removeClass('none');
-						return false;
-					}
-				}
+				console.log(scoreJSON);
 			},
 			url: 'userpoll.php',
 			success: function(dataPHP) {
