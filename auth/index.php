@@ -12,21 +12,21 @@ switch ($prov){
 		--></script>';
 	break;
 	case "mailru":
-		echo '<a href="http://connect.mail.ru/share?share_url">Рассказать друзьям</a>';
+		echo '<a class="btn-share-link" href="http://connect.mail.ru/share?share_url">Рассказать друзьям</a>';
 	break;
 	case "yandex":
-		echo '<a target=”_blank” rel=”nofollow” href="http://my.ya.ru/posts_add_link.xml?title=Выбери ТОП 3 команд TI 3&URL='.$_SERVER['HTTP_HOST'].'">поделиться</a>';
+		echo '<a class="btn-share-link" target=”_blank” rel=”nofollow” href="http://my.ya.ru/posts_add_link.xml?title=Выбери ТОП 3 команд TI 3&URL='.$_SERVER['HTTP_HOST'].'">поделиться</a>';
 	break;
 	case "facebook":
-		echo '<a rel=”nofollow” target=”blank” href="http://www.facebook.com/sharer.php?u='.$_SERVER['HTTP_HOST'].'">поделиться</a>';
+		echo '<a class="btn-share-link" rel=”nofollow” target=”blank” href="http://www.facebook.com/sharer.php?u='.$_SERVER['HTTP_HOST'].'">поделиться</a>';
 	break;
 }}
 
 $adapterConfigs = array(
     'vk' => array(
-        'client_id'     => '3720076',
-        'client_secret' => 'hNuKZ5QOwD8l6gSc2pmb',
-        'redirect_uri'  => 'http://ti3.mozgi43.ru/auth/?provider=vk'
+        'client_id'     => '3719561',
+        'client_secret' => '73dknderV6TYXHRKLUkA',
+        'redirect_uri'  => 'http://ti3top.ru/auth/?provider=vk'
     ),
    /* 'odnoklassniki' => array(
         'client_id'     => '',
@@ -37,22 +37,22 @@ $adapterConfigs = array(
     'mailru' => array(
         'client_id'     => '706578',
         'client_secret' => 'ce2acdf36b515ce64e71f30d1d2b6d52',
-        'redirect_uri'  => 'http://ti3.mozgi43.ru/auth?provider=mailru'
+        'redirect_uri'  => 'http://ti3top.ru/auth?provider=mailru'
     ),
     'yandex' => array(
         'client_id'     => '56462c1004744843a978f0d1cf5bf633',
         'client_secret' => '634cd0e2642b4d88b84055b83f7b0189',
-        'redirect_uri'  => 'http://ti3.mozgi43.ru/auth?provider=yandex'
+        'redirect_uri'  => 'http://ti3top.ru/auth?provider=yandex'
     ),
     'google' => array(
         'client_id'     => '932885368040.apps.googleusercontent.com',
         'client_secret' => 'bL09OTjggvYZnpPNWTqI5XzM',
-        'redirect_uri'  => 'http://ti3.mozgi43.ru/auth?provider=google'
+        'redirect_uri'  => 'http://ti3top.ru/auth?provider=google'
     ),
     'facebook' => array(
         'client_id'     => '468660439888779',
-        'client_secret' => '6d596bc89932f5d76fc49f933daf6ded',
-        'redirect_uri'  => 'http://ti3.mozgi43.ru/auth?provider=facebook'
+        'client_secret' => '0b2a5b4d2d13211bf48d70e7014c33c1',
+        'redirect_uri'  => 'http://ti3top.ru/auth?provider=facebook'
     )
 );
 
