@@ -1,0 +1,315 @@
+AWSTATS DATA FILE 7.1 (build 1.983)
+# If you remove this file, all statistics for date 201307 will be lost/reset.
+# Last config file used to build this data file was /etc/awstats/awstats.ti3top.ru.conf.
+
+# Position (offset in bytes) in this file for beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 1989                
+POS_TIME 2667                
+POS_VISITOR 6709                
+POS_DAY 8452                
+POS_DOMAIN 3296                
+POS_LOGIN 3529                
+POS_ROBOT 3684                
+POS_WORMS 4017                
+POS_EMAILSENDER 4148                
+POS_EMAILRECEIVER 4291                
+POS_SESSION 8583                
+POS_SIDER 8767                
+POS_FILETYPES 4426                
+POS_DOWNLOADS 4608                
+POS_OS 4656                
+POS_BROWSER 4832                
+POS_SCREENSIZE 5115                
+POS_UNKNOWNREFERER 5189                
+POS_UNKNOWNREFERERBROWSER 5351                
+POS_ORIGIN 5433                
+POS_SEREFERRALS 5574                
+POS_PAGEREFS 5718                
+POS_SEARCHWORDS 6043                
+POS_KEYWORDS 6195                
+POS_MISC 2331                
+POS_ERRORS 6254                
+POS_CLUSTER 3385                
+POS_SIDER_404 6376                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20130724080024 86 16685 8426160691419
+FirstTime 20130722083341
+LastTime 20130724075243
+LastUpdate 20130724080140 17 0 17 0 0
+TotalVisits 45                  
+TotalUnique 40                  
+MonthHostsKnown 0                   
+MonthHostsUnknown 40                  
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 0 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 23 41 180605 0 5 25
+1 4 11 272392 3 4 34943
+2 0 0 0 1 1 8769
+3 0 0 0 2 2 18307
+4 0 0 0 3 3 26307
+5 0 0 0 2 3 26199
+6 0 0 0 0 0 0
+7 5 13 286648 2 3 34810
+8 4 4 3608 3 7 10573
+9 0 0 0 0 0 0
+10 0 0 0 0 0 0
+11 2 2 1804 1 1 902
+12 2 2 0 0 0 0
+13 0 0 0 0 0 0
+14 0 0 0 0 0 0
+15 0 0 0 0 0 0
+16 11 27 287040 0 2 0
+17 58 93 470549 13 27 25840
+18 314 621 2592087 66 107 11931
+19 230 532 2815890 36 81 130040
+20 337 758 10402005 8 73 345
+21 29 79 1081274 0 6 0
+22 4 12 279650 3 7 34943
+23 54 77 869947 3 12 8779
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 1
+ip 1077 2272 19543499
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 6
+yandex 26 309589 20130724080024 0
+no_user_agent 3 2706 20130722114434 0
+crawl 3 18332 20130724033350 1
+googlebot 2 50 20130724050201 2
+mail\.ru 1 184 20130723180402 0
+facebook 1 16284 20130723170911 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 6
+php 797 2683464 0 0
+css 345 5070031 0 0
+png 115 550357 0 0
+html 280 4324374 0 0
+js 636 5219781 0 0
+jpg 99 1695492 0 0
+END_FILETYPES
+
+# Downloads - Hits - Bandwidth
+BEGIN_DOWNLOADS 0
+END_DOWNLOADS
+
+# OS ID - Hits
+BEGIN_OS ID - Hits - Pages 8
+linuxandroid 8 1
+winxp 31 11
+linuxubuntu 1 1
+winvista 694 366
+linux 1 1
+win7 1520 688
+Unknown 3 3
+macosx8 14 6
+END_OS
+
+# Browser ID - Hits - Pages
+BEGIN_BROWSER 13
+msie6.0 1 1
+msie8.0 1 1
+chrome28.0.1500.72 1364 682
+firefox3.6 5 1
+mozilla 3 3
+firefox22.0 674 285
+msie10.0 9 1
+chrome25.0.1364.172 12 4
+chrome28.0.1500.94 8 1
+chrome28.0.1500.71 14 6
+firefox3.1 1 1
+firefox11.0 1 1
+opera9.80 179 90
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 1
+Mozilla/5.0_(compatible;_vkShare;__http://vk.com/dev/Share) 20130723201114
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 0
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 101 101
+From1 0 0
+From2 0 0
+From3 50 50
+From4 926 2121
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 0
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 6
+http://vk.com/forum_snowboarding 16 16
+http://oauth.vk.com/authorize 12 12
+http://vk.com/feed 11 11
+http://vk.com/im 5 5
+http://vk.com/v1latfans 4 4
+http://vk.com/nemesclub 2 2
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 4
+302 64 185
+206 2 7241
+301 29 12632
+404 19 5510
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 1
+/js/jquery.min.map 19 -
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 40
+176.14.249.171 369 848 3913742 20130723213011
+176.212.19.218 344 646 2873007 20130723205217
+178.44.108.78 66 134 817884 20130724001309
+89.254.226.169 62 100 1188093 20130724010504
+128.69.94.142 36 93 1842246 20130723202042
+31.163.38.44 24 47 511777 20130723201255
+37.214.208.76 21 39 475506 20130723201634
+109.188.125.218 18 35 457821 20130723204218
+94.180.143.230 17 27 470764 20130723202740
+178.44.37.23 12 21 430148 20130723202200
+195.208.49.66 3 3 902 20130722120059
+37.200.65.208 1 1 902 20130723084637
+178.167.91.231 4 12 277838 20130723200828
+213.87.130.20 1 9 271400 20130723212106
+150.70.173.49 1 1 902 20130722114927
+79.56.89.146 4 12 278752 20130723201523
+109.172.31.68 4 12 277870 20130723200921
+213.141.132.138 8 16 303509 20130723201412
+94.241.197.27 5 13 280552 20130723204640
+46.118.13.248 8 16 302643 20130723201347
+176.195.176.33 4 12 278774 20130723201739
+212.94.13.243 9 19 421709 20130723203222
+87.242.75.48 1 5 135503 20130723201349
+91.246.116.73 4 12 279650 20130723212424
+94.241.213.100 4 12 279650 20130723222810
+94.180.171.71 5 15 396930 20130723201821
+93.75.178.89 4 12 277870 20130723200928
+87.240.182.171 2 2 34810 20130723201114
+87.240.182.174 1 1 17405 20130723200528
+150.70.172.112 1 1 902 20130722115138
+94.181.216.228 5 14 397806 20130723210619
+194.146.132.130 4 12 278752 20130723201446
+46.147.107.87 1 7 358450 20130723201903
+91.145.238.255 1 8 258601 20130723205534
+94.241.220.220 1 1 902 20130722083341
+83.149.34.147 8 16 303553 20130723202946
+204.68.97.133 1 1 902 20130722161221
+178.44.22.197 4 12 279650 20130723204249
+91.227.162.147 4 12 278774 20130723201643
+92.39.66.58 5 13 286648 20130724075243 20130724075222 /userpoll.php
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 3
+20130722 7 7 4510 6
+20130723 1038 2200 18799344 36
+20130724 32 65 739645 3
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 5
+1h+ 3
+5mn-15mn 6
+0s-30s 27
+2mn-5mn 4
+30s-2mn 4
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 4
+/userpoll.php 797 2683464 0 27
+/ 264 4295876 43 13
+/furion.html 13 28483 2 4
+/auth/ 3 15 0 0
+END_SIDER

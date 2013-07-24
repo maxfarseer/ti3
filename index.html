@@ -23,9 +23,11 @@
 		<div class="full-veil"></div>
 	</div>
 
+	<? if (isset($_SESSION['user'])&&($_SESSION['user']->provider!='google')):?>
     <section class="share">
-        <div class="btn btn-mini btn-warning btn-share"><i class="icon-globe"></i><? linkss($_SESSION['user']->provider); ?></div>
-		
+        <div class="btn btn-mini btn-warning btn-share"><i class="icon-globe"></i><? linkss($_SESSION['user']->provider); ?></div>	
+    </section>
+	<?endif;?>	
 		
     </section>
 
@@ -40,15 +42,15 @@
 	<div class="clear"></div>
 	
 		<section class="tutorial none">
-        	<p> Залогинься и получи 100 pts! Поставь их на ТОП 3 команды и жди результатов! </p>
-        	<p> Призы делятся на три типа:</p>
+        	<p> Залогинься и проголосуй!</p>
+        	<p> Жми попасть в ленту:</p>
         	<ul class="tutorial__list">
-        		<li>Рандом из угадавших топ3.</li>
-        		<li>Рандом из всех, кто ставил.</li>
+        		<li>если ты ищещь команду;</li>
+        		<li>или ищешь 1-2х тиммейтов;</li>
         	</ul>
-        	<p><i>* рандом - выбор случайного пользователя по ID в базе данных.</i></p>
-        	<p> Не забудь помочь Фуриону, бро! </p>
-        	<div class="draft__tutorial"> Думаю тут будет картинка со стрелочками в левый и правый углы. Фурион - это герой из дерева. Так что, прикрутим сюда посыл за сбережение природы. Получится социальный проект.</div>
+        	<p>Расскажи котанам, пусть голусуют!</p>
+        	<p>И не забудь <a href="/furion.html">помочь Фуриону, бро!</a> </p>
+        	
         </section>
 	
     <div class="clear"></div>
@@ -177,15 +179,16 @@
         </section> <!-- user -->
 				
 				<section class="poll span4">
-					<header class="poll__header"><h2>Голосовать</h2></header>
-					<div class="poll__rules">
-						<ul class="poll__rules__list">
-							<li class="poll__rules__item">Залогинься и получи 100 очков!</li>
-							<li class="poll__rules__item">Поставь их на тех, кто по твоему выиграет TI 3, например, так:<br>&ndash;топ1 команда - 50 очков;<br>&ndash;топ2 команда - 30 очков;<br>&ndash;топ3 команда - 20 очков.</li>
-							<li class="poll__rules__item">Жди результатов - получай призы! </li>
-						</ul>
-					</div>
-				</section> 
+                    <header class="poll__header"><h2>Голосовать</h2></header>
+                    <div class="poll__rules">
+                        <ul class="poll__rules__list">
+                            <li class="poll__rules__item">Залогинься и проголосуй!</li>
+                            <li class="poll__rules__item">Жми попасть в ленту:<br>&ndash;если ты ищещь команду;<br>&ndash;или ищешь 1-2х тиммейтов;<br>&ndash;хочешь увидеть себя в ленте</li>
+                            <li class="poll__rules__item">Жми поделиться!</li>
+                            <li class="poll__rules__item"><a href="/furion.html">Помоги Фуриону!</a></li>
+                        </ul>
+                    </div>
+                </section> 
 				<!-- poll -->
 			<?endif;?>
 			
@@ -202,7 +205,12 @@
     			<div class="score__lbl">TOP 3:</div>
     			<div class="score__top score__top3 span6"></div>
     	
-    			<div class="draft__score__points"></div>
+    			<div class="score__more">
+                    <p class="score__more_item">Для тех, кто не любит диаграммы: </p>
+                    <p class="score__more_item">TOP 1: <span class="score__more-top1"></span></p>
+                    <p class="score__more_item">TOP 2: <span class="score__more-top2"></span></p>
+                    <p class="score__more_item">TOP 3: <span class="score__more-top3"></span></p>
+                </div>
     			<div class="score__date"></div>
     	
     	</section>
@@ -235,8 +243,9 @@
     		<header class="poll__header"><h2>О проекте:</h2></header>
 			
             <p class="about__p">THE INTERNATIONAL 3 - крупнейший турнир по Dota2. Призовой фонд турнира превышает 2 млн баксов. Выражаем огромный респект Valve!</p>
-			<p class="about__p">На сайте вы можете поставить 100 очков на ТОП 3 команды. Например: 50 на команду1, 30 на команду2 и 20 на команду, которая займет третье место.</p>
+            <p class="about__p">Выражаем респект "комментатору всея СНГ" - v1lat'у! Спасибо за твои эпичные стримы!</p>
             <p class="about__p">Так же вы можете "Попасть в ленту" в роли ищущего команду для игры, или найти себе 1-2х тиммейтов.</p>
+            <p class="about__p">Этот проект сделан по фану, мы просто немного побаловались с бывшим одногруппником, надеемся вам понравится!</p>
             <p class="about__p">И напоследок, вы можете <a href="/furion.html">помочь Фуриончику</a>. Его пеньки погибают.</p>
 
     	</section>
@@ -437,6 +446,31 @@
 
 <script src="js/team.js"></script>
 <script src="js/my.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter21876979 = new Ya.Metrika({id:21876979,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
 
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/21876979" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </body>
 </html>

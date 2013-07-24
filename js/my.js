@@ -97,14 +97,12 @@ $(function() {
 			type: "POST",
 			dataType: "json",
 			data: {myData:scoreJSON,data:"poll"},
-			beforeSend: function() {
-				console.log(scoreJSON);
-			},
 			url: 'userpoll.php',
-			success: function(dataPHP) {
+			complete: function(dataPHP) {
 				$('.btn-poll').prop('disabled', true);
 				$('.error-poll').addClass('none');
 				$('.success-poll').removeClass('none');
+				window.location.reload();
 			}
 		});
 
