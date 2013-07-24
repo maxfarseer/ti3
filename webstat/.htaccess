@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/ti3top.ru/webstat"
+AuthUserFile /var/www/ti3top/data/etc/10225461.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>

@@ -194,13 +194,16 @@ h2 {
 	z-index: 2;
 	width: 133px;
 	height: 22px;
-	color: #000;
+	color: #FFF;
 	padding: 4px 0 0 13px;
 }
 .btn-share span {
 	color: #FFF !important;
 }
-.btn-share span:hover, btn-share a:hover {
+.btn-share-link {
+	padding: 1px 0 0 13px !important;
+}
+.btn-share span:hover, .btn-share a:hover {
 	text-decoration: none !important;
 }
 
@@ -292,8 +295,23 @@ h2 {
 	margin: 10px;
 }
 .score__date {
-	margin: 10px;
+	position: absolute;
+	bottom: 5;
+	right: 5;
+	font-style: italic;
+	font-size: 10px;
 }
+.score__more {
+	clear: both;
+	font-size: 10px;
+	line-height: 12px;
+	float: left;
+}
+.score__more_item {
+	margin: 5px 0 0 10px !important;
+}
+
+
 /* section USER */
 .btn__quit {
 	margin: 5px 0;
@@ -306,6 +324,7 @@ h2 {
 	margin: 17px 25px;
 	float: left;
 	width: 100px;
+	height: 112px;
 	min-height: 100px;
 	overflow: hidden;
 }

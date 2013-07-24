@@ -33,6 +33,7 @@ switch ($_POST['data']){
 				$golos="INSERT into polls (id_user,id_com,oprosnik,val) values ('".$_SESSION['user']->ID."', '".$key."', '1', '".$val."')";
 				mysql_query($golos) or die("</br>ERROR: ".mysql_error());
 				}
+				$_SESSION['user']->poll1=false;
 				echo getPoll();
 		}
 		else

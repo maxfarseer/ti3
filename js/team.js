@@ -24,5 +24,9 @@ function pollsDiagramm(obj) { /* любое кол-во аргументов */
 		$pile.width(points[i] * unit);
 		$pile.html(team[i] + ': ' + points[i]);
 	}
+	$('.score__more-top1').html(team[0] + ': ' + points[0]);
+	$('.score__more-top2').html(team[1] + ': ' + points[1]);
+	$('.score__more-top3').html(team[2] + ': ' + points[2]);
+
 
 }
