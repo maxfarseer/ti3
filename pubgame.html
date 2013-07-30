@@ -1,0 +1,152 @@
+<? include_once ("auth/index.php");?>
+<? if (isset($_SESSION['user'])&& $_SESSION['user']->admin==1)include_once ("admin.php");//блок админов	?>	
+<html>
+<head>
+    <title>Выбери топ3 THE INTERNATIONAL III</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+    <meta name="description" content="Выбираем команду, которая победит в третьем турнире по игре Dota 2 от компании Valve The International 2013, составляем народный рейтинг команд. Ищем команду и игроков для Dota 2" />
+
+    <meta name="keywords" content="поиск игроков, поиск команд, Dota 2, рейтинг команд The International 2013, народный рейтинг команд dota 2" />
+    
+    <meta property="og:image" content="http://ti3.mozgi43.ru/img/furion.jpg" />
+    <meta property="og:title" content="Кто выиграет The International III ?" />
+    <meta property="og:description" content="Ты можешь проголосовать, а также поискать команду или найти пару котанов себе в тиму!" />
+	
+</head>
+<body>
+<div class="all row">
+
+	<div class="veil none" id="veilpop" >
+		<div class="full-veil"></div>
+	</div>
+
+	<? if (isset($_SESSION['user'])&&($_SESSION['user']->provider!='google')):?>
+    <section class="share">
+        <div class="btn btn-mini btn-warning btn-share"><i class="icon-globe"></i><? linkss($_SESSION['user']->provider); ?></div>	
+    </section>
+	<?endif;?>	
+	
+    </section>
+
+	<header class="intro">
+		<h1 class="intro__txt">Выбери ТОП 3 команд TI 3</h1>
+	</header>
+
+	<section class="furion">
+	    <a href="/furion.html" class="btn btn-mini btn-warning btn-furion"><i class="icon-leaf"></i> Помоги Фуриону</a>
+	</section>
+
+	<div class="clear"></div>
+	
+		<section class="tutorial">
+        	<p><i><span class="tutorial_span">Правила:&nbsp;</span> Жми кнопку "GO GAME!" и ты попадешь в ленту желающих сыграть на 5 минут. Ты можешь написать сообщение, в стиле: "го клоз, пасс 123qwe ждем сапорта для ЦМ." Или просто "гоу кто-угодно, одному скучно". У тебя будет ссылочка "связваться", так что всем кто ищет компанию - жмите "связаться", списывайтесь и мутите пабчики. </i></p>
+        </section>
+
+    <div class="clear"></div>
+
+    <section class="team team__pub">
+        <header class="poll__header teamfind-header"><h2>Замутим пабчик:</h2></header>
+        <button class="btn" id="loadUserFromDB-pub">Обновить список игроков</button>
+
+        <div class="user__section user__section-pub" id="userFromDB-pub">
+            <!-- игроки из базы (заменить потом на аякс) -->
+
+                <div class="team__user__wrapper team__user__wrapper-pub">
+                    <div class="team__user__ava">
+                        <img alt="No avatar" src="img/noavatar.jpg">
+                    </div>
+                    <div class="team__user team__user-pub">
+                        <div class="team__user__item">
+                            <i class="icon-star"></i>
+                            <span class="t__user t__user-skill">Соображаю</span>
+                        </div>
+                        <div class="team__user__item">
+                            <i class="icon-tag"></i>
+                            <span class="t__user t__user-spec">Лес</span>
+                        </div>
+
+                        <div class="team__user__item">
+                            <div class="team__user_msg">Ищем еще парочку, клоз-гейм - пароль dnodno, мод ЦМ или AP. Привет Екб! spu2er - ЛОХ! И текст не влез, ну и пофиг.</div>
+                        </div>
+
+                        <div class="team__user__item">
+                            <div class="team__user_clock"><i class="icon-time"></i>&nbsp;
+                                <span id="pubgame_countdown-1">loading...</span></div>
+                        </div>
+
+                        <div class="team__user__item team__user__item-bottom">
+                            <i class="icon-envelope"></i>
+                            <a class="t__user t__user-link" href="mailto:odin445@gmail.com" target="_blank">Связаться</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+
+        </div>
+
+    </section> <!-- team__find -->
+
+
+
+	<div class="clear"></div>
+
+	<section class="about">
+		<header class="poll__header"><h2>О проекте:</h2></header>
+		
+        <p class="about__p">THE INTERNATIONAL 3 - крупнейший турнир по Dota2. Призовой фонд турнира превышает 2 млн баксов. Выражаем огромный респект Valve!</p>
+        <p class="about__p">Выражаем респект "комментатору всея СНГ" - v1lat'у! Спасибо за твои эпичные стримы!</p>
+        <p class="about__p">Так же вы можете "Попасть в ленту" в роли ищущего команду для игры, или найти себе 1-2х тиммейтов.</p>
+        <p class="about__p">Этот проект сделан по фану, мы просто немного побаловались с бывшим одногруппником, надеемся вам понравится!</p>
+        <p class="about__p">И напоследок, вы можете <a href="/furion.html">помочь Фуриончику</a>. Его пеньки погибают.</p>
+
+	</section>
+
+    
+   
+</div> <!-- all -->
+
+
+<!-- <script src="http://code.jquery.com/jquery.js"></script> -->
+<script src="js/jquery-2.0.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/team.js"></script>
+<script src="js/my.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter21876979 = new Ya.Metrika({id:21876979,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/21876979" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

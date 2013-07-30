@@ -241,6 +241,43 @@ $(function() {
 	}, function() {
 		$(this).stop(true,true).animate({'left':'-218'},200);
 	});
+
+	
+	/* pubgame */
+	// https://mindgrader.com/tutorials/1-how-to-create-a-simple-javascript-countdown-timer
+
+	var target_date = new Date().getTime()+302000; // 300 000 = плюс 5 минут
+ 
+	var hours, minutes, seconds;
+	 
+	var $countdown = $("#pubgame_countdown-1");
+	 
+	var countdown_ticker = setInterval(pubTicker, 1000);
+
+	function pubTicker() {
+	 
+	    var current_date = new Date().getTime();
+	    var seconds_left = (target_date - current_date) / 1000;
+	 
+	    hours = parseInt(seconds_left / 3600);
+	    seconds_left = seconds_left % 3600;
+	     
+	    minutes = parseInt(seconds_left / 60);
+	    seconds = parseInt(seconds_left % 60);
+
+	    if (hours < 10) {
+	    	hours= '0'+hours
+	    };
+	    if (minutes < 10) {
+	    	minutes= '0'+minutes
+	    };
+	    if (seconds < 10) {
+	    	seconds= '0'+seconds
+	    };
+	     
+	    $countdown.html(hours + ":" + minutes + ":" + seconds);
+	 
+	}
 	
 });
 
