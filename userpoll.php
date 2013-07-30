@@ -1,6 +1,46 @@
 <?php 
 require_once 'auth/config.inc.php';
 
+function getSex(){
+	$otvet="SELECT sex,count(*)as 'kolvo' FROM `users` group by (sex)";
+	$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+	while($row = mysql_fetch_assoc($otvet)) {
+	$arr[$row['sex']]=$row['kolvo'];
+	}
+	return $arr;
+}
+
+function getProv(){
+	$otvet="SELECT provider,count(*)as 'kolvo' FROM `users` group by (provider)";
+	$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+	while($row = mysql_fetch_assoc($otvet)) {
+	$arr[$row['provider']]=$row['kolvo'];
+	}
+	return $arr;
+}
+
+function getPollCol(){
+	$otvet="SELECT count(DISTINCT  id_user) as 'kolvo' FROM `polls`";
+	$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+	$row = mysql_fetch_assoc($otvet);
+	$arr=$row['kolvo'];
+	return $arr;
+}
+function getComIn(){
+	$otvet="SELECT count(*)as 'kolvo' FROM `users` where comand_in=1";
+	$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+	$row = mysql_fetch_assoc($otvet);
+	$arr=$row['kolvo'];
+	return $arr;
+}
+
+function getComOut(){
+	$otvet="SELECT count(*)as 'kolvo' FROM `users` where comand_out=1";
+	$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+	$row = mysql_fetch_assoc($otvet);
+	$arr=$row['kolvo'];
+	return $arr;
+}
 function getPoll(){
 	$otvet="SELECT name,SUM(val)as 'summa' FROM polls JOIN comands USING(id_com) group by(id_com) order by(summa) DESC";
 	$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
@@ -11,7 +51,7 @@ function getPoll(){
 }
 function getComand($inout){
 	$inout=($inout)? "comand_in = 1":"comand_out = 1";
-	$otvet='SELECT name, skill.skill, social_page, avatar, time_beg, time_end, vtime_beg, vtime_end, user_role, search_1_role, search_2_role FROM 
+	$otvet='SELECT name, email, skill.skill, social_page, avatar, time_beg, time_end, vtime_beg, vtime_end, user_role, search_1_role, search_2_role FROM 
 		(select  users.role as "id_role", roles.role as "user_role", users.* from users, roles where users.role=roles.id_role)role
 		join (select users.search_1 as "id_role_search_1", roles.role as "search_1_role", users.id from users, roles where users.search_1=roles.id_role)search_1 on role.id=search_1.id
 		join (select users.search_2 as "id_role_search_2", roles.role as "search_2_role", users.id from users, roles where users.search_2=roles.id_role)search_2 on role.id=search_2.id
@@ -78,6 +118,7 @@ switch ($_POST['data']){
 	case "getComandIn":
 		$otvet= getComand(1);
 		while($row = mysql_fetch_assoc($otvet)) {
+		if($row['social_page']=="")$link='mailto:'.$row['email']; else $link=$row['social_page'];
 		$arr.='	<div class="team__user__wrapper">
 				<div class="team__user__ava"><img src="'.$row['avatar'].'" alt="Pro"></div>
 				<div class="team__user">
@@ -86,7 +127,7 @@ switch ($_POST['data']){
 					<div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">'.substr($row['time_beg'],0,2).'-'.substr($row['time_end'],0,2).'</span></div>
 					<div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">'.substr($row['vtime_beg'],0,2).'-'.substr($row['vtime_end'],0,2).'</span>
 					</div>
-					<div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="'.$row['social_page'].'" class="t__user t__user-link">Связаться</a></div>
+					<div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a target="_blank" href="'.$link.'" class="t__user t__user-link">Связаться</a></div>
 				</div>
 			</div>';
 		}
@@ -98,7 +139,7 @@ switch ($_POST['data']){
 	case "getComandOut":
 		$otvet= getComand(0);
 		while($row = mysql_fetch_assoc($otvet)) {
-		
+		if($row['social_page']=="")$link='mailto:'.$row['email']; else $link=$row['social_page'];
 		$arr.='	<div class="team__user__wrapper">
                     <div class="team__user__ava"><img src="'.$row['avatar'].'" alt="Pro"></div>
                     <div class="team__user">
@@ -108,7 +149,7 @@ switch ($_POST['data']){
                         <div class="team__user__item"><i class="icon-time"></i>Будни: <span class="t__user t__user-wd">'.substr($row['time_beg'],0,2).'-'.substr($row['time_end'],0,2).'</span></div>
                         <div class="team__user__item"><i class="icon-time"></i>Выхи*: <span class="t__user t__user-vd">'.substr($row['vtime_beg'],0,2).'-'.substr($row['vtime_end'],0,2).'</span>
                         </div>
-                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="'.$row['social_page'].'" class="t__user t__user-link">Связаться</a></div>
+                        <div class="team__user__item team__user__item-bottom"><i class="icon-envelope"></i><a href="'.$link.'" class="t__user t__user-link">Связаться</a></div>
                     </div>
                 </div>';
 		}

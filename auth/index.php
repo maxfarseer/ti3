@@ -112,6 +112,7 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
 			$user->search_1    		= $record['search_1'];
 			$user->search_2    		= $record['search_2'];
 			$user->role    			= $record['role'];
+			$user->admin			= $record['admin'];
         }
 
        
@@ -131,12 +132,12 @@ if (isset($_GET['provider']) && array_key_exists($_GET['provider'], $adapters) &
         if (isset($userFromDb) && $userFromDb != $user) {
             $idToUpdate = $record['id'];
             $birthday = date('Y-m-d', strtotime($user->birthday));
-
+			//if($user->socialPage=="")$user->socialPage==$user->email;
             mysql_query(
                 "UPDATE `users` SET " .
                 "`social_id` = '{$user->socialId}', `name` = '{$user->name}', `email` = '{$user->email}', " .
                 "`social_page` = '{$user->socialPage}', `sex` = '{$user->sex}', " .
-                "`birthday` = '{$birthday}', `avatar` = '$user->avatar' " .
+                "`birthday` = '{$birthday}', `avatar` = '{$user->avatar}' " .
                 "WHERE `id`='{$idToUpdate}'"
             );
         }
