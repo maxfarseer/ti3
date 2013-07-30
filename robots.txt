@@ -1,2 +1,12 @@
 User-agent: *
-Disallow: /
+Disallow: /auth/
+Disallow: /css/
+Disallow: /img/
+Disallow: /js/
+Disallow: /json/
+Disallow: /webstat/
+Disallow: /auth.php
+Disallow: /connect.php
+Disallow: /index2.html
+Disallow: /auth.php
+Disallow: readme.md

@@ -1,4 +1,5 @@
 ﻿<? include_once ("auth/index.php");?>
+<? if (isset($_SESSION['user'])&& $_SESSION['user']->admin==1)include_once ("admin.php");//блок админов	?>	
 <html>
 <head>
     <title>Выбери топ3 THE INTERNATIONAL III</title>
@@ -10,6 +11,10 @@
     <!-- fonts -->
     <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+    <meta name="description" content="Выбираем команду, которая победит в третьем турнире по игре Dota 2 от компании Valve The International 2013, составляем народный рейтинг команд. Ищем команду и игроков для Dota 2" />
+
+    <meta name="keywords" content="поиск игроков, поиск команд, Dota 2, рейтинг команд The International 2013, народный рейтинг команд dota 2" />
     
     <meta property="og:image" content="http://ti3.mozgi43.ru/img/furion.jpg" />
     <meta property="og:title" content="Кто выиграет The International III ?" />
@@ -28,7 +33,7 @@
         <div class="btn btn-mini btn-warning btn-share"><i class="icon-globe"></i><? linkss($_SESSION['user']->provider); ?></div>	
     </section>
 	<?endif;?>	
-		
+	
     </section>
 
 	<header class="intro">
@@ -41,15 +46,11 @@
 
 	<div class="clear"></div>
 	
-		<section class="tutorial none">
-        	<p> Залогинься и проголосуй!</p>
-        	<p> Жми попасть в ленту:</p>
-        	<ul class="tutorial__list">
-        		<li>если ты ищещь команду;</li>
-        		<li>или ищешь 1-2х тиммейтов;</li>
-        	</ul>
-        	<p>Расскажи котанам, пусть голусуют!</p>
-        	<p>И не забудь <a href="/furion.html">помочь Фуриону, бро!</a> </p>
+		<section class="tutorial">
+        	<p><i><span class="tutorial_span">HOT NEWS:&nbsp;</span> Благодаря <a href="http://vk.com/opasnii_doter" target="_blank">опасному дотеру</a> про сайт узнали, а мы уже пофиксили логин через почту. Если вы не хотите логинится через соц.сеть, выбирайте - почтовый сервис, но в таком случае по ссылке связаться будет ваш e-mail.</i></p>
+            <p><i><span class="tutorial_span">ГОЛОСОВАНИЕ:&nbsp;</span> Na'Vi уверенно лидируют, Alliance наступает на пятки, на третьем месте борьба между VP и IG. LGD, Fnatic и Tongfu имеют примерно равное количество голосов, в половину меньше чем у VP и IG. Продолжаем наблюдать.</i></p>
+            <p><i><span class="tutorial_span">ПЛАНЫ:&nbsp;</span> Решаем вопрос с дизайном. Фриланс подкачал на выходных =/</i></p>
+            <p><i><span class="tutorial_span">КОНТАКТЫ:&nbsp;</span> Вопросы и пожелания скидывайте Фуре лично, адрес - <a href="mailto:furion@ti3top.ru">furion@ti3top.ru</a></i></p>
         	
         </section>
 	

@@ -78,10 +78,10 @@ $(function() {
 		$('.select__team').each(function(index, element) {
 
 			if ($(element).hasClass('select__team-top1')) {
-				multiplier = 10;
+				multiplier = 3;
 			};
 			if ($(element).hasClass('select__team-top2')) {
-				multiplier = 5;
+				multiplier = 2;
 			};
 			if ($(element).hasClass('select__team-top3')) {
 				multiplier = 1;
@@ -234,5 +234,13 @@ $(function() {
     });
 
 
+	/* info JS */
+
+	$('.admin__stats').hover(function() {
+		$(this).stop(true,true).animate({'left':'0'},200);
+	}, function() {
+		$(this).stop(true,true).animate({'left':'-218'},200);
+	});
+	
 });
 

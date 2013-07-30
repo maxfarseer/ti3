@@ -152,7 +152,8 @@ abstract class AbstractAdapter implements AdapterInterface
 
         if (isset($this->userInfo[$this->socialFieldsMap['avatar']])) {
             $result = $this->userInfo[$this->socialFieldsMap['avatar']];
-        }
+        }else
+		$result="/img/noavatar.jpg";
 
         return $result;
     }
