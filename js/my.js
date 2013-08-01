@@ -278,6 +278,12 @@ $(function() {
 	    $countdown.html(hours + ":" + minutes + ":" + seconds);
 	 
 	}
+
+	var pubJSON = '{"01": {"skill":"1","role":"1","msg":"Ищем еще парочку, клоз-гейм - пароль dnodno, мод ЦМ или AP. Привет Екб! spu2er - ЛОХ! И текст не влез, ну и пофиг."},"02": {"skill":"2","role":"2","msg":"Вы можете написать сообщение здесь."},"03": {"skill":"3","role":"1","msg":"Go! pass 123qwe. Raki idut lesom."}}';
+
+	var pubParsedJSON = JSON.parse(pubJSON);
+	console.log('qq');
+
 	
 });
 
