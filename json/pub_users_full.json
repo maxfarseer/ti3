@@ -1,0 +1,26 @@
+[
+	{
+		"id":"01",
+		"skill":"1",
+		"role":"1",
+		"msg":"Ищем еще парочку, клоз-гейм - пароль dnodno, мод ЦМ или AP. Привет Екб! spu2er - ЛОХ! И текст не влез, ну и пофиг.",
+		"img":"img/noavatar.jpg",
+		"contact":"max@max.com"
+	},
+	{
+		"id":"02",
+		"skill":"2",
+		"role":"2",
+		"msg":"Вы можете написать сообщение здесь.",
+		"img":"img/noavatar.jpg",
+		"contact":"vk.com/spiker"
+	},
+	{
+		"id":"03",
+		"skill":"3",
+		"role":"1",
+		"msg":"Go! pass 123qwe. Raki idut lesom.",
+		"img":"img/noavatar.jpg",
+		"contact":"vk.com/lexaxe"
+	}
+]
