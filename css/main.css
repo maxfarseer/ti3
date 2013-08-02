@@ -16,9 +16,7 @@ h2 {
 	position: relative;
 	z-index: 1;
 }
-.all input {
-	height: 30px;
-}
+
 .error {
 	color: #FF0000;
 }
@@ -442,6 +440,14 @@ h2 {
 .team__user_clock {
 	margin: 5px 0 0 0;
 }
+.user__more-pub {
+	display: block;
+}
+.checkbox-pubgame {
+	float: left;
+	margin: 0 0 0 10px;
+}
+
 
 /* VERSUS */
 .versus {

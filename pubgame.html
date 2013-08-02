@@ -24,7 +24,7 @@
 <body>
 <div class="all row">
 
-	<div class="veil none" id="veilpop" >
+	<div class="veil" id="veilpop" >
 		<div class="full-veil"></div>
 	</div>
 
@@ -88,13 +88,186 @@
                         </div>
                     </div>
                 </div>
-
-                
-
-
         </div>
 
     </section> <!-- team__find -->
+
+<!-- добавить данные -->
+<div class="user__more user__more-pub none">
+    <div class="overlay__close"><i class="icon-off icon-off-user-more"></i></div>
+
+    <form class="form-horizontal user__more__form">
+    
+        <label class="checkbox checkbox-pubgame">
+            <input type="checkbox" name="user__more__choise" id="user__more__choise1" value="option1" checked>
+            Я ворвусь в команду
+        </label>
+        <label class="checkbox checkbox-pubgame">
+            <input type="checkbox" name="user__more__choise" id="user__more__choise2" value="option2">
+            Я возьму в команду
+        </label>                
+
+        <div class="clear"></div>
+
+        <div class="control-group" style="margin-top: 13px;">
+        <label class="control-label">Скилл:</label>
+            <select id="um_skill" class="user__more__select">
+                <option selected>из базы</option>
+            </select>
+        </div>
+
+        <div class="user__more__choise-find" id="user__more__choise1-field">
+            <div class="control-group">
+            <label class="control-label">Любимое дело:</label>
+                <select id="um_role" class="user__more__select">
+                    <option selected>из базы</option>
+                </select>
+            </div>
+        </div> <!-- end find -->
+
+        <div class="user__more__choise-want" id="user__more__choise2-field">
+            <div class="control-group control-group-float">
+            <label class="control-label">Ищу (1го или 2ух)</label>
+                <select id="um_search1" class="user__more__select">
+                    <option selected>из базы</option>
+                </select>
+            </div>
+            <div class="control-group control-group-float">
+            <label class="control-label control-label-col2">и</label>
+                <select id="um_search2" class="user__more__select">
+                    <option selected>из базы</option>
+                </select>
+            </div>
+        </div> <!-- end want -->
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_wd">Онлайн будни c :</label>
+            <select id="um_time_beg" class="user__more__select">
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+        
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
+            <select id="um_time_end" class="user__more__select">
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="control-group control-group-float">
+        <label class="control-label" for="onlineHours_vd">Онлайн выхи c: </label>
+            <select id="um_vtime_beg" class="user__more__select">
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+
+
+        <div class="control-group control-group-float">
+        <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
+            <select id="um_vtime_end" class="user__more__select">
+                <option value="00:00:00">00:00</option>
+                <option value="01:00:00">01:00</option>
+                <option value="02:00:00">02:00</option>
+                <option value="03:00:00">03:00</option>
+                <option value="04:00:00">04:00</option>
+                <option value="05:00:00">05:00</option>
+                <option value="06:00:00">06:00</option>
+                <option value="07:00:00">07:00</option>
+                <option value="08:00:00">08:00</option>
+                <option value="09:00:00">09:00</option>
+                <option value="10:00:00">10:00</option>
+                <option value="11:00:00">11:00</option>
+                <option value="12:00:00">12:00</option>
+                <option value="13:00:00">13:00</option>
+                <option value="14:00:00">14:00</option>
+                <option value="15:00:00">15:00</option>
+                <option value="16:00:00">16:00</option>
+                <option value="17:00:00">17:00</option>
+                <option value="18:00:00">18:00</option>
+                <option value="19:00:00">19:00</option>
+                <option value="20:00:00">20:00</option>
+                <option value="21:00:00">21:00</option>
+                <option value="22:00:00">22:00</option>
+                <option value="23:00:00">23:00</option>
+            </select>
+        </div>
+    </form>
+    
+    <button class="btn btn-user-more"><i class="icon-ok"></i> Отправить</button>
+    <div class="success success-user-more none">Ваша заявка принята!</div>
+    
+</div> <!-- user__more -->   
 
 
 

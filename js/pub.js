@@ -40,51 +40,6 @@ $(function() {
 		var avatar = user.img;
 		var contact = user.contact;
 
-		switch (skill) {
-			case '1':
-				skill = 'Нуб';
-				break;
-			case '2':
-				skill = 'Не туплю';
-				break;
-			case '3':
-				skill = 'Соображаю';
-				break;
-			case '4':
-				skill = 'Тащу!';
-				break;
-			case '5':
-				skill = 'Про';
-				break;
-			default:
-				skill = 'Ошибка';
-		};
-
-		switch (role) {
-			case '1':
-				role = 'Мид';
-				break;
-			case '2':
-				role = 'Кэри';
-				break;
-			case '3':
-				role = 'Сапорт';
-				break;
-			case '4':
-				role = 'Лес';
-				break;
-			default:
-				role = 'Ошибка';
-		};
-
-		if (contact.indexOf("@") === -1) {
-			contact = 'http://'+contact;
-		}
-		else {
-			contact = 'mailto:'+contact;
-		};
-
-
 		var pubUserHTML = $('<div/>',
 								{
 									id: user_id,
@@ -116,6 +71,36 @@ $(function() {
                     			')
 								.appendTo($('#userFromDB-pub'));
 	});
+
+
+	// form
+	function UserRequest(options) {
+		var form = options.element;
+		var checboxes = $('#user__more__choise1,#user__more__choise2');
+
+		checboxes.on('click',onCheckboxClick);
+
+		function onCheckboxClick() {
+			setFormFields($(this));
+		}
+
+		function setFormFields(element) {
+			var str = element.attr('id');
+			if(element.prop('checked')) {
+				$('#'+str+'-field').slideDown(200);	
+			}
+			else {
+				$('#'+str+'-field').slideUp(200);
+			}
+		}
+
+	}
+
+	var userForm = new UserRequest({
+		element: $('.user__more-pub')
+	});
+
+
 
 });
 
