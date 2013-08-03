@@ -72,33 +72,61 @@ $(function() {
 								.appendTo($('#userFromDB-pub'));
 	});
 
+	
 
 	// form
 	function UserRequest(options) {
 		var form = options.element;
-		var checboxes = $('#user__more__choise1,#user__more__choise2');
+		var checkboxes = $('.user__more_checkboxes');
+		var fieldHeight = 50;
+		var btnOpen = options.btnOpen;
+		var btnClose = $('.overlay__close',form);
+		
+		// проверить статус чекбоксов.
+		$('.user__more_checkboxes').each(function() {
+			if ( $(this).prop('checked') ) {
+				var elemID = $(this).attr('id');
+				$('#'+elemID+'-field').css({'backgroundColor':'#FFFFFF'}).slideDown(200);
+			}
+		});
 
-		checboxes.on('click',onCheckboxClick);
+		checkboxes.on('click',onCheckboxClick);
 
 		function onCheckboxClick() {
 			setFormFields($(this));
-		}
+		};
 
 		function setFormFields(element) {
 			var str = element.attr('id');
 			if(element.prop('checked')) {
-				$('#'+str+'-field').slideDown(200);	
+				$('#'+str+'-field').slideDown(200).css({'backgroundColor':'#FFFFFF'});
 			}
 			else {
-				$('#'+str+'-field').slideUp(200);
+				$('#'+str+'-field').slideUp(200).css({'backgroundColor':'#FFFF99'});;
 			}
+		};
+
+		btnOpen.on('click', onBtnOpenClick);
+		btnClose.on('click', onBtnCloseClick);
+
+		function onBtnOpenClick() {
+			$('.veil').removeClass('none');
+			$('.user__more').removeClass('none');
 		}
 
-	}
+		function onBtnCloseClick() {
+			$('.veil').addClass('none');
+			$('.user__more').addClass('none');
+		}
+
+
+	};
 
 	var userForm = new UserRequest({
-		element: $('.user__more-pub')
+		element: $('.user__more-pub'),
+		btnOpen: $('#loadUserFromDB-pub')
 	});
+
 
 
 
