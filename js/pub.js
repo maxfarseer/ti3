@@ -40,51 +40,6 @@ $(function() {
 		var avatar = user.img;
 		var contact = user.contact;
 
-		switch (skill) {
-			case '1':
-				skill = 'Нуб';
-				break;
-			case '2':
-				skill = 'Не туплю';
-				break;
-			case '3':
-				skill = 'Соображаю';
-				break;
-			case '4':
-				skill = 'Тащу!';
-				break;
-			case '5':
-				skill = 'Про';
-				break;
-			default:
-				skill = 'Ошибка';
-		};
-
-		switch (role) {
-			case '1':
-				role = 'Мид';
-				break;
-			case '2':
-				role = 'Кэри';
-				break;
-			case '3':
-				role = 'Сапорт';
-				break;
-			case '4':
-				role = 'Лес';
-				break;
-			default:
-				role = 'Ошибка';
-		};
-
-		if (contact.indexOf("@") === -1) {
-			contact = 'http://'+contact;
-		}
-		else {
-			contact = 'mailto:'+contact;
-		};
-
-
 		var pubUserHTML = $('<div/>',
 								{
 									id: user_id,
@@ -116,6 +71,64 @@ $(function() {
                     			')
 								.appendTo($('#userFromDB-pub'));
 	});
+
+	
+
+	// form
+	function UserRequest(options) {
+		var form = options.element;
+		var checkboxes = $('.user__more_checkboxes');
+		var fieldHeight = 50;
+		var btnOpen = options.btnOpen;
+		var btnClose = $('.overlay__close',form);
+		
+		// проверить статус чекбоксов.
+		$('.user__more_checkboxes').each(function() {
+			if ( $(this).prop('checked') ) {
+				var elemID = $(this).attr('id');
+				$('#'+elemID+'-field').css({'backgroundColor':'#FFFFFF'}).slideDown(200);
+			}
+		});
+
+		checkboxes.on('click',onCheckboxClick);
+
+		function onCheckboxClick() {
+			setFormFields($(this));
+		};
+
+		function setFormFields(element) {
+			var str = element.attr('id');
+			if(element.prop('checked')) {
+				$('#'+str+'-field').slideDown(200).css({'backgroundColor':'#FFFFFF'});
+			}
+			else {
+				$('#'+str+'-field').slideUp(200).css({'backgroundColor':'#FFFF99'});;
+			}
+		};
+
+		btnOpen.on('click', onBtnOpenClick);
+		btnClose.on('click', onBtnCloseClick);
+
+		function onBtnOpenClick() {
+			$('.veil').removeClass('none');
+			$('.user__more').removeClass('none');
+		}
+
+		function onBtnCloseClick() {
+			$('.veil').addClass('none');
+			$('.user__more').addClass('none');
+		}
+
+
+	};
+
+	var userForm = new UserRequest({
+		element: $('.user__more-pub'),
+		btnOpen: $('#loadUserFromDB-pub')
+	});
+
+
+
 
 });
 
