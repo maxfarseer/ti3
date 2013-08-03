@@ -16,9 +16,7 @@ h2 {
 	position: relative;
 	z-index: 1;
 }
-.all input {
-	height: 30px;
-}
+
 .error {
 	color: #FF0000;
 }
@@ -420,28 +418,6 @@ h2 {
 	margin: 10px 0 0 0;
 }
 
-/* pub game */
-.user__section-pub {
-	height: 298px;
-}
-.team__user_msg {
-	border-top: 1px solid #CCC;
-	border-bottom: 1px solid #CCC;
-	margin: 5px 0 0;
-	font-size: 10px;
-	line-height: 15px;
-	height: 77px;
-	overflow: hidden;
-}
-.team__user-pub {
-	height: 158px;
-}
-.team__user__wrapper-pub {
-	height: 295px;
-}
-.team__user_clock {
-	margin: 5px 0 0 0;
-}
 
 /* VERSUS */
 .versus {
@@ -512,9 +488,13 @@ h2 {
     padding: 10px;
     position: fixed;
     width: 450px;
-	height: 305px;
+	height: auto;
     top: 50%;
     z-index: 101;
+}
+.user__more__form {
+	float: left;
+	margin: 0;
 }
 .btn-add-user-more {
 	margin: 15px 0 0 0;
@@ -537,7 +517,7 @@ h2 {
 .control-group-float .user__more__select {
 	float: left;
 }
-.user__more__choise-want {
+.user__more__choise-want, .user__more__choise-find, #user__more__choise3-field {
 	display: none;
 }
 .radio-user-more {
@@ -594,4 +574,84 @@ h2 {
 .stats__header {
 	text-align: center;
 	color: #CCC;
+}
+
+
+/* pub game */
+.checkboxes-to-team-wrapper {
+	width: 178px;
+	float: left;
+}
+.overlay__close {
+	position: absolute;
+	top: 11px;
+	right: 14px;
+	cursor: pointer;
+	background: url(../img/popup-close.png) no-repeat;
+	width: 17px;
+	height: 17px;
+}
+.user__section-pub {
+	height: 298px;
+}
+.team__user_msg {
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	margin: 5px 0 0;
+	font-size: 10px;
+	line-height: 15px;
+	height: 77px;
+	overflow: hidden;
+}
+.team__user-pub {
+	height: 158px;
+}
+.team__user__wrapper-pub {
+	height: 295px;
+}
+.team__user_clock {
+	margin: 5px 0 0 0;
+}
+.checkbox-pubgame-separator {
+	width: 1px;
+	position: relative;
+	height: 30px;
+	top: 6px;
+	float: left;
+	background: #CCC;
+}
+.checkbox-pubgame {
+	margin: 0 0 0 10px;
+}
+.checkbox-pubgame-go {
+	width: 150px;
+	float: left;
+	padding-top: 10px;
+}
+.pubgame_text {
+	margin-left: 5px;
+	width: 300px;
+	height: 50px;
+}
+.form-horizontal textarea {
+	margin-bottom: 10px;
+}
+.form-horizontal .control-group {
+	margin-bottom: 10px;
+}
+.form-horizontal .control-label-msg {
+	padding-top: 13px;
+}
+.user__more_field-wrapper {
+	float: left;
+	clear: both;
+	height: 30px;
+	width: 455px;
+	margin: 0 0 10px;
+	background-color: #FFFF99;
+	-webkit-transition: background-color 1s linear .2s;
+	transition: background-color 1s linear .2s;
+}
+.user__more_field-wrapper-textarea {
+	height: 50px;
 }
