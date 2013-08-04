@@ -76,11 +76,13 @@ $(function() {
 
 	// form
 	function UserRequest(options) {
+		var self = this;
 		var form = options.element;
 		var checkboxes = $('.user__more_checkboxes');
 		var fieldHeight = 50;
 		var btnOpen = options.btnOpen;
 		var btnClose = $('.overlay__close',form);
+		var btnSubmit = $('.btn-user-more', form);
 		
 		// проверить статус чекбоксов.
 		$('.user__more_checkboxes').each(function() {
@@ -108,8 +110,10 @@ $(function() {
 
 		btnOpen.on('click', onBtnOpenClick);
 		btnClose.on('click', onBtnCloseClick);
+		btnSubmit.on('click', onBtnSubmitClick);
 
 		function onBtnOpenClick() {
+			setFieldsValueAJAX($(this));
 			$('.veil').removeClass('none');
 			$('.user__more').removeClass('none');
 		}
@@ -117,8 +121,110 @@ $(function() {
 		function onBtnCloseClick() {
 			$('.veil').addClass('none');
 			$('.user__more').addClass('none');
+			btnOpen.html('Попасть в ленту');
 		}
 
+		function onBtnSubmitClick() {
+			sendFieldsValueAJAX(); // не путать с setFieldsValueAJAX
+			$('.veil').removeClass('none');
+			$('.user__more').removeClass('none');
+		}
+
+		function setFieldsValueAJAX(btn) {
+			$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {data:"get_prof"},
+			beforeSend: function() {
+				btn.html('<i class="icon-time"></i> загрузка...');
+			},
+			url: 'userpoll.php',
+			success: function(data) {
+				$('#um_skill').val(data.skill);
+		        if (+data.role != 0 ) {
+		        	$('#user__more__choise1').click();
+		        	$('#um_role').val(data.role);
+		        }
+		        if (+data.search_1 != 0) {
+		        	$('#user__more__choise2').click();
+		        	$('#um_search1').val(data.search_1);
+		        	if (+data.search_2 != 0) $('#um_search2').val(data.search_2);
+		        }
+		        
+		        $('#um_time_beg').val(data.time_beg); 
+		        $('#um_time_end').val(data.time_end); 
+		        $('#um_vtime_beg').val(data.vtime_beg); 
+		        $('#um_vtime_end').val(data.vtime_end);
+
+				$('.veil').removeClass('none');
+				$('.user__more').removeClass('none');
+			}
+			});
+		};
+
+		function sendFieldsValueAJAX() {
+
+		var skill = $('#um_skill').val(),
+			role = $('#um_role').val(),
+			search1 = $('#um_search1').val(),
+			search2 = $('#um_search2').val(),
+			um_time_beg = $('#um_time_beg').val(),
+			um_time_end = $('#um_time_end').val(),
+			um_vtime_beg = $('#um_vtime_beg').val(),
+			um_vtime_end = $('#um_vtime_end').val(),
+			comand_in = 0,
+			comand_out = 0;
+
+			if ($('#user__more__choise2').is(':checked')) {
+				comand_out = 1;
+			}
+			if ($('#user__more__choise1').is(':checked')) {
+				comand_in = 1;
+			}
+
+		var obj = {
+			skill: skill,
+			role: role,
+			search1: search1,
+			search2: search2,
+			time_beg: um_time_beg,
+			time_end: um_time_end,
+			vtime_beg: um_vtime_beg,
+			vtime_end: um_vtime_end,
+			comand_in: comand_in,
+			comand_out: comand_out
+		}
+
+		if (obj.comand_in == 1) {
+			obj.search1 = 0;
+			obj.search2 = 0;
+		}
+		if (obj.comand_out == 1) {
+			obj.role = 0;
+		}
+
+		var usermoreJSON = JSON.stringify(obj);
+
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {prof:usermoreJSON, data:"user_prof"},
+			url: 'userpoll.php'
+		});
+
+		if ( $('.user__more__choise3').prop('checked') ) {
+			var userMsg = ''+$('.pubgame_text').val();
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				data: {data:"setPublic", comment:userMsg},
+				url: 'userpoll.php'
+			});
+		};
+
+		onBtnCloseClick();
+
+		};
 
 	};
 
