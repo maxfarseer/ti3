@@ -78,7 +78,7 @@ $(function() {
 	function UserRequest(options) {
 		var self = this;
 		var form = options.element;
-		var checkboxes = $('.user__more_checkboxes');
+		var checkboxes = $('#user__more__choise2'); // или больше чекбоксов на форме, можно расширять
 		var fieldHeight = 50;
 		var btnOpen = options.btnOpen;
 		var btnClose = $('.overlay__close',form);
@@ -142,13 +142,14 @@ $(function() {
 			success: function(data) {
 				$('#um_skill').val(data.skill);
 		        if (+data.role != 0 ) {
-		        	$('#user__more__choise1').click();
+		        	$('#user__more__choise1').prop('checked','checked');
 		        	$('#um_role').val(data.role);
 		        }
 		        if (+data.search_1 != 0) {
-		        	$('#user__more__choise2').click();
+		        	$('#user__more__choise2').prop('checked','checked');
 		        	$('#um_search1').val(data.search_1);
 		        	if (+data.search_2 != 0) $('#um_search2').val(data.search_2);
+		        	setFormFields($('#user__more__choise2'));
 		        }
 		        
 		        $('#um_time_beg').val(data.time_beg); 
@@ -164,68 +165,50 @@ $(function() {
 
 		function sendFieldsValueAJAX() {
 
-		var skill = $('#um_skill').val(),
-			role = $('#um_role').val(),
-			search1 = $('#um_search1').val(),
-			search2 = $('#um_search2').val(),
-			um_time_beg = $('#um_time_beg').val(),
-			um_time_end = $('#um_time_end').val(),
-			um_vtime_beg = $('#um_vtime_beg').val(),
-			um_vtime_end = $('#um_vtime_end').val(),
-			comand_in = 0,
-			comand_out = 0;
+			var obj = {
+				skill: $('#um_skill').val(),
+				role: $('#um_role').val(),
+				search1: 0,
+				search2: 0,
+				time_beg: $('#um_time_beg').val(),
+				time_end: $('#um_time_end').val(),
+				vtime_beg: $('#um_vtime_beg').val(),
+				vtime_end: $('#um_vtime_end').val(),
+				comand_in: 0,
+				comand_out: 0
+			};
 
-			if ($('#user__more__choise2').is(':checked')) {
-				comand_out = 1;
-			}
-			if ($('#user__more__choise1').is(':checked')) {
-				comand_in = 1;
-			}
-
-		var obj = {
-			skill: skill,
-			role: role,
-			search1: search1,
-			search2: search2,
-			time_beg: um_time_beg,
-			time_end: um_time_end,
-			vtime_beg: um_vtime_beg,
-			vtime_end: um_vtime_end,
-			comand_in: comand_in,
-			comand_out: comand_out
-		}
-
-		if (obj.comand_in == 1) {
-			obj.search1 = 0;
-			obj.search2 = 0;
-		}
-		if (obj.comand_out == 1) {
-			obj.role = 0;
-		}
+			if ( $('#user__more__choise2').prop('checked') ) {
+				obj.search1 = $('#um_search1').val();
+				obj.search2 = $('#um_search2').val();
+			};
 
 		var usermoreJSON = JSON.stringify(obj);
+		console.log(usermoreJSON);
 
 		$.ajax({
 			type: "POST",
 			dataType: "json",
 			data: {prof:usermoreJSON, data:"user_prof"},
-			url: 'userpoll.php'
+			url: 'userpoll.php',
+			beforeSend: function() {
+				
+				if ($('#user__more__choise2').is(':checked')) {
+					obj.comand_out = 1;
+				};
+				if ($('#user__more__choise1').is(':checked')) {
+					obj.comand_in = 1;
+				};
+				
+			},
+			success: function() {
+				console.log(obj);
+			}
 		});
-
-		if ( $('.user__more__choise3').prop('checked') ) {
-			var userMsg = ''+$('.pubgame_text').val();
-			$.ajax({
-				type: "POST",
-				dataType: "json",
-				data: {data:"setPublic", comment:userMsg},
-				url: 'userpoll.php'
-			});
-		};
 
 		onBtnCloseClick();
 
 		};
-
 	};
 
 	var userForm = new UserRequest({

@@ -517,7 +517,7 @@ h2 {
 .control-group-float .user__more__select {
 	float: left;
 }
-.user__more__choise-want, .user__more__choise-find, #user__more__choise3-field {
+.user__more__choise-want, #user__more__choise3-field {
 	display: none;
 }
 .radio-user-more {
@@ -651,6 +651,9 @@ h2 {
 	background-color: #FFFF99;
 	-webkit-transition: background-color 1s linear .2s;
 	transition: background-color 1s linear .2s;
+}
+#user__more__choise1-field {
+	background: #FFF;
 }
 .user__more_field-wrapper-textarea {
 	height: 50px;
