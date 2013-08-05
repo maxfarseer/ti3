@@ -111,17 +111,18 @@
 
         <div class="checkbox-pubgame-separator"></div>
 
-        <label class="checkbox checkbox-pubgame checkbox-pubgame-go">
+        <!-- <label class="checkbox checkbox-pubgame checkbox-pubgame-go">
             <input type="checkbox" class="user__more_checkboxes" id="user__more__choise3" value="option3">
             Гоу пабчик!
-        </label>
+        </label> -->
 
         <div class="clear"></div>
 
         <div class="control-group" style="margin-top: 13px;">
         <label class="control-label">Скилл:</label>
             <select id="um_skill" class="user__more__select">
-                <option selected>из базы</option>
+            <? foreach($_SESSION['lists']->skills as $key=>$value)
+            echo ($key==$_SESSION['user']->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?> 
             </select>
         </div>
 
@@ -129,7 +130,8 @@
             <div class="control-group">
             <label class="control-label">Любимое дело:</label>
                 <select id="um_role" class="user__more__select">
-                    <option selected>из базы</option>
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->role)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end find -->
@@ -138,13 +140,15 @@
             <div class="control-group control-group-float">
             <label class="control-label">Ищу (1го или 2ух)</label>
                 <select id="um_search1" class="user__more__select">
-                    <option selected>из базы</option>
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->search_1)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
             <div class="control-group control-group-float">
             <label class="control-label control-label-col2">и</label>
                 <select id="um_search2" class="user__more__select">
-                    <option selected>из базы</option>
+                <? foreach($_SESSION['lists']->roles as $key=>$value)
+                echo ($key==$_SESSION['user']->search_2)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
                 </select>
             </div>
         </div> <!-- end want -->
