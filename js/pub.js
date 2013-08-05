@@ -76,11 +76,13 @@ $(function() {
 
 	// form
 	function UserRequest(options) {
+		var self = this;
 		var form = options.element;
-		var checkboxes = $('.user__more_checkboxes');
+		var checkboxes = $('#user__more__choise2'); // или больше чекбоксов на форме, можно расширять
 		var fieldHeight = 50;
 		var btnOpen = options.btnOpen;
 		var btnClose = $('.overlay__close',form);
+		var btnSubmit = $('.btn-user-more', form);
 		
 		// проверить статус чекбоксов.
 		$('.user__more_checkboxes').each(function() {
@@ -108,8 +110,10 @@ $(function() {
 
 		btnOpen.on('click', onBtnOpenClick);
 		btnClose.on('click', onBtnCloseClick);
+		btnSubmit.on('click', onBtnSubmitClick);
 
 		function onBtnOpenClick() {
+			setFieldsValueAJAX($(this));
 			$('.veil').removeClass('none');
 			$('.user__more').removeClass('none');
 		}
@@ -117,9 +121,94 @@ $(function() {
 		function onBtnCloseClick() {
 			$('.veil').addClass('none');
 			$('.user__more').addClass('none');
+			btnOpen.html('Попасть в ленту');
 		}
 
+		function onBtnSubmitClick() {
+			sendFieldsValueAJAX(); // не путать с setFieldsValueAJAX
+			$('.veil').removeClass('none');
+			$('.user__more').removeClass('none');
+		}
 
+		function setFieldsValueAJAX(btn) {
+			$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {data:"get_prof"},
+			beforeSend: function() {
+				btn.html('<i class="icon-time"></i> загрузка...');
+			},
+			url: 'userpoll.php',
+			success: function(data) {
+				$('#um_skill').val(data.skill);
+		        if (+data.role != 0 ) {
+		        	$('#user__more__choise1').prop('checked','checked');
+		        	$('#um_role').val(data.role);
+		        }
+		        if (+data.search_1 != 0) {
+		        	$('#user__more__choise2').prop('checked','checked');
+		        	$('#um_search1').val(data.search_1);
+		        	if (+data.search_2 != 0) $('#um_search2').val(data.search_2);
+		        	setFormFields($('#user__more__choise2'));
+		        }
+		        
+		        $('#um_time_beg').val(data.time_beg); 
+		        $('#um_time_end').val(data.time_end); 
+		        $('#um_vtime_beg').val(data.vtime_beg); 
+		        $('#um_vtime_end').val(data.vtime_end);
+
+				$('.veil').removeClass('none');
+				$('.user__more').removeClass('none');
+			}
+			});
+		};
+
+		function sendFieldsValueAJAX() {
+
+			var obj = {
+				skill: $('#um_skill').val(),
+				role: $('#um_role').val(),
+				search1: 0,
+				search2: 0,
+				time_beg: $('#um_time_beg').val(),
+				time_end: $('#um_time_end').val(),
+				vtime_beg: $('#um_vtime_beg').val(),
+				vtime_end: $('#um_vtime_end').val(),
+				comand_in: 0,
+				comand_out: 0
+			};
+
+			if ( $('#user__more__choise2').prop('checked') ) {
+				obj.search1 = $('#um_search1').val();
+				obj.search2 = $('#um_search2').val();
+			};
+
+		var usermoreJSON = JSON.stringify(obj);
+		console.log(usermoreJSON);
+
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {prof:usermoreJSON, data:"user_prof"},
+			url: 'userpoll.php',
+			beforeSend: function() {
+				
+				if ($('#user__more__choise2').is(':checked')) {
+					obj.comand_out = 1;
+				};
+				if ($('#user__more__choise1').is(':checked')) {
+					obj.comand_in = 1;
+				};
+				
+			},
+			success: function() {
+				console.log(obj);
+			}
+		});
+
+		onBtnCloseClick();
+
+		};
 	};
 
 	var userForm = new UserRequest({
