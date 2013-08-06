@@ -65,7 +65,7 @@ switch ($_POST['data']){
 	if (isset($_SESSION['user'])){
 		$query = "SELECT *  FROM `polls` WHERE oprosnik = 1 and id_user = ".$_SESSION['user']->ID." LIMIT 1";//(select id from users where provider = '".$user->provider."' and social_id = ".$user->socialId." limit 1 )
 		$result = mysql_query($query);
-		
+
 		if(mysql_num_rows($result)<1){ 
 			$obj = json_decode($_POST['myData'],true);
 			print_r($obj);
@@ -79,11 +79,11 @@ switch ($_POST['data']){
 		else
 			echo '{"error":"Вы уже проголосовали!"}';
 	} break;
-	
+
 	case "refresh":
 		echo getPoll();
 	break;
-	
+
 	case "user_prof":
 		$obj = json_decode($_POST['prof'],true);
 		$upd="UPDATE users SET `skill` = ".$obj['skill'].", `role`= ".$obj['role'].", `search_1`= ".$obj['search1'].", `search_2`= ".$obj['search2'].", `time_beg`= '".$obj['time_beg']."', `time_end`= '".$obj['time_end']."', `vtime_beg`= '".$obj['vtime_beg']."', `vtime_end`= '".$obj['vtime_end']."', `comand_in`= ".$obj['comand_in'].", `comand_out`=".$obj['comand_out']." where `id`= ".$_SESSION['user']->ID;
@@ -100,7 +100,7 @@ switch ($_POST['data']){
 		else
 			die("</br>ERROR: ".mysql_error());
 	break;
-	
+
 	case "get_prof":
 		$arr=Array();
 		$arr['time_beg'] = $_SESSION['user']->time_beg;
@@ -114,7 +114,7 @@ switch ($_POST['data']){
 		$json=json_encode($arr,true);
 		print_r($json);
 	break;
-				
+
 	case "getComandIn":
 		$otvet= getComand(1);
 		while($row = mysql_fetch_assoc($otvet)) {
@@ -135,7 +135,7 @@ switch ($_POST['data']){
 		//$arr=json_encode($arr);
 		print_r($arr);
 	break;
-	
+
 	case "getComandOut":
 		$otvet= getComand(0);
 		while($row = mysql_fetch_assoc($otvet)) {
@@ -154,5 +154,38 @@ switch ($_POST['data']){
                 </div>';
 		}
 		print_r($arr);
+	break;
+	
+	case "getPublic":
+		
+		//$time=$_POST['time'];
+		$time=5;
+		$otvet='delete from public where TIMESTAMPDIFF(minute,time,now())>'.$time;
+		$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+		
+		$otvet='SELECT email, social_page, avatar, user_role, skilll, comment FROM 
+			(select  users.role as "id_role", roles.role as "user_role", users.* from users, roles where users.role=roles.id_role)role
+			join (select users.skill as "id_skill", skills.skill as "skilll", users.id from users, skills where users.skill=skills.id_skill)skill on role.id=skill.id
+			join (select users.id, comment, public.id_public as "id_pub", public.id_user from users, public where users.id=public.id_user)public on role.id=public.id';
+		$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+		
+		while($row = mysql_fetch_assoc($otvet)) {
+		if($row['social_page']=="")$link='mailto:'.$row['email']; else $link=$row['social_page'];
+		$arr[]=$row;
+		}
+		$arr=json_encode($arr);
+		print_r($arr);
+	break;
+		
+	case "setPublic":
+		
+		$comment=$_POST['comment'];
+		$otvet='select * from public where id_user='.$_SESSION['user']->ID;
+		$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());
+		
+		if(mysql_num_rows($otvet)==0){
+		$otvet='INSERT INTO public (id_user, time, comment) VALUES ("'.$_SESSION['user']->ID.'", now(), "'.$comment.'")';
+		$otvet= mysql_query($otvet) or die("</br>ERROR: ".mysql_error());}
+		
 	break;
 }

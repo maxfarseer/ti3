@@ -1,6 +1,6 @@
 $(function() {
 
-	var users = '[\
+	/*var users = '[\
 		{\
 			"id":"01",\
 			"skill":"1",\
@@ -71,8 +71,16 @@ $(function() {
                     			')
 								.appendTo($('#userFromDB-pub'));
 	});
-
-	
+*/
+	// получить желающих в паб при загрузке страницы
+	$.ajax({
+		type: "POST",
+			dataType: "json",
+			data: {data:"getPublic"},
+		success: function(data) {
+			console.log(data);
+		}
+	});
 
 	// form
 	function UserRequest(options) {
@@ -141,16 +149,18 @@ $(function() {
 			url: 'userpoll.php',
 			success: function(data) {
 				$('#um_skill').val(data.skill);
-		        if (+data.role != 0 ) {
+		        if (+data.comand_in != 0) {
 		        	$('#user__more__choise1').prop('checked','checked');
+		        };
+		        if (+data.role != 0 ) {
 		        	$('#um_role').val(data.role);
-		        }
+		        };
 		        if (+data.search_1 != 0) {
 		        	$('#user__more__choise2').prop('checked','checked');
 		        	$('#um_search1').val(data.search_1);
 		        	if (+data.search_2 != 0) $('#um_search2').val(data.search_2);
 		        	setFormFields($('#user__more__choise2'));
-		        }
+		        };
 		        
 		        $('#um_time_beg').val(data.time_beg); 
 		        $('#um_time_end').val(data.time_end); 
@@ -182,40 +192,83 @@ $(function() {
 				obj.search1 = $('#um_search1').val();
 				obj.search2 = $('#um_search2').val();
 			};
+			if ($('#user__more__choise2').is(':checked')) {
+				obj.comand_out = 1;
+			};
+			if ($('#user__more__choise1').is(':checked')) {
+				obj.comand_in = 1;
+			};
 
-		var usermoreJSON = JSON.stringify(obj);
-		console.log(usermoreJSON);
+			var usermoreJSON = JSON.stringify(obj);
 
-		$.ajax({
-			type: "POST",
-			dataType: "json",
-			data: {prof:usermoreJSON, data:"user_prof"},
-			url: 'userpoll.php',
-			beforeSend: function() {
-				
-				if ($('#user__more__choise2').is(':checked')) {
-					obj.comand_out = 1;
-				};
-				if ($('#user__more__choise1').is(':checked')) {
-					obj.comand_in = 1;
-				};
-				
-			},
-			success: function() {
-				console.log(obj);
-			}
-		});
-
-		onBtnCloseClick();
-
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				data: {prof:usermoreJSON, data:"user_prof"},
+				url: 'userpoll.php',
+				complete: function() {
+					onBtnCloseClick();
+				}
+			});
 		};
 	};
 
 	var userForm = new UserRequest({
 		element: $('.user__more-pub'),
-		btnOpen: $('#loadUserFromDB-pub')
+		btnOpen: $('.btn-add-user-more')
 	});
+	
+	//велосипед =(
+	function GoPub(options) {
+		var self = this;
+		var form = options.element;
+		var btnOpen = options.btnOpen;
+		var btnClose = $('.overlay__close',form);
+		var btnSubmit = $('.btn-user-more',form);
 
+		btnOpen.on('click', onBtnOpenClick);
+		btnClose.on('click', onBtnCloseClick);
+		btnSubmit.on('click', onBtnSubmitClick);
+
+		function onBtnOpenClick() {
+			// setFieldsValueAJAX($(this));
+			$('.veil').removeClass('none');
+			$('.user__more-pubgame').removeClass('none');
+		}
+
+		function onBtnCloseClick() {
+			$('.veil').addClass('none');
+			$('.user__more-pubgame').addClass('none');
+			btnOpen.html('Гоу пабчик!');
+		}
+
+		function onBtnSubmitClick() {
+			sendFieldsValueAJAX(); // не путать с setFieldsValueAJAX
+			$('.veil').removeClass('none');
+			$('.user__more-pubgame').removeClass('none');
+		}
+
+		function sendFieldsValueAJAX() {
+
+			var userComment = ''+$('.pubgame_text').val();
+
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				data: {data:"setPublic", comment:userComment},
+				url: 'userpoll.php',
+				complete: function() {
+					onBtnCloseClick();
+				}
+			});
+		};
+
+	};
+
+	var userForm = new GoPub({
+		element: $('.user__more-pubgame'),
+		btnOpen: $('#loadUserFromDB-pubGame')
+	});
 
 
 

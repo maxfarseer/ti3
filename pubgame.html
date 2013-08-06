@@ -54,6 +54,26 @@
 
     <section class="team team__pub">
         <header class="poll__header teamfind-header"><h2>Замутим пабчик:</h2></header>
+        <!-- блок с месседжем -->
+        <button class="btn" id="loadUserFromDB-pubGame">Гоу пабчик</button>
+            <div class="user__more_msg user__more-pubgame none">
+                <div class="overlay__close"></div>
+
+                <form class="form-horizontal user__more__form">
+                    <div class="clear"></div>
+                    <div class="user__more_field-wrapper user__more_field-wrapper-textarea" id="user__more__choise3-field">
+                        <label class="control-label control-label-msg">Сообщение:</label>
+                        <textarea class="pubgame_text"></textarea>
+                    </div>
+                </form>
+
+            <button class="btn btn-user-more"><i class="icon-ok"></i> Отправить</button>
+            <div class="success success-user-more none">Ваша заявка принята!</div>
+
+            </div>
+        <!-- блок с месседжем конец -->
+
+
         <button class="btn" id="loadUserFromDB-pub">Попасть в ленту</button>
 
         <div class="user__section user__section-pub" id="userFromDB-pub">
@@ -274,10 +294,6 @@
                 <option value="22:00:00">22:00</option>
                 <option value="23:00:00">23:00</option>
             </select>
-        </div>
-        <div class="user__more_field-wrapper user__more_field-wrapper-textarea" id="user__more__choise3-field">
-            <label class="control-label control-label-msg">Сообщение:</label>
-            <textarea class="pubgame_text"></textarea>
         </div>
     </form>
     

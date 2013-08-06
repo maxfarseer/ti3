@@ -15,32 +15,86 @@ $(function() {
 	};
 
 	ajaxRefreshScore();
-	// user-more (вывести попап-форму "попасть в ленту")
-	$('.btn-add-user-more').click(function() {
 
-		$.ajax({
+	// user-more (вывести попап-форму "попасть в ленту")
+	function UserRequest(options) {
+		var self = this;
+		var form = options.element;
+		var checkboxes = $('#user__more__choise2'); // или больше чекбоксов на форме, можно расширять
+		var fieldHeight = 50;
+		var btnOpen = options.btnOpen;
+		var btnClose = $('.overlay__close',form);
+		var btnSubmit = $('.btn-user-more', form);
+		
+		// проверить статус чекбоксов.
+		$('.user__more_checkboxes').each(function() {
+			if ( $(this).prop('checked') ) {
+				var elemID = $(this).attr('id');
+				$('#'+elemID+'-field').css({'backgroundColor':'#FFFFFF'}).slideDown(200);
+			}
+		});
+
+		checkboxes.on('click',onCheckboxClick);
+
+		function onCheckboxClick() {
+			setFormFields($(this));
+		};
+
+		function setFormFields(element) {
+			var str = element.attr('id');
+			if(element.prop('checked')) {
+				$('#'+str+'-field').slideDown(200).css({'backgroundColor':'#FFFFFF'});
+			}
+			else {
+				$('#'+str+'-field').slideUp(200).css({'backgroundColor':'#FFFF99'});;
+			}
+		};
+
+		btnOpen.on('click', onBtnOpenClick);
+		btnClose.on('click', onBtnCloseClick);
+		btnSubmit.on('click', onBtnSubmitClick);
+
+		function onBtnOpenClick() {
+			setFieldsValueAJAX($(this));
+			$('.veil').removeClass('none');
+			$('.user__more').removeClass('none');
+		}
+
+		function onBtnCloseClick() {
+			$('.veil').addClass('none');
+			$('.user__more').addClass('none');
+			btnOpen.html('Попасть в ленту');
+		}
+
+		function onBtnSubmitClick() {
+			sendFieldsValueAJAX(); // не путать с setFieldsValueAJAX
+			$('.veil').removeClass('none');
+			$('.user__more').removeClass('none');
+		}
+
+		function setFieldsValueAJAX(btn) {
+			$.ajax({
 			type: "POST",
 			dataType: "json",
 			data: {data:"get_prof"},
 			beforeSend: function() {
-				$('.btn-add-user-more').html('<i class="icon-time"></i> загрузка...');
+				btn.html('<i class="icon-time"></i> загрузка...');
 			},
 			url: 'userpoll.php',
 			success: function(data) {
 				$('#um_skill').val(data.skill);
+		        if (+data.comand_in != 0) {
+		        	$('#user__more__choise1').prop('checked','checked');
+		        };
 		        if (+data.role != 0 ) {
-					$('.user__more__choise-want').hide();
-		        	$('.user__more__choise-find').show();
 		        	$('#um_role').val(data.role);
-		        }
+		        };
 		        if (+data.search_1 != 0) {
-		        	$('#user__more__choise2').click();
-					$('.user__more__choise-find').hide();
-		        	$('.user__more__choise-want').show();
+		        	$('#user__more__choise2').prop('checked','checked');
 		        	$('#um_search1').val(data.search_1);
-
 		        	if (+data.search_2 != 0) $('#um_search2').val(data.search_2);
-		        }
+		        	setFormFields($('#user__more__choise2'));
+		        };
 		        
 		        $('#um_time_beg').val(data.time_beg); 
 		        $('#um_time_end').val(data.time_end); 
@@ -50,16 +104,107 @@ $(function() {
 				$('.veil').removeClass('none');
 				$('.user__more').removeClass('none');
 			}
-		});
+			});
+		};
 
+		function sendFieldsValueAJAX() {
+
+			var obj = {
+				skill: $('#um_skill').val(),
+				role: $('#um_role').val(),
+				search1: 0,
+				search2: 0,
+				time_beg: $('#um_time_beg').val(),
+				time_end: $('#um_time_end').val(),
+				vtime_beg: $('#um_vtime_beg').val(),
+				vtime_end: $('#um_vtime_end').val(),
+				comand_in: 0,
+				comand_out: 0
+			};
+
+			if ( $('#user__more__choise2').prop('checked') ) {
+				obj.search1 = $('#um_search1').val();
+				obj.search2 = $('#um_search2').val();
+			};
+			if ($('#user__more__choise2').is(':checked')) {
+				obj.comand_out = 1;
+			};
+			if ($('#user__more__choise1').is(':checked')) {
+				obj.comand_in = 1;
+			};
+
+			var usermoreJSON = JSON.stringify(obj);
+
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				data: {prof:usermoreJSON, data:"user_prof"},
+				url: 'userpoll.php',
+				complete: function() {
+					onBtnCloseClick();
+				}
+			});
+		};
+	};
+
+	var userForm = new UserRequest({
+		element: $('.user__more-pub'),
+		btnOpen: $('.btn-add-user-more')
 	});
-	$('.icon-off-user-more').click(function() {
-		$(this).closest('.user__more').addClass('none');
-		$('.veil').addClass('none');
-		$('.btn-add-user-more').html('<i class="icon-plus"></i> Попасть в ленту');
+
+	//велосипед =( (гоу пабчик)
+	function GoPub(options) {
+		var self = this;
+		var form = options.element;
+		var btnOpen = options.btnOpen;
+		var btnClose = $('.overlay__close',form);
+		var btnSubmit = $('.btn-user-more',form);
+
+		btnOpen.on('click', onBtnOpenClick);
+		btnClose.on('click', onBtnCloseClick);
+		btnSubmit.on('click', onBtnSubmitClick);
+
+		function onBtnOpenClick() {
+			// setFieldsValueAJAX($(this));
+			$('.veil').removeClass('none');
+			$('.user__more-pubgame').removeClass('none');
+		}
+
+		function onBtnCloseClick() {
+			$('.veil').addClass('none');
+			$('.user__more-pubgame').addClass('none');
+			btnOpen.html('Гоу пабчик!');
+		}
+
+		function onBtnSubmitClick() {
+			sendFieldsValueAJAX(); // не путать с setFieldsValueAJAX
+			$('.veil').removeClass('none');
+			$('.user__more-pubgame').removeClass('none');
+		}
+
+		function sendFieldsValueAJAX() {
+
+			var userComment = ''+$('.pubgame_text').val();
+
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				data: {data:"setPublic", comment:userComment},
+				url: 'userpoll.php',
+				complete: function() {
+					onBtnCloseClick();
+				}
+			});
+		};
+
+	};
+
+	var userForm = new GoPub({
+		element: $('.user__more-pubgame'),
+		btnOpen: $('#loadUserFromDB-pubGame')
 	});
 
-
+	// голосование
 	$('.btn-poll').click(function() {
 
 		var $team1 = $('.select__team-top1');
@@ -108,90 +253,6 @@ $(function() {
 
 	}); // btn-poll click end
 	
-	// возьму / ищу в команду
-	if ($('#user__more__choise2').is(':checked')) {
-		$('.user__more__choise-find').hide();
-		$('.user__more__choise-want').fadeIn(200);
-	}
-	else {
-		$('.user__more__choise-want').hide();
-		$('.user__more__choise-find').fadeIn(200);	
-	}
-
-
-	$('.radio-user-more').on('click', function() {
-		if ($('#user__more__choise2').is(':checked')) {
-			$('.user__more__choise-find').hide();
-			$('.user__more__choise-want').fadeIn(200);
-		}
-		else {
-			$('.user__more__choise-want').hide();
-			$('.user__more__choise-find').fadeIn(200);	
-		}
-	});
-	//возьму / ищу в команду конец
-
-	// попасть в ленту
-	$('.btn-user-more').on('click',getIntoTape);
-
-	function getIntoTape() {
-		var skill = $('#um_skill').val(),
-			role = $('#um_role').val(),
-			search1 = $('#um_search1').val(),
-			search2 = $('#um_search2').val(),
-			um_time_beg = $('#um_time_beg').val(),
-			um_time_end = $('#um_time_end').val(),
-			um_vtime_beg = $('#um_vtime_beg').val(),
-			um_vtime_end = $('#um_vtime_end').val(),
-			comand_in = 0,
-			comand_out = 0;
-
-			if ($('#user__more__choise2').is(':checked')) {
-				comand_out = 1;
-			}
-			if ($('#user__more__choise1').is(':checked')) {
-				comand_in = 1;
-			}
-
-		var obj = {
-			skill: skill,
-			role: role,
-			search1: search1,
-			search2: search2,
-			time_beg: um_time_beg,
-			time_end: um_time_end,
-			vtime_beg: um_vtime_beg,
-			vtime_end: um_vtime_end,
-			comand_in: comand_in,
-			comand_out: comand_out
-		}
-
-		if (obj.comand_in == 1) {
-			obj.search1 = 0;
-			obj.search2 = 0;
-		}
-		if (obj.comand_out == 1) {
-			obj.role = 0;
-		}
-
-		var usermoreJSON = JSON.stringify(obj);
-
-
-		$.ajax({
-			type: "POST",
-			dataType: "json",
-			data: {prof:usermoreJSON, data:"user_prof"},
-			url: 'userpoll.php',
-			success: function(dataPHP) {
-			},
-			complete: function() {
-				$('.success-user-more').removeClass('none');
-			}
-		});
-
-	}
-
-
 	// загружаем ищущих
 	$('#loadUserFromDB').on('click',function() {
 		$.ajax({
@@ -234,7 +295,7 @@ $(function() {
     });
 
 
-	/* info JS */
+	/* Режим бога */
 
 	$('.admin__stats').hover(function() {
 		$(this).stop(true,true).animate({'left':'0'},200);
@@ -279,11 +340,18 @@ $(function() {
 	 
 	}
 
-	var pubJSON = '{"01": {"skill":"1","role":"1","msg":"Ищем еще парочку, клоз-гейм - пароль dnodno, мод ЦМ или AP. Привет Екб! spu2er - ЛОХ! И текст не влез, ну и пофиг."},"02": {"skill":"2","role":"2","msg":"Вы можете написать сообщение здесь."},"03": {"skill":"3","role":"1","msg":"Go! pass 123qwe. Raki idut lesom."}}';
-
-	var pubParsedJSON = JSON.parse(pubJSON);
-	console.log('qq');
-
+	// получить желающих в паб при загрузке страницы
+	$('#loadUserFromDB-ajaxtest').click(function() {
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			data: {data:"getPublic"},
+			url: 'userpoll.php',
+			success: function(data) {
+				console.log(''+JSON.parse(data));
+			}
+		});
+	});
 	
 });
 
