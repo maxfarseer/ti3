@@ -220,13 +220,43 @@
 
         <section class="team team__pub">
             <header class="poll__header teamfind-header"><h2>Замутим пабчик:</h2></header>
-            <button class="btn" id="loadUserFromDB-pub">Обновить список игроков</button>
+            <button class="btn" id="loadUserFromDB-pubGame">Подать заявку</button>
+            <button class="btn" id="loadUserFromDB-ajaxtest">AJAX test</button>
 
-            <div class="user__section" id="userFromDB-pub">
-                <!-- игроки из базы -->
+            <div class="user__section user__section-pub" id="userFromDB-pub">
+                <!-- вывести разметку аяксом -->
+                <div class="team__user__wrapper team__user__wrapper-pub">
+                    <div class="team__user__ava">
+                        <img alt="No avatar" src="img/noavatar.jpg">
+                    </div>
+                    <div class="team__user team__user-pub">
+                        <div class="team__user__item">
+                            <i class="icon-star"></i>
+                            <span class="t__user t__user-skill">Соображаю</span>
+                        </div>
+                        <div class="team__user__item">
+                            <i class="icon-tag"></i>
+                            <span class="t__user t__user-spec">Лес</span>
+                        </div>
+
+                        <div class="team__user__item">
+                            <div class="team__user_msg">Ищем еще парочку, клоз-гейм - пароль dnodno, мод ЦМ или AP. Привет Екб! spu2er - ЛОХ! И текст не влез, ну и пофиг.</div>
+                        </div>
+
+                        <div class="team__user__item">
+                            <div class="team__user_clock"><i class="icon-time"></i>&nbsp;
+                                <span id="pubgame_countdown-1">loading...</span></div>
+                        </div>
+
+                        <div class="team__user__item team__user__item-bottom">
+                            <i class="icon-envelope"></i>
+                            <a class="t__user t__user-link" href="mailto:odin445@gmail.com" target="_blank">Связаться</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        </section> <!-- team__find -->
+        
+        </section> <!-- team__pub -->
 
     	<section class="team team__find">
     		<header class="poll__header teamfind-header"><h2>Ищут команду:</h2></header>
@@ -267,19 +297,28 @@
 
 
 <!-- добавить данные -->
-<div class="user__more none">
-    <div class="overlay__close"><i class="icon-off icon-off-user-more"></i></div>
+<div class="user__more user__more-pub none">
+    <div class="overlay__close"></div>
 
     <form class="form-horizontal user__more__form">
     
-        <label class="radio radio-user-more">
-            <input type="radio" name="user__more__choise" id="user__more__choise1" value="option1" checked>
-            Я ворвусь в команду
-        </label>
-        <label class="radio radio-user-more">
-            <input type="radio" name="user__more__choise" id="user__more__choise2" value="option2">
-            Я возьму в команду
-        </label>                
+        <div class="checkboxes-to-team-wrapper">
+            <label class="checkbox checkbox-pubgame">
+                <input type="checkbox" class="user__more_checkboxes" id="user__more__choise1" value="option1">
+                Я ворвусь в команду
+            </label>
+            <label class="checkbox checkbox-pubgame">
+                <input type="checkbox" class="user__more_checkboxes" id="user__more__choise2" value="option2">
+                Я возьму в команду
+            </label>
+        </div>
+
+        <div class="checkbox-pubgame-separator"></div>
+
+        <!-- <label class="checkbox checkbox-pubgame checkbox-pubgame-go">
+            <input type="checkbox" class="user__more_checkboxes" id="user__more__choise3" value="option3">
+            Гоу пабчик!
+        </label> -->
 
         <div class="clear"></div>
 
@@ -287,11 +326,11 @@
         <label class="control-label">Скилл:</label>
             <select id="um_skill" class="user__more__select">
             <? foreach($_SESSION['lists']->skills as $key=>$value)
-                echo ($key==$_SESSION['user']->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?>
+            echo ($key==$_SESSION['user']->skill)?'<option value="'.$key.'" selected>'.$value.'</option>':'<option value="'.$key.'">'.$value.'</option>';?> 
             </select>
         </div>
 
-        <div class="user__more__choise-find">
+        <div class="user__more__choise-find user__more_field-wrapper" id="user__more__choise1-field">
             <div class="control-group">
             <label class="control-label">Любимое дело:</label>
                 <select id="um_role" class="user__more__select">
@@ -301,7 +340,7 @@
             </div>
         </div> <!-- end find -->
 
-        <div class="user__more__choise-want">
+        <div class="user__more__choise-want user__more_field-wrapper" id="user__more__choise2-field">
             <div class="control-group control-group-float">
             <label class="control-label">Ищу (1го или 2ух)</label>
                 <select id="um_search1" class="user__more__select">
@@ -321,7 +360,6 @@
         <div class="control-group control-group-float">
         <label class="control-label" for="onlineHours_wd">Онлайн будни c :</label>
             <select id="um_time_beg" class="user__more__select">
-            <? // substr($_SESSION['user']->time_beg,0,5);?>    
                 <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
@@ -352,7 +390,6 @@
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_wd"> по:</label>
             <select id="um_time_end" class="user__more__select">
-            <? // substr($_SESSION['user']->time_end,0,5);?>
                 <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
@@ -384,7 +421,6 @@
 
         <div class="control-group control-group-float">
         <label class="control-label" for="onlineHours_vd">Онлайн выхи c: </label>
-            <? // substr($_SESSION['user']->vtime_beg,0,5);?>
             <select id="um_vtime_beg" class="user__more__select">
                 <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
@@ -417,7 +453,6 @@
         <div class="control-group control-group-float">
         <label class="control-label control-label-col2" for="onlineHours_vd"> по:</label>
             <select id="um_vtime_end" class="user__more__select">
-            <? // substr($_SESSION['user']->vtime_end,0,5);?>
                 <option value="00:00:00">00:00</option>
                 <option value="01:00:00">01:00</option>
                 <option value="02:00:00">02:00</option>
@@ -451,7 +486,23 @@
     
 </div> <!-- user__more -->
 
-<!-- <script src="http://code.jquery.com/jquery.js"></script> -->
+<!-- overlay 'Сообщение в пабчик' -->
+<div class="user__more_msg user__more-pubgame none">
+    <div class="overlay__close"></div>
+
+    <form class="form-horizontal user__more__form">
+        <div class="clear"></div>
+        <div class="user__more_field-wrapper user__more_field-wrapper-textarea" id="user__more__choise3-field">
+            <label class="control-label control-label-msg">Сообщение:</label>
+            <textarea class="pubgame_text"></textarea>
+        </div>
+    </form>
+
+<button class="btn btn-user-more"><i class="icon-ok"></i> Отправить</button>
+<div class="success success-user-more none">Ваша заявка принята!</div>
+</div>
+<!-- конец оверлея "в пабчик" -->
+
 <script src="js/jquery-2.0.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 

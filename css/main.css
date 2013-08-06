@@ -211,7 +211,7 @@ h2 {
 
 
 /* section POLL */
-.poll, .score, .user, .stats, .versus, .user__more {
+.poll, .score, .user, .stats, .versus {
 	border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
     height: 203px;
@@ -478,7 +478,7 @@ h2 {
 }
 
 /* user__more */
-.user__more {
+.user__more, .user__more_msg {
 	background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #D9D9D9;
     box-shadow: 0 0 5px #CCCCCC;
@@ -517,7 +517,7 @@ h2 {
 .control-group-float .user__more__select {
 	float: left;
 }
-.user__more__choise-want, #user__more__choise3-field {
+.user__more__choise-want {
 	display: none;
 }
 .radio-user-more {
@@ -646,15 +646,28 @@ h2 {
 	float: left;
 	clear: both;
 	height: 30px;
-	width: 455px;
 	margin: 0 0 10px;
 	background-color: #FFFF99;
+	width: 450px;
 	-webkit-transition: background-color 1s linear .2s;
 	transition: background-color 1s linear .2s;
 }
 #user__more__choise1-field {
 	background: #FFF;
 }
+#user__more__choise3-field {
+	background: #FFF;
+	width: 400px;
+
+}
 .user__more_field-wrapper-textarea {
 	height: 50px;
+	margin: 6px 0 10px;
+}
+.user__more_msg {
+	width: 410px;
+	margin: -59px 0 0 -216px;
+}
+.user__more_msg .user__more__form .control-label {
+	width: 80px;
 }
